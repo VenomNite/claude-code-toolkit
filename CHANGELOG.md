@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.4] - 2025-09-18
+
+### Fixed
+- **Cost usage display normalization**
+  - Improved normalization factor for better accuracy
+  - Provides more realistic ranges for cost usage monitoring
+
 ## [1.0.3] - 2025-09-18
 
 ### Removed

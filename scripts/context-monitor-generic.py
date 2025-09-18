@@ -526,7 +526,7 @@ def get_cost_usage():
         return "C.U. 🔴█████EXP"
 
     # Normalize display percentage for better visual representation
-    display_percent = min(100, percent / 1.40)
+    display_percent = min(100, percent / 1.50)
 
     # Color and icon based on cost usage level (claude-monitor compatible)
     if percent >= 95:
