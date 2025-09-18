@@ -41,7 +41,7 @@ PRIORITY SOURCES:
 
 RESEARCH STANDARDS:
 - Accuracy: information verified from multiple sources
-- Currency: prioritize updated information (2024-2025)
+- Currency: prioritize updated information (2025-2026)
 - Authority: industry-recognized sources
 - Relevance: directly applicable to the specific problem
 - Completeness: cover alternatives and trade-offs

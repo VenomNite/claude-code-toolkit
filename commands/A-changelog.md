@@ -47,7 +47,7 @@ Generate and maintain project changelog: $ARGUMENTS
 
 2. **Version Entries**
    ```markdown
-   ## [1.2.3] - 2024-01-15
+   ## [1.2.3] - 2025-01-15
    ### Added
    - User authentication system
    - Dark mode toggle
