@@ -3,26 +3,25 @@
 > **AI-powered development toolkit for Claude Code**
 > Automate planning, orchestrate AI agents, monitor health, and maintain quality standards
 
-## 📊 Toolkit Overview
+## 📋 Table of Contents
 
-```mermaid
-graph TB
-    A[Claude Code Toolkit] --> B[Commands - 15]
-    A --> C[Agents - 12]
-    A --> D[Scripts - 1]
+- [Quick Start](#-quick-start)
+- [Installation](#️-installation)
+- [Commands Matrix](#-commands-matrix)
+- [Agents Matrix](#-agents-matrix)
+- [Status Line Integration](#-status-line-integration)
+- [Key Features](#-key-features)
+- [Usage Examples](#-usage-examples)
+- [Dependencies](#-dependencies)
+- [Contributing](#-contributing)
 
-    B --> B1[Planning & Strategy]
-    B --> B2[AI Orchestration]
-    B --> B3[Health & Monitoring]
-    B --> B4[Documentation]
+## 🚀 What's Included
 
-    C --> C1[Quality Assurance]
-    C --> C2[Development Specialists]
-    C --> C3[Architecture & UX]
-    C --> C4[AI Orchestrator]
-
-    D --> D1[Status Monitor]
-```
+| Component | Count | Description |
+|-----------|-------|-------------|
+| 📋 **Commands** | 18 | Automation tools for planning, orchestration, monitoring |
+| 🤖 **Agents** | 12 | Specialized AI agents for development tasks |
+| 📊 **Scripts** | 1 | Advanced status line monitoring |
 
 ## 🎯 Quick Start
 
@@ -75,22 +74,11 @@ cd claude-code-toolkit
 | **M1-unity-game-developer** | 🎮 Unity Development | C# scripting, optimization | Cross-platform expert |
 | **M1-2d-game-asset-optimizer** | 🎨 Game Assets | Sprites, animations, VFX | Performance optimization |
 
-## 🔄 Workflow Architecture
+## 🔄 Workflow
 
-```mermaid
-graph LR
-    A[Project Idea] --> B[/A-plan]
-    B --> C[Specifications]
-    C --> D[/A-ai-code --coordinar]
-    D --> E[Agent Orchestration]
-    E --> F[Development]
-    F --> G[/M1-qa-gatekeeper]
-    G --> H[Quality Validation]
-    H --> I[Production Ready]
+**Development Flow:** Project Idea → `/A-plan` → Specifications → `/A-ai-code --coordinar` → Agent Orchestration → Development → `/M1-qa-gatekeeper` → Quality Validation → Production Ready
 
-    J[/B-HealthCheck] -.-> E
-    K[/A-update-docs] -.-> I
-```
+**Supporting Tools:** `/B-HealthCheck` monitors AI tools, `/A-update-docs` maintains documentation throughout the process.
 
 ## ⚙️ Installation
 
