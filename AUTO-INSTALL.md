@@ -7,7 +7,7 @@ This document allows you to automatically install the complete Claude Code Toolk
 ## 🎯 OBJECTIVE
 
 Automatically install:
-- ✅ 18 specialized commands
+- ✅ 17 specialized commands
 - ✅ 12 specialized M1 agents
 - ✅ Advanced monitoring script
 - ✅ Status line configuration
@@ -194,7 +194,7 @@ echo "===================="
 COMMANDS_COUNT=$(ls ~/.claude/commands/*.md 2>/dev/null | wc -l)
 AGENTS_COUNT=$(ls ~/.claude/agents/*.md 2>/dev/null | wc -l)
 
-echo "📋 Commands installed: $COMMANDS_COUNT/18"
+echo "📋 Commands installed: $COMMANDS_COUNT/17"
 echo "🤖 Agents installed: $AGENTS_COUNT/12"
 
 # Verify key files

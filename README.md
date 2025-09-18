@@ -29,7 +29,7 @@ graph LR
 
 | Component | Count | Description |
 |-----------|-------|-------------|
-| 📋 **Commands** | 18 | Automation tools for planning, orchestration, monitoring |
+| 📋 **Commands** | 17 | Automation tools for planning, orchestration, monitoring |
 | 🤖 **Agents** | 12 | Specialized AI agents for development tasks |
 | 📊 **Scripts** | 1 | Advanced status line monitoring |
 
@@ -71,7 +71,6 @@ cd claude-code-toolkit
 | **A-insights** | 📊 Analysis | Project insights generator | Metrics, trends, recommendations |
 | **A-onboarding** | 🎯 Setup | Project onboarding | Developer setup, guidelines |
 | **A-organize** | 📁 Organization | Project structure optimizer | File organization, cleanup |
-| **A-setupclaude** | ⚙️ Configuration | Claude Code setup | Configuration automation |
 | **A-todo** | ✅ Tasks | Smart todo management | Task tracking, prioritization |
 | **A-workflow** | 🔄 Process | Workflow orchestrator | Agent coordination, task delegation |
 | **B-ultra-think** | 🧠 Analysis | Deep thinking assistant | Complex problem solving |

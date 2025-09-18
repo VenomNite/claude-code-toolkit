@@ -23,7 +23,7 @@ echo "Commands: $(ls ~/.claude/commands/*.md | wc -l)" && echo "Agents: $(ls ~/.
 
 ## 🎯 **WHAT GETS INSTALLED AUTOMATICALLY**
 
-- ✅ **18 commands** - /A-plan, /A-ai-code, /B-HealthCheck, etc.
+- ✅ **17 commands** - /A-plan, /A-ai-code, /B-HealthCheck, etc.
 - ✅ **12 M1 agents** - qa-gatekeeper, ultrathink-orchestrator, etc.
 - ✅ **Advanced status line** - Real-time monitoring
 - ✅ **Python dependencies** - psutil, python-dateutil

@@ -15,7 +15,7 @@ import tempfile
 import time
 
 def parse_context_from_transcript(transcript_path):
-    """Simple context estimation - clean v2.0 implementation."""
+    """ENHANCED context estimation using REAL token data from transcript v3.0."""
     if not transcript_path:
         return {
             'percent': 15,
@@ -34,9 +34,10 @@ def parse_context_from_transcript(transcript_path):
         with open(transcript_path, 'r') as f:
             lines = f.readlines()
 
-        # Check last 20 lines for Claude's REAL system warnings (most accurate)
-        recent_lines = lines[-20:] if len(lines) > 20 else lines
+        # Check last 30 lines for Claude's REAL system warnings (most accurate)
+        recent_lines = lines[-30:] if len(lines) > 30 else lines
 
+        # PRIORITY 1: Look for Claude system warnings (100% accurate)
         for line in reversed(recent_lines):
             try:
                 data = json.loads(line.strip())
@@ -69,25 +70,101 @@ def parse_context_from_transcript(transcript_path):
             except (json.JSONDecodeError, KeyError, ValueError):
                 continue
 
-        # Simple estimation based on message count
+        # PRIORITY 2: Use REAL token data from messages (MUCH MORE ACCURATE)
+        max_tokens_seen = 0
+        total_input_tokens = 0
+        total_cache_tokens = 0
         message_count = 0
+
+        # Claude Sonnet 4 context limit (200K tokens typical)
+        CONTEXT_LIMIT = 200000
+
         for line in reversed(recent_lines):
             try:
                 data = json.loads(line.strip())
+
                 if data.get('type') == 'assistant':
-                    message_count += 1
-                    if message_count >= 10:
-                        break
+                    message = data.get('message', {})
+                    usage = message.get('usage', {})
+
+                    if usage:
+                        # Get real token counts
+                        input_tokens = usage.get('input_tokens', 0)
+                        cache_read = usage.get('cache_read_input_tokens', 0)
+                        cache_creation = usage.get('cache_creation_input_tokens', 0)
+
+                        # Track maximum tokens seen (most recent and complete picture)
+                        current_total = input_tokens + cache_read + cache_creation
+                        if current_total > max_tokens_seen:
+                            max_tokens_seen = current_total
+                            total_input_tokens = input_tokens
+                            total_cache_tokens = cache_read + cache_creation
+
+                        message_count += 1
+                        if message_count >= 5:  # Look at last 5 messages for most recent data
+                            break
+
             except (json.JSONDecodeError, KeyError, ValueError):
                 continue
 
-        if message_count > 0:
-            # Simple estimation: 15% base + 5% per message (max 85%)
-            estimated_percent = min(85, 15 + (message_count * 5))
+        # Calculate real context percentage if we have token data
+        if max_tokens_seen > 0:
+            real_percent = min(99, (max_tokens_seen / CONTEXT_LIMIT) * 100)
+
+            # Determine accuracy based on data quality
+            if total_cache_tokens > 0:
+                # Cache tokens indicate active context management - very accurate
+                return {
+                    'percent': real_percent,
+                    'tokens_used': max_tokens_seen,
+                    'cache_tokens': total_cache_tokens,
+                    'method': 'real_tokens_with_cache',
+                    'accurate': True
+                }
+            else:
+                # Input tokens only - moderately accurate
+                return {
+                    'percent': real_percent,
+                    'tokens_used': max_tokens_seen,
+                    'method': 'real_tokens_basic',
+                    'accurate': True
+                }
+
+        # FALLBACK: Improved estimation based on message characteristics
+        conversation_depth = 0
+        total_content_length = 0
+
+        for line in reversed(recent_lines):
+            try:
+                data = json.loads(line.strip())
+                if data.get('type') in ['assistant', 'user']:
+                    conversation_depth += 1
+
+                    # Estimate content length for better calculation
+                    message = data.get('message', {})
+                    content = message.get('content', [])
+                    if isinstance(content, list):
+                        for item in content:
+                            if isinstance(item, dict) and item.get('type') == 'text':
+                                total_content_length += len(item.get('text', ''))
+
+                    if conversation_depth >= 15:  # Look at more context for better estimation
+                        break
+
+            except (json.JSONDecodeError, KeyError, ValueError):
+                continue
+
+        if conversation_depth > 0:
+            # Enhanced estimation considering conversation depth and content length
+            base_percent = min(20, conversation_depth * 1.5)  # More gradual increase
+            content_factor = min(30, total_content_length / 1000)  # Content length factor
+            estimated_percent = min(85, base_percent + content_factor)
+
             return {
                 'percent': estimated_percent,
-                'messages': message_count,
-                'method': 'simple_estimate',
+                'messages': conversation_depth,
+                'content_length': total_content_length,
+                'method': 'enhanced_estimate',
                 'accurate': False
             }
 
@@ -105,29 +182,47 @@ def parse_context_from_transcript(transcript_path):
         }
 
 def get_context_display(context_info):
-    """Generate context display with USEFUL indicators for /compact decisions."""
+    """Generate context display with ENHANCED indicators using real token data."""
     if not context_info:
         return "🔵 ???%"
 
     percent = context_info.get('percent', 0)
     warning = context_info.get('warning')
     accurate = context_info.get('accurate', False)
+    method = context_info.get('method', '')
+    tokens_used = context_info.get('tokens_used', 0)
 
     # ENHANCED: More meaningful thresholds for /compact decisions
     if warning == 'low' or warning == 'auto-compact':
         # REAL Claude system warnings - MOST IMPORTANT
         icon, color = "🔴", "\033[31;1m"  # Blinking red - COMPACT NOW!
         alert = "/COMPACT!"
+    elif method.startswith('real_tokens') and percent >= 90:
+        # Real token data shows very high usage - URGENT
+        icon, color = "🔴", "\033[31m"   # Red - high confidence
+        alert = "COMPACT!"
+    elif method.startswith('real_tokens') and percent >= 75:
+        # Real token data shows high usage - SOON
+        icon, color = "🟠", "\033[91m"   # Orange - high confidence
+        alert = "SOON"
+    elif method.startswith('real_tokens') and percent >= 50:
+        # Real token data shows moderate usage - MONITOR
+        icon, color = "🟡", "\033[33m"   # Yellow - high confidence
+        alert = ""
+    elif method.startswith('real_tokens'):
+        # Real token data shows low usage - OK
+        icon, color = "🟢", "\033[32m"   # Green - high confidence
+        alert = ""
     elif accurate and percent >= 85:
-        # System detected high usage - COMPACT SOON
+        # Other accurate methods with high usage
         icon, color = "🟠", "\033[91m"   # Orange
-        alert = "COMPACT SOON"
+        alert = "SOON"
     elif accurate and percent >= 70:
-        # System detected moderate usage - MONITOR
+        # Other accurate methods with moderate usage
         icon, color = "🟡", "\033[33m"   # Yellow
-        alert = "MONITOR"
+        alert = ""
     elif accurate:
-        # System detected low usage - OK
+        # Other accurate methods with low usage
         icon, color = "🟢", "\033[32m"   # Green
         alert = ""
     else:
@@ -149,7 +244,7 @@ def get_context_display(context_info):
 
     reset = "\033[0m"
 
-    # Clear indicator for when to compact
+    # Build alert string
     if warning == 'low' or warning == 'auto-compact':
         alert_str = f" {alert}"
     elif alert:
@@ -157,10 +252,24 @@ def get_context_display(context_info):
     else:
         alert_str = ""
 
-    # Add accuracy indicator
-    accuracy_indicator = "" if accurate else "~"
+    # Enhanced accuracy indicator based on method
+    if method.startswith('real_tokens'):
+        if 'cache' in method:
+            accuracy_indicator = "✓"  # Real tokens with cache - highest accuracy
+        else:
+            accuracy_indicator = ""   # Real tokens basic - high accuracy
+    elif accurate:
+        accuracy_indicator = ""       # Other accurate methods
+    else:
+        accuracy_indicator = "~"      # Estimated
 
-    return f"{icon} {color}{bar}{reset} {accuracy_indicator}{percent:.0f}%{alert_str}"
+    # Add token count for real data (debugging aid)
+    if tokens_used > 0 and method.startswith('real_tokens'):
+        token_display = f" ({tokens_used//1000}k)"
+    else:
+        token_display = ""
+
+    return f"{icon} {color}{bar}{reset} {accuracy_indicator}{percent:.0f}%{alert_str}{token_display}"
 
 def get_directory_display(workspace_data):
     """Get directory display name."""
@@ -437,6 +546,9 @@ def get_cost_usage():
     if not session_active:
         return "C.U. 🔴█████EXP"
 
+    # Normalize display percentage for better visual representation
+    display_percent = min(100, percent / 1.40)
+
     # Color and icon based on cost usage level (claude-monitor compatible)
     if percent >= 95:
         icon, color = "🔴", "\033[31;1m"  # Blinking red
@@ -451,7 +563,7 @@ def get_cost_usage():
 
     # Create progress bar
     segments = 8
-    filled = int((percent / 100) * segments)
+    filled = int((display_percent / 100) * segments)
     bar = "█" * filled + "▁" * (segments - filled)
 
     reset = "\033[0m"
@@ -459,7 +571,7 @@ def get_cost_usage():
     # Show approach indicator - ⚡ for claude-monitor exact
     indicator = "⚡" if approach == 'claude_monitor_exact' else ""
 
-    return f"C.U. {icon} {color}{bar}{reset} {percent:.0f}%{indicator}"
+    return f"C.U. {icon} {color}{bar}{reset} {display_percent:.0f}%{indicator}"
 
 def get_live_datetime():
     """Get current date and time in compact format."""

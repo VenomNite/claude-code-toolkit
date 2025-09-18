@@ -2,29 +2,33 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+## [1.0.3] - 2025-09-18
 
-## [Unreleased]
+### Removed
+- **A-setupclaude command** - Removed personal configuration command from public toolkit
+  - Eliminated from commands directory
+  - Updated command count from 18 to 17 across all documentation
+  - Cleaned references from README.md, AUTO-INSTALL.md, QUICK-INSTALL.md
 
-### Planned
-- Enhanced error handling for edge cases
-- Additional specialized agents for specific frameworks
-- Performance optimizations for large projects
-- Integration with more development tools
-- Community-contributed commands and agents
+### Fixed
+- **Context monitor script improvements**
+  - Enhanced context-monitor-generic.py with real token data parsing
+  - Fixed frozen 65% context display issue
+  - Added dynamic token-based percentage calculation
+  - Improved accuracy indicators and debugging information
+  - Adjusted cost usage display normalization for better visual representation
 
 ## [1.0.2] - 2025-09-18
 
 ### Fixed
 - **Date corrections across all files**
   - Fixed incorrect year 2024 → 2025 in LICENSE copyright
-  - Updated research period in M1-technical-research-analyst.md (2024-2025 → 2025-2026)
-  - Corrected example date in A-changelog.md (2024-01-15 → 2025-01-15)
-  - Fixed CHANGELOG.md version dates from 2024 to 2025
+  - Updated research period in M1-technical-research-analyst.md
+  - Corrected example date in A-changelog.md
+  - Fixed CHANGELOG.md version dates
 
 ### Changed
-- Reorganized CHANGELOG.md with newest versions first (proper chronological order)
+- Reorganized CHANGELOG.md
 
 ## [1.0.1] - 2025-09-18
 
@@ -44,7 +48,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - **Initial release** of Claude Code Toolkit
-- **18 automation commands** for comprehensive workflow management
+- **17 automation commands** for comprehensive workflow management
   - `A-plan`: Project planning with gap analysis and adaptive questioning
   - `A-ai-code`: AI agent orchestration and coordination
   - `B-HealthCheck`: Parallel AI tools health monitoring
@@ -56,7 +60,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `A-insights`: Project insights generator
   - `A-onboarding`: Project onboarding automation
   - `A-organize`: Project structure optimizer
-  - `A-setupclaude`: Claude Code setup automation
   - `A-todo`: Smart todo management
   - `A-workflow`: Workflow orchestrator
   - `B-ultra-think`: Deep thinking assistant with multi-perspective analysis
