@@ -1,7 +1,20 @@
 # Claude Code Toolkit 🚀
 
-> **Professional AI-powered development toolkit for Claude Code**
-> Transform your development workflow with intelligent planning, multi-agent orchestration, real-time health monitoring, and automated quality assurance. Built by developers, for developers.
+[![GitHub stars](https://img.shields.io/github/stars/Ghenwy/claude-code-toolkit?style=social)](https://github.com/Ghenwy/claude-code-toolkit/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/Ghenwy/claude-code-toolkit?style=social)](https://github.com/Ghenwy/claude-code-toolkit/network/members)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.7+](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/)
+[![GitHub release](https://img.shields.io/github/v/release/Ghenwy/claude-code-toolkit)](https://github.com/Ghenwy/claude-code-toolkit/releases)
+[![GitHub last commit](https://img.shields.io/github/last-commit/Ghenwy/claude-code-toolkit)](https://github.com/Ghenwy/claude-code-toolkit/commits/main)
+
+[![Platform](https://img.shields.io/badge/platform-linux%20%7C%20macOS%20%7C%20windows-lightgrey)](https://github.com/Ghenwy/claude-code-toolkit)
+[![Claude AI](https://img.shields.io/badge/Claude%20AI-Compatible-orange)](https://claude.ai)
+[![Shell](https://img.shields.io/badge/shell-bash%20%7C%20zsh-green)](https://github.com/Ghenwy/claude-code-toolkit)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
+[![Maintenance](https://img.shields.io/maintenance/yes/2025)](https://github.com/Ghenwy/claude-code-toolkit/graphs/commit-activity)
+
+> **🎯 Transform your development workflow with AI automation**
+> Professional toolkit featuring **17 specialized commands** and **12 intelligent agents** for automated workflow orchestration, Claude AI integration, and maximum developer productivity.
 
 ```mermaid
 graph LR

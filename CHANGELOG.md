@@ -16,11 +16,16 @@ All notable changes to this project will be documented in this file.
   - Fixed frozen 65% context display issue
   - Added dynamic token-based percentage calculation
   - Improved accuracy indicators and debugging information
-  - Adjusted cost usage display normalization for better visual representation
+  - Adjusted cost usage display for better visual representation
   - Removed excessive alert messages (COMPACT!, SOON, MONITOR)
-  - Optimized progress bars from 8 to 4 segments for compact display
+  - Optimized progress bars segments for compact display
   - Updated separators for cleaner visual presentation
   - Enhanced clock icons differentiation (🕐 vs ⌚)
+
+### Added
+  - Platform badges
+  - Community badges (PRs welcome, maintenance status)
+  - Enhanced repository description
 
 ## [1.0.2] - 2025-09-18
 
