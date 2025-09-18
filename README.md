@@ -28,7 +28,7 @@ graph TB
 
 ```bash
 # 1. Clone & Install
-git clone https://github.com/yourusername/claude-code-toolkit.git
+git clone https://github.com/Ghenwy/claude-code-toolkit.git
 cd claude-code-toolkit
 ./install.sh
 
@@ -107,12 +107,12 @@ Claude Code will automatically execute all 10 installation steps, including depe
 
 ### ⚡ Quick Install (Human Users)
 ```bash
-curl -sSL https://raw.githubusercontent.com/yourusername/claude-code-toolkit/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/Ghenwy/claude-code-toolkit/main/install.sh | bash
 ```
 
 ### 🔧 Manual Installation
 ```bash
-git clone https://github.com/yourusername/claude-code-toolkit.git
+git clone https://github.com/Ghenwy/claude-code-toolkit.git
 cd claude-code-toolkit
 cp commands/* ~/.claude/commands/
 cp agents/* ~/.claude/agents/

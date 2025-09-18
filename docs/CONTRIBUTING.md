@@ -6,7 +6,7 @@ We welcome contributions from the Claude Code community! This guide will help yo
 
 ### 1. Fork the Repository
 ```bash
-git clone https://github.com/yourusername/claude-code-toolkit.git
+git clone https://github.com/Ghenwy/claude-code-toolkit.git
 cd claude-code-toolkit
 ```
 

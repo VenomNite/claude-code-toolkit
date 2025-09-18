@@ -8,7 +8,7 @@
 
 ### 1️⃣ **CLONE AND PREPARE**
 ```bash
-cd /tmp && git clone https://github.com/yourusername/claude-code-toolkit.git && cd claude-code-toolkit
+cd /tmp && git clone https://github.com/Ghenwy/claude-code-toolkit.git && cd claude-code-toolkit
 ```
 
 ### 2️⃣ **RUN INSTALLER**

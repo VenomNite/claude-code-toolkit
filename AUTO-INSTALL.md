@@ -41,7 +41,7 @@ echo "Current agents: $(ls ~/.claude/agents/*.md 2>/dev/null | wc -l)"
 ```bash
 # Clone to temporary directory
 cd /tmp
-git clone https://github.com/yourusername/claude-code-toolkit.git
+git clone https://github.com/Ghenwy/claude-code-toolkit.git
 cd claude-code-toolkit
 
 # Verify downloaded content
