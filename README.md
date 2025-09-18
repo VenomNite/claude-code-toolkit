@@ -1,7 +1,5 @@
 # Claude Code Toolkit 🚀
 
-[![GitHub stars](https://img.shields.io/github/stars/Ghenwy/claude-code-toolkit?style=social)](https://github.com/Ghenwy/claude-code-toolkit/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/Ghenwy/claude-code-toolkit?style=social)](https://github.com/Ghenwy/claude-code-toolkit/network/members)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.7+](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/)
 [![GitHub release](https://img.shields.io/github/v/release/Ghenwy/claude-code-toolkit)](https://github.com/Ghenwy/claude-code-toolkit/releases)
