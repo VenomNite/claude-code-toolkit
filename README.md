@@ -9,7 +9,6 @@
 
 [![Platform](https://img.shields.io/badge/platform-linux%20%7C%20macOS%20%7C%20windows-lightgrey)](https://github.com/Ghenwy/claude-code-toolkit)
 [![Claude AI](https://img.shields.io/badge/Claude%20AI-Compatible-orange)](https://claude.ai)
-[![Shell](https://img.shields.io/badge/shell-bash%20%7C%20zsh-green)](https://github.com/Ghenwy/claude-code-toolkit)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 [![Maintenance](https://img.shields.io/maintenance/yes/2025)](https://github.com/Ghenwy/claude-code-toolkit/graphs/commit-activity)
 
@@ -20,7 +19,6 @@
 [![Status Line](https://img.shields.io/badge/Status%20Line-Enhanced-purple)](https://github.com/Ghenwy/claude-code-toolkit#-status-line-integration)
 [![Workflow](https://img.shields.io/badge/Workflow-Orchestration-red)](https://github.com/Ghenwy/claude-code-toolkit)
 [![Context Monitor](https://img.shields.io/badge/Context-Monitor-yellow)](https://github.com/Ghenwy/claude-code-toolkit)
-[![Health Check](https://img.shields.io/badge/Health-Check-green)](https://github.com/Ghenwy/claude-code-toolkit#-usage-examples)
 
 > **🎯 Transform your development workflow with AI automation**
 > Professional toolkit featuring **17 specialized commands** and **12 intelligent agents** for automated workflow orchestration, Claude AI integration, and maximum developer productivity.
