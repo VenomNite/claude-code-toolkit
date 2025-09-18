@@ -192,65 +192,46 @@ def get_context_display(context_info):
     method = context_info.get('method', '')
     tokens_used = context_info.get('tokens_used', 0)
 
-    # ENHANCED: More meaningful thresholds for /compact decisions
+    # Color and icon based on usage level
     if warning == 'low' or warning == 'auto-compact':
-        # REAL Claude system warnings - MOST IMPORTANT
-        icon, color = "🔴", "\033[31;1m"  # Blinking red - COMPACT NOW!
-        alert = "/COMPACT!"
+        # REAL Claude system warnings
+        icon, color = "🔴", "\033[31;1m"  # Blinking red
     elif method.startswith('real_tokens') and percent >= 90:
-        # Real token data shows very high usage - URGENT
-        icon, color = "🔴", "\033[31m"   # Red - high confidence
-        alert = "COMPACT!"
+        # Real token data shows very high usage
+        icon, color = "🔴", "\033[31m"   # Red
     elif method.startswith('real_tokens') and percent >= 75:
-        # Real token data shows high usage - SOON
-        icon, color = "🟠", "\033[91m"   # Orange - high confidence
-        alert = "SOON"
+        # Real token data shows high usage
+        icon, color = "🟠", "\033[91m"   # Orange
     elif method.startswith('real_tokens') and percent >= 50:
-        # Real token data shows moderate usage - MONITOR
-        icon, color = "🟡", "\033[33m"   # Yellow - high confidence
-        alert = ""
+        # Real token data shows moderate usage
+        icon, color = "🟡", "\033[33m"   # Yellow
     elif method.startswith('real_tokens'):
-        # Real token data shows low usage - OK
-        icon, color = "🟢", "\033[32m"   # Green - high confidence
-        alert = ""
+        # Real token data shows low usage
+        icon, color = "🟢", "\033[32m"   # Green
     elif accurate and percent >= 85:
         # Other accurate methods with high usage
         icon, color = "🟠", "\033[91m"   # Orange
-        alert = "SOON"
     elif accurate and percent >= 70:
         # Other accurate methods with moderate usage
         icon, color = "🟡", "\033[33m"   # Yellow
-        alert = ""
     elif accurate:
         # Other accurate methods with low usage
         icon, color = "🟢", "\033[32m"   # Green
-        alert = ""
     else:
         # Estimated values - less reliable
         if percent >= 80:
-            icon, color = "🟠", "\033[91m"   # Orange with caution
-            alert = ""
+            icon, color = "🟠", "\033[91m"   # Orange
         elif percent >= 60:
-            icon, color = "🟡", "\033[33m"   # Yellow with caution
-            alert = ""
+            icon, color = "🟡", "\033[33m"   # Yellow
         else:
             icon, color = "🟢", "\033[32m"   # Green
-            alert = ""
 
     # Create progress bar
-    segments = 8
+    segments = 4
     filled = int((percent / 100) * segments)
     bar = "█" * filled + "▁" * (segments - filled)
 
     reset = "\033[0m"
-
-    # Build alert string
-    if warning == 'low' or warning == 'auto-compact':
-        alert_str = f" {alert}"
-    elif alert:
-        alert_str = f" {alert}"
-    else:
-        alert_str = ""
 
     # Enhanced accuracy indicator based on method
     if method.startswith('real_tokens'):
@@ -269,7 +250,7 @@ def get_context_display(context_info):
     else:
         token_display = ""
 
-    return f"{icon} {color}{bar}{reset} {accuracy_indicator}{percent:.0f}%{alert_str}{token_display}"
+    return f"{icon} {color}{bar}{reset} {accuracy_indicator}{percent:.0f}%{token_display}"
 
 def get_directory_display(workspace_data):
     """Get directory display name."""
@@ -526,9 +507,7 @@ def get_claude_session_reset():
     if reset_time == 'EXPIRED':
         return "L.R. EXPIRED"
     elif reset_time:
-        # Show approach indicator - ⚡ for claude-monitor exact
-        indicator = "⚡" if approach == 'claude_monitor_exact' else ""
-        return f"L.R. @ {reset_time}{indicator}"
+        return f"L.R. @ {reset_time}🕐"
     else:
         return "L.R. @ --:--"
 
@@ -562,16 +541,13 @@ def get_cost_usage():
         icon, color = "🟢", "\033[32m"   # Green
 
     # Create progress bar
-    segments = 8
+    segments = 4
     filled = int((display_percent / 100) * segments)
     bar = "█" * filled + "▁" * (segments - filled)
 
     reset = "\033[0m"
 
-    # Show approach indicator - ⚡ for claude-monitor exact
-    indicator = "⚡" if approach == 'claude_monitor_exact' else ""
-
-    return f"C.U. {icon} {color}{bar}{reset} {display_percent:.0f}%{indicator}"
+    return f"C.U. {icon} {color}{bar}{reset} {display_percent:.0f}%"
 
 def get_live_datetime():
     """Get current date and time in compact format."""
@@ -618,7 +594,7 @@ def main():
         section3 = f"{claude_reset} {cost_usage} {live_datetime}"
 
         # Combine all sections with || separators (exactly 3 sections)
-        separator = " \033[90m||\033[0m "
+        separator = " \033[90m|\033[0m "
         status_line = f"{section1}{separator}{section2}{separator}{section3}"
 
         print(status_line)
@@ -636,12 +612,12 @@ def main():
             section2_fallback = f"\033[31m[Error]\033[0m"
             section3_fallback = f"{claude_reset_fallback} {cost_usage_fallback} {datetime_fallback}"
 
-            separator = " \033[90m||\033[0m "
+            separator = " \033[90m|\033[0m "
             fallback_line = f"{section1_fallback}{separator}{section2_fallback}{separator}{section3_fallback}"
             print(fallback_line)
         except:
             # Ultimate fallback (3 sections structure maintained, removed model display)
-            separator = " \033[90m||\033[0m "
+            separator = " \033[90m|\033[0m "
             print(f"\033[93m📁 {os.path.basename(os.getcwd())}\033[0m 🌿-{separator}\033[31m[Error: {str(e)[:20]}]\033[0m{separator}L.R. @ --:-- C.U. 🔵 ??% ⌚ --:--")
 
 if __name__ == "__main__":

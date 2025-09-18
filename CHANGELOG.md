@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 ## [1.0.3] - 2025-09-18
 
 ### Removed
-- **A-setupclaude command** - Removed personal configuration command from public toolkit
+- **A-setupclaude command** 
   - Eliminated from commands directory
   - Updated command count from 18 to 17 across all documentation
   - Cleaned references from README.md, AUTO-INSTALL.md, QUICK-INSTALL.md
@@ -17,6 +17,10 @@ All notable changes to this project will be documented in this file.
   - Added dynamic token-based percentage calculation
   - Improved accuracy indicators and debugging information
   - Adjusted cost usage display normalization for better visual representation
+  - Removed excessive alert messages (COMPACT!, SOON, MONITOR)
+  - Optimized progress bars from 8 to 4 segments for compact display
+  - Updated separators for cleaner visual presentation
+  - Enhanced clock icons differentiation (🕐 vs ⌚)
 
 ## [1.0.2] - 2025-09-18
 
