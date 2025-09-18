@@ -459,7 +459,11 @@ def get_claude_session_data_claude_monitor_exact():
 
         # Mark active blocks (EXACT logic from claude-monitor)
         for block in session_blocks:
-            if block['end_time'] > now:
+            # Block must be future AND have recent activity (within 30 minutes)
+            if (block['end_time'] > now and
+                len(block['entries']) >= 3 and
+                block['entries'] and
+                (now - block['entries'][-1]['timestamp']).total_seconds() <= 1800):
                 block['is_active'] = True
 
         # Find active blocks

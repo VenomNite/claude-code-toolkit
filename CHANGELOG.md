@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.5] - 2025-09-18
+
+### Fixed
+- **Session reset time calculation**
+  - Improved active session detection logic
+  - Added minimum activity requirements for session blocks
+  - Enhanced session validation with recent activity checks
+
+
 ## [1.0.4] - 2025-09-18
 
 ### Fixed
