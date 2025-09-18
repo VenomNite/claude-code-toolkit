@@ -1,7 +1,17 @@
 # Claude Code Toolkit 🚀
 
-> **AI-powered development toolkit for Claude Code**
-> Automate planning, orchestrate AI agents, monitor health, and maintain quality standards
+> **Professional AI-powered development toolkit for Claude Code**
+> Transform your development workflow with intelligent planning, multi-agent orchestration, real-time health monitoring, and automated quality assurance. Built by developers, for developers.
+
+```mermaid
+graph LR
+    A[💡 Idea] --> B[📋 /A-plan]
+    B --> C[🤖 /A-ai-code]
+    C --> D[✅ /M1-qa-gatekeeper]
+    D --> E[🚀 Production]
+    style A fill:#e1f5fe
+    style E fill:#e8f5e8
+```
 
 ## 📋 Table of Contents
 
@@ -24,6 +34,15 @@
 | 📊 **Scripts** | 1 | Advanced status line monitoring |
 
 ## 🎯 Quick Start
+
+### 🤖 **For Claude Code Users** (Recommended)
+
+Simply tell your Claude Code:
+```
+"Read AUTO-INSTALL.md and perform the complete automatic installation"
+```
+
+### 👨‍💻 **For Human Users**
 
 ```bash
 # 1. Clone & Install
