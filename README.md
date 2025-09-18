@@ -13,6 +13,15 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 [![Maintenance](https://img.shields.io/maintenance/yes/2025)](https://github.com/Ghenwy/claude-code-toolkit/graphs/commit-activity)
 
+[![Claude Code](https://img.shields.io/badge/Claude%20Code-Extension-blue)](https://claude.ai/code)
+[![AI Automation](https://img.shields.io/badge/AI-Automation-green)](https://github.com/Ghenwy/claude-code-toolkit)
+[![Commands](https://img.shields.io/badge/Commands-17-brightgreen)](https://github.com/Ghenwy/claude-code-toolkit#-commands-matrix)
+[![Agents](https://img.shields.io/badge/Agents-12-orange)](https://github.com/Ghenwy/claude-code-toolkit#-agents-matrix)
+[![Status Line](https://img.shields.io/badge/Status%20Line-Enhanced-purple)](https://github.com/Ghenwy/claude-code-toolkit#-status-line-integration)
+[![Workflow](https://img.shields.io/badge/Workflow-Orchestration-red)](https://github.com/Ghenwy/claude-code-toolkit)
+[![Context Monitor](https://img.shields.io/badge/Context-Monitor-yellow)](https://github.com/Ghenwy/claude-code-toolkit)
+[![Health Check](https://img.shields.io/badge/Health-Check-green)](https://github.com/Ghenwy/claude-code-toolkit#-usage-examples)
+
 > **🎯 Transform your development workflow with AI automation**
 > Professional toolkit featuring **17 specialized commands** and **12 intelligent agents** for automated workflow orchestration, Claude AI integration, and maximum developer productivity.
 
