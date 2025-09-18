@@ -5,6 +5,41 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Planned
+- Enhanced error handling for edge cases
+- Additional specialized agents for specific frameworks
+- Performance optimizations for large projects
+- Integration with more development tools
+- Community-contributed commands and agents
+
+## [1.0.2] - 2025-09-18
+
+### Fixed
+- **Date corrections across all files**
+  - Fixed incorrect year 2024 → 2025 in LICENSE copyright
+  - Updated research period in M1-technical-research-analyst.md (2024-2025 → 2025-2026)
+  - Corrected example date in A-changelog.md (2024-01-15 → 2025-01-15)
+  - Fixed CHANGELOG.md version dates from 2024 to 2025
+
+### Changed
+- Reorganized CHANGELOG.md with newest versions first (proper chronological order)
+
+## [1.0.1] - 2025-09-18
+
+### Fixed
+- **README.md visual improvements**
+  - Removed broken Mermaid diagrams causing lexical errors
+  - Added comprehensive table of contents after presentation
+  - Replaced workflow diagram with clean text description
+  - Maintained all functionality while improving readability
+  - Kept existing command and agent matrices in table format
+
+### Changed
+- Simplified workflow presentation from complex diagrams to clear text flow
+- Improved document structure and navigation with table of contents
+
 ## [1.0.0] - 2025-09-18
 
 ### Added
@@ -60,31 +95,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Contributing guidelines for community development
 - Installation guides for multiple user types
 - Usage examples and best practices
-
-## [1.0.1] - 2025-09-18
-
-### Fixed
-- **README.md visual improvements**
-  - Removed broken Mermaid diagrams causing lexical errors
-  - Added comprehensive table of contents after presentation
-  - Replaced workflow diagram with clean text description
-  - Maintained all functionality while improving readability
-  - Kept existing command and agent matrices in table format
-
-### Changed
-- Simplified workflow presentation from complex diagrams to clear text flow
-- Improved document structure and navigation with table of contents
-
----
-
-## Unreleased
-
-### Planned
-- Enhanced error handling for edge cases
-- Additional specialized agents for specific frameworks
-- Performance optimizations for large projects
-- Integration with more development tools
-- Community-contributed commands and agents
 
 ---
 
