@@ -1,0 +1,121 @@
+name: ✨ Feature Request
+description: Suggest a new feature or enhancement for the toolkit
+title: "[Feature]: "
+labels: ["enhancement", "needs-review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting a new feature! Please provide details to help us understand your request.
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Feature Summary
+      description: A brief description of the feature you'd like to see
+      placeholder: One-line summary of the proposed feature
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Feature Category
+      description: What type of feature is this?
+      options:
+        - New Command (A-prefix or B-prefix)
+        - New Agent (M1-specialist)
+        - Installation/Setup Enhancement
+        - Documentation Improvement
+        - Testing/Quality Improvement
+        - Performance Optimization
+        - Integration (with external tools)
+        - User Experience Enhancement
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem/Use Case
+      description: What problem would this feature solve? What's your use case?
+      placeholder: |
+        Describe the current limitation or workflow issue you're experiencing.
+        Examples:
+        - "I need to automate X workflow but there's no command for it"
+        - "When working with Y framework, I always have to manually..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: How would you like this feature to work?
+      placeholder: |
+        Describe your ideal solution. For example:
+        - Command syntax: /A-new-command "parameters"
+        - Expected behavior: Should automatically detect...
+        - Integration: Should work with existing X workflow
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: Have you considered any alternative solutions?
+      placeholder: |
+        - Manual workarounds you're currently using
+        - Other tools that solve similar problems
+        - Different approaches to the same goal
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority/Impact
+      description: How important is this feature to your workflow?
+      options:
+        - High - Blocks my daily workflow
+        - Medium - Would significantly improve productivity
+        - Low - Nice-to-have enhancement
+    validations:
+      required: true
+
+  - type: textarea
+    id: examples
+    attributes:
+      label: Usage Examples
+      description: Show how you would use this feature
+      placeholder: |
+        Provide specific examples:
+        ```
+        /proposed-command "example input"
+        # Expected output or behavior
+        ```
+
+  - type: checkboxes
+    id: implementation
+    attributes:
+      label: Implementation Considerations
+      description: Check any that apply
+      options:
+        - label: This feature should integrate with existing commands
+        - label: This would benefit from AI agent delegation
+        - label: This requires new external dependencies
+        - label: This affects the installation process
+        - label: This needs new documentation/examples
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      description: Please confirm
+      options:
+        - label: I have searched existing feature requests to avoid duplicates
+          required: true
+        - label: This feature aligns with the toolkit's AI automation focus
+          required: true
+        - label: I would be willing to help test this feature once implemented
+          required: false

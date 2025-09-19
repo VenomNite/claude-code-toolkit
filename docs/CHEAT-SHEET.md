@@ -2,6 +2,8 @@
 
 **Ultra-fast command reference | Everything on one page**
 
+**🔗 Quick Links**: [Installation Guide](../INSTALLATION.md) • [User Guide](USER-GUIDE.md) • [Contributing](../CONTRIBUTING.md) • [Full Documentation](../README.md#-documentation)
+
 ## 📋 A-Commands (Planning & Management)
 
 | Command | What it does | When to use |

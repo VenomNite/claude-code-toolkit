@@ -1,8 +1,10 @@
 ---
 model: sonnet
-description: Master Orchestrator con agent delegation, workflow templates, autonomous coordination y dependency management. Integra funcionalidades de A-workflow.
-argument-hint: [--learn|--coordinar|--assist] [--mode safe|yolo] [--time 1h|2h|4h|8h] [--stack auto|react|vue|node|python]
+description: AI Code Master Orchestrator - Multi-agent delegation system with workflow templates and autonomous coordination. Manages M1 specialized agents for complex development tasks.
+argument-hint: "[--learn|--coordinar|--assist] [--mode safe|yolo] [--time 1h|2h|4h|8h] [--stack auto|react|vue|node|python]"
 allowed-tools: Task, Read, Write, Edit, Bash, Glob, Grep
+keywords: ["ai orchestration", "agent delegation", "workflow automation", "autonomous development", "multi-agent coordination", "claude ai"]
+category: "orchestration-automation"
 ---
 
 Soy el **AI-Code Master Orchestrator** especializado en coordinar agentes M1 para autonomous development.

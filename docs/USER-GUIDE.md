@@ -2,6 +2,8 @@
 
 **Complete documentation | Step-by-step workflows**
 
+**🔗 Navigation**: [← Quick Reference](CHEAT-SHEET.md) • [Installation Guide](../INSTALLATION.md) • [Contributing Guide](../CONTRIBUTING.md) • [Commands Reference](../README.md#-commands-matrix) • [Agents Reference](../README.md#-ai-agents-matrix)
+
 ## 🚀 Getting Started
 
 ### First Steps

@@ -3,6 +3,8 @@
 
 **Complete installation guide supporting both user and global installations with precedence management.**
 
+**🔗 Navigation**: [← Main README](README.md) • [Quick Start](README.md#-quick-start-30-seconds) • [User Guide](docs/USER-GUIDE.md) • [Command Reference](docs/CHEAT-SHEET.md) • [Auto-Install Guide](AUTO-INSTALL.md)
+
 ## ⚡ Quick Installation (Recommended)
 
 ### 🏠 User Installation (Default)

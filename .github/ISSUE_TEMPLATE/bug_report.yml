@@ -1,0 +1,96 @@
+name: 🐛 Bug Report
+description: Report a bug to help us improve the toolkit
+title: "[Bug]: "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! Please fill out this form to help us identify and fix the issue.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is
+      placeholder: Describe what happened and what you expected to happen
+    validations:
+      required: true
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      description: Which part of the toolkit is affected?
+      options:
+        - Command (A-plan, A-ai-code, B-explain-code, etc.)
+        - Agent (M1-qa-gatekeeper, M1-backend-architect, etc.)
+        - Installation (install.sh, dual-scope setup)
+        - Documentation (README, guides, examples)
+        - Testing framework
+        - Status line integration
+        - Other/Unknown
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: Tell us how to reproduce this bug
+      placeholder: |
+        1. Run command '/A-plan "my project"'
+        2. Select option X
+        3. See error message
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What should have happened?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: What actually happened?
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Please provide details about your setup
+      placeholder: |
+        - OS: Linux/macOS/Windows WSL
+        - Claude Code version:
+        - Toolkit version:
+        - Installation scope: User/Global
+      render: markdown
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Error Messages/Logs
+      description: Include any error messages or relevant log output
+      render: shell
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      description: Please confirm you have done the following
+      options:
+        - label: I have searched existing issues to avoid duplicates
+          required: true
+        - label: I have tested with the latest version
+          required: true
+        - label: I have removed any sensitive information from logs
+          required: true
