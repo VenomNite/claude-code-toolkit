@@ -47,6 +47,13 @@ graph LR
 
 ## 🚀 Installation
 
+### For Claude Code Users
+```bash
+# Automated installation - follow AUTO-INSTALL.md step by step
+# Complete dual-scope installation with comprehensive testing
+```
+See **[AUTO-INSTALL.md](AUTO-INSTALL.md)** for detailed Claude Code installation instructions.
+
 ### Quick Install (One-Line)
 ```bash
 # User installation (default, no admin required)
