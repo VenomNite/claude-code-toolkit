@@ -57,4 +57,4 @@
 **Quick test:** `/B-HealthCheck`
 
 ---
-**⚡ Total: 17 commands + 12 agents | All functional ✅**
+**⚡ Total: 16 commands + 10 agents | All functional ✅**

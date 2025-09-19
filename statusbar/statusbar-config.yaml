@@ -1,0 +1,45 @@
+# Claude Code Toolkit - Status Bar Configuration
+# Auto-generated configuration for dynamic plan detection
+
+# User Plan Detection
+user_plan: "max_x5"  # Options: plus | max_x5 | max_x20
+detection_mode: "auto"  # Options: auto | manual
+confidence_threshold: 95  # Minimum confidence % for auto-detection
+
+# Plan Limits and Normalization Factors
+plans:
+  plus:
+    token_limit: 45000
+    normalization_factor: 1.20
+    description: "Claude Plus Plan (~45 messages/5h)"
+
+  max_x5:
+    token_limit: 88000
+    normalization_factor: 1.55
+    description: "Claude Max x5 Plan (~225 messages/5h)"
+
+  max_x20:
+    token_limit: 350000
+    normalization_factor: 3.80
+    description: "Claude Max x20 Plan (~900 messages/5h)"
+
+# Auto-Detection Settings
+auto_detection:
+  analysis_days: 14  # Days of history to analyze
+  min_sessions: 5    # Minimum sessions needed for detection
+  rate_limit_keywords:
+    - "rate limit"
+    - "usage limit"
+    - "too many requests"
+    - "context limit"
+
+# Fallback Configuration
+fallback:
+  default_plan: "max_x5"
+  show_detection_confidence: true
+  prompt_user_on_low_confidence: true
+
+# Metadata
+config_version: "1.0"
+last_updated: "2025-09-19"
+auto_generated: true

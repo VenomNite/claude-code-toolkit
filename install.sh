@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Claude Code Toolkit - Dual-Scope Installation Script
-# Version: 2.1.0 - Dual-Scope Architecture
+# Version: 2.2.0 - Agent Enhancement Initiative Complete
 # Supports both user (~/.claude/) and global (/usr/local/share/claude/) installation
 
 set -euo pipefail  # Exit on error, undefined vars, pipe failures
@@ -434,9 +434,9 @@ configure_settings() {
 
     local script_path
     if [[ "$INSTALL_SCOPE" == "global" ]]; then
-        script_path="$CLAUDE_DIR/scripts/context-monitor-generic.py"
+        script_path="$CLAUDE_DIR/scripts/context_monitor_generic.py"
     else
-        script_path="~/.claude/scripts/context-monitor-generic.py"
+        script_path="~/.claude/scripts/context_monitor_generic.py"
     fi
 
     # Create settings content
@@ -491,11 +491,11 @@ verify_installation() {
     fi
 
     # Verify expected counts
-    if [[ $commands_count -ne 18 ]]; then
-        errors+=("Expected 18 commands, found $commands_count")
+    if [[ $commands_count -ne 16 ]]; then
+        errors+=("Expected 16 commands, found $commands_count")
     fi
-    if [[ $agents_count -ne 12 ]]; then
-        errors+=("Expected 12 agents, found $agents_count")
+    if [[ $agents_count -ne 10 ]]; then
+        errors+=("Expected 10 agents, found $agents_count")
     fi
     if [[ $scripts_count -eq 0 ]]; then
         errors+=("No monitoring scripts found")
@@ -507,7 +507,7 @@ verify_installation() {
         "commands/A-ai-code.md"
         "agents/M1-qa-gatekeeper.md"
         "agents/m1-ultrathink-orchestrator.md"
-        "scripts/context-monitor-generic.py"
+        "scripts/context_monitor_generic.py"
     )
 
     for file in "${key_files[@]}"; do
@@ -523,8 +523,8 @@ verify_installation() {
         print_info "Installation Summary:"
         echo "  📂 Scope: $INSTALL_SCOPE"
         echo "  📁 Location: $CLAUDE_DIR"
-        echo "  📋 Commands: $commands_count/18"
-        echo "  🤖 Agents: $agents_count/12"
+        echo "  📋 Commands: $commands_count/16"
+        echo "  🤖 Agents: $agents_count/10"
         echo "  📄 Scripts: $scripts_count"
 
         if [[ -d "$BACKUP_DIR" ]]; then

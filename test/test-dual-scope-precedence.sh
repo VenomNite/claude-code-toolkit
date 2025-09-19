@@ -257,7 +257,7 @@ create_user_installation() {
 {
   "statusLine": {
     "type": "command",
-    "command": "python3 ~/.claude/scripts/context-monitor-generic.py"
+    "command": "python3 ~/.claude/scripts/context_monitor_generic.py"
   },
   "installation": {
     "scope": "user",
@@ -287,7 +287,7 @@ create_global_installation() {
 {
   "statusLine": {
     "type": "command",
-    "command": "python3 $MOCK_GLOBAL_DIR/scripts/context-monitor-generic.py"
+    "command": "python3 $MOCK_GLOBAL_DIR/scripts/context_monitor_generic.py"
   },
   "installation": {
     "scope": "global",

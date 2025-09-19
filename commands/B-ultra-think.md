@@ -1,201 +1,187 @@
 ---
 model: sonnet
-description: Análisis profundo multi-perspectiva con standards flexible, auto-detección de stack y think harder mode
-argument-hint: [problema/pregunta] [--depth surface|deep|think-harder] [--stack auto|detect] [--standards flexible|advisory|strict]
+description: Análisis profundo multi-perspectiva para resolución de problemas complejos con context detection
+argument-hint: [problema/pregunta] [--depth surface|deep|complete] [--focus analytical|creative|balanced]
+allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
 ---
 
-# B-Ultra Think - Deep Analysis & Think Harder Mode
+# B-Ultra Think - Deep Analysis Framework
 
-Análisis profundo y resolución de problemas complejos con metodología mejorada: $ARGUMENTS
+Load standards/{detected-stack}.yaml || standards/general.yaml as fallback for analysis standards.
 
-## Contexto Automático
+Análisis sistemático multi-perspectiva para problemas complejos: $ARGUMENTS
+
+## Context Detection
 - Root: !`git rev-parse --show-toplevel 2>/dev/null || pwd`
 - Stack detection: !`find . -name "package.json" -o -name "requirements.txt" -o -name "pom.xml" -o -name "Cargo.toml" -o -name "*.sln" | head -3`
 - Recent activity: !`git log --oneline -5 2>/dev/null || echo "No git history"`
-- Standards loading: Load standards/{detected-stack}.yaml || standards/general.yaml with **flexible approach**
 
-## Think Harder Mode Activation
+## Analysis Framework
 
-### **🧠 INITIALIZE ENHANCED ANALYSIS MODE**
+### 1. Problem Decomposition
+- Extract core challenge from: $ARGUMENTS
+- Identify constraints and dependencies
+- Map known variables and unknowns
+- Define success criteria
 
-**Reconocimiento del problema**: $ARGUMENTS
-**Nivel de análisis**: Auto-detectar complejidad y aplicar depth apropiado
-**Stack detectado**: Aplicar reglas específicas con flexibilidad
+### 2. Multi-Perspective Analysis
 
-### **1. Parse del Problema (Enhanced)**
-- Extraer desafío core de: **$ARGUMENTS**
-- **Stack Context**: Aplicar conocimiento específico de tecnologías detectadas
-- **Standards Lens**: Evaluar con "Less is sometimes better" + modularidad (flexible)
-- Identificar stakeholders, constraints y complejidades ocultas
-- **Assumption Challenge**: Cuestionar supuestos automáticamente
+#### Technical Perspective
+- Implementation feasibility with current stack
+- Performance and scalability implications
+- Security and maintenance considerations
+- Integration complexity
 
-### **2. Multi-Dimensional Analysis (Mejorado)**
+#### Business Perspective
+- Cost/benefit analysis
+- Timeline and resource requirements
+- Risk assessment
+- Strategic alignment
 
-#### **Technical Perspective (Stack-Aware)**
-- Viabilidad técnica considerando stack detectado
-- Patrones específicos del framework/lenguaje en uso
-- Escalabilidad con tecnologías actuales
-- Security implications específicas del stack
+#### User Perspective
+- Impact on user experience
+- Adoption challenges
+- Training requirements
+- Support implications
 
-#### **Business Perspective**
-- ROI y time-to-market en contexto del proyecto actual
-- Competitive advantages específicos
-- Risk vs reward con tecnologías en uso
+#### Standards Perspective
+- Compliance with team/industry standards
+- Code quality impact
+- Long-term maintainability
+- Documentation requirements
 
-#### **User/System Perspective**
-- UX implications con stack frontend detectado
-- Integration points en arquitectura actual
-- Performance characteristics del stack
+### 3. Solution Generation
 
-#### **Standards Perspective (Flexible)**
-- **"Less is sometimes better"**: ¿Simplificar o añadir complejidad justificada?
-- **Modularidad**: Impacto en separación de responsabilidades
-- **Transgresión Justificada**: Cuándo saltarse reglas por calidad/funcionalidad
-- **Quality Gates**: Estándares no negociables vs flexibles
-
-### **3. Think Harder Deep Dive (Nuevo)**
-
-**Para problemas complejos, activar Think Harder Mode:**
-
-#### **Multi-Order Thinking**
-- **First-Order**: Consecuencias directas inmediatas
-- **Second-Order**: Consecuencias de las consecuencias
-- **Third-Order**: Efectos sistémicos y feedback loops
-- **N-Order**: Cascading effects a largo plazo
-
-#### **Contrarian Analysis**
-- Devil's advocate sistemático a cada solución
-- Inversion thinking: "¿Qué NO hacer?"
-- Red team vs blue team perspective
-- Worst-case scenario planning
-
-#### **Cross-Domain Pattern Matching**
-- Analogías de otros dominios/industrias
-- Pattern libraries de stack específico
-- Biological/natural systems parallels
-- Historical precedents y lessons learned
-
-### **4. Stack-Specific Analysis (Automatizado)**
-
-**Node.js/JavaScript**: Async patterns, event loop, package ecosystem
-**Python**: GIL considerations, library ecosystem, deployment patterns
-**Java/Spring**: Enterprise patterns, JVM optimization, Spring ecosystem
-**React/Frontend**: Component lifecycle, state management, performance
-**Database**: ACID properties, scaling patterns, consistency models
-**DevOps/Cloud**: Infrastructure patterns, scaling, observability
-
-### **5. Solution Generation (Enhanced)**
-
-#### **Conventional Solutions**
-- Best practices del stack actual
+#### Conventional Approach
+- Industry best practices
 - Framework-specific patterns
-- Industry standard approaches
+- Proven implementations
+- Low-risk solutions
 
-#### **Creative Solutions**
-- Cross-pollination de otros stacks
-- Hybrid approaches innovadores
-- Contrarian solutions que desafían normas
+#### Creative Approach
+- Cross-domain analogies
+- Novel combinations
+- Unconventional methods
+- High-potential solutions
 
-#### **Standards-Compliant Solutions**
-- Soluciones que respetan modularidad
-- "Less is better" implementations
-- Transgresiones justificadas cuando mejoran calidad
+#### Hybrid Approach
+- Combining conventional and creative elements
+- Phased implementations
+- Risk-balanced solutions
+- Iterative improvements
 
-### **6. Structured Output (Matrices)**
+### 4. Impact Analysis
 
-**Matriz de Análisis Multi-Perspectiva**
-| Perspectiva | Análisis | Pros | Contras | Stack Impact | Standards Score |
+#### Immediate Effects
+- Direct consequences
+- Resource consumption
+- Performance impact
+- User disruption
+
+#### Secondary Effects
+- Team workflow changes
+- System interactions
+- Maintenance overhead
+- Scaling implications
+
+#### Long-term Effects
+- Technical debt impact
+- Evolution flexibility
+- Knowledge transfer
+- Strategic positioning
+
+## Structured Output
+
+### Analysis Matrix
+| Perspective | Key Finding | Pros | Cons | Risk Level | Effort Required |
 |---|---|---|---|---|---|
 
-**Matriz de Soluciones**
-| Solución | Viabilidad | Complejidad | Standards | Transgresión | Justificación |
-|---|---|---|---|---|---|
+### Solution Comparison
+| Solution | Feasibility | Complexity | Standards Compliance | Recommendation |
+|---|---|---|---|---|
 
-**Matriz Think Harder**
-| Orden | Consecuencia | Probabilidad | Impacto | Mitigación | Timeline |
-|---|---|---|---|---|---|
+### Implementation Plan
+| Phase | Activities | Timeline | Resources | Success Metrics |
+|---|---|---|---|---|
 
-**Matriz de Decisión**
-| Factor | Peso | Opción A | Opción B | Opción C | Recomendado |
-|---|---|---|---|---|---|
-
-## Enhanced Recommendation Structure
+## Decision Framework
 
 ```
-## 🎯 Problem Analysis
-- **Core Challenge**: [Desafío fundamental]
-- **Stack Context**: [Tecnologías relevantes]
-- **Key Constraints**: [Limitaciones identificadas]
-- **Standards Considerations**: [Reglas desde standards/{detected-stack}.yaml aplicables flexiblemente]
+## Problem Analysis
+- Core Challenge: [Main issue to solve]
+- Context: [Technology stack and constraints]
+- Success Criteria: [Measurable outcomes]
 
-## 🔍 Think Harder Insights
-- **Multi-Order Effects**: [Consecuencias cascada]
-- **Contrarian View**: [Perspectiva opuesta]
-- **Cross-Domain Patterns**: [Analogías útiles]
-- **Hidden Assumptions**: [Supuestos cuestionados]
+## Multi-Perspective Insights
+- Technical: [Implementation considerations]
+- Business: [Cost/benefit analysis]
+- User: [Experience impact]
+- Standards: [Compliance and quality]
 
-## ⚡ Solution Options
+## Solution Options
 
-### Option 1: [Stack-Optimized Solution]
-- **Description**: [Solución específica del stack]
-- **Standards Compliance**: [Flexible/Strict - con justificación]
-- **Implementation**: [Pasos específicos del stack]
-- **Risk Assessment**: [Riesgos con mitigación]
-- **Think Harder**: [Efectos de segundo/tercer orden]
+### Option 1: [Conventional Solution]
+- Description: [Clear explanation]
+- Pros: [Key advantages]
+- Cons: [Main drawbacks]
+- Risk: [Assessment]
+- Effort: [Required resources]
 
-### Option 2: [Creative/Contrarian Solution]
-[Similar structure]
+### Option 2: [Creative Solution]
+- Description: [Clear explanation]
+- Cross-domain insight: [Analogies or patterns]
+- Innovation: [Novel aspects]
+- Risk: [Assessment]
 
-## 🎯 Final Recommendation
-- **Recommended Approach**: [Opción elegida]
-- **Standards Rationale**: [Por qué es modular/simple O por qué transgrede justificadamente]
-- **Implementation Roadmap**: [Pasos concretos]
-- **Success Metrics**: [Métricas medibles]
-- **Risk Mitigation**: [Plan de contingencia]
+### Option 3: [Hybrid Solution]
+- Description: [Combined approach]
+- Phasing: [Implementation stages]
+- Balance: [Risk vs innovation]
 
-## 🔮 Think Harder Predictions
-- **6 Months**: [Efectos esperados]
-- **1 Year**: [Consecuencias sistémicas]
-- **Systemic Changes**: [Cambios emergentes]
+## Recommendation
+- Preferred Option: [Choice with rationale]
+- Implementation: [Concrete next steps]
+- Success Metrics: [How to measure success]
+- Risk Mitigation: [How to handle potential issues]
+
+## Impact Predictions
+- Immediate: [Short-term effects]
+- 6 months: [Medium-term outcomes]
+- Long-term: [Strategic implications]
 ```
 
-## Standards Integration (Flexible)
+## Standards Integration
 
-### **Aplicación Suave de Reglas**
-- **"Less is sometimes better"**: Evaluar si simplicidad es realmente mejor
-- **Modularidad**: Preservar cuando sea posible, justificar excepciones
-- **Transgresión Justificada**: Documentar cuándo saltarse reglas mejora:
-  - Funcionalidad crítica
-  - Calidad del código
-  - Performance esencial
-  - User experience
-  - Maintainability a largo plazo
+### Analysis Standards
+- Apply relevant coding standards from detected stack
+- Consider architectural guidelines
+- Evaluate against quality metrics
+- Balance standards with practical constraints
 
-### **Stack-Specific Standards Loading**
-- **Cargar reglas específicas**: Load standards/{detected-stack}.yaml automáticamente
-- **Adaptar al contexto**: Reglas más estrictas para core, flexibles para features
-- **Experiencia over dogma**: Priorizar results over perfect compliance
-
-## DoD (Definition of Done)
-- ✅ Stack detectado y reglas standards/{detected-stack}.yaml cargadas
-- ✅ Multi-perspectiva analysis completado (técnico, business, usuario, standards)
-- ✅ Think Harder mode aplicado para problemas complejos
-- ✅ Matrices estructuradas generadas con datos cuantificados
-- ✅ Soluciones evaluadas con standards flexible (transgresiones justificadas)
-- ✅ Recommendation con implementation roadmap específico del stack
-- ✅ Multi-order effects analizados y documentados
-- ✅ Success metrics definidos y medibles
-- ✅ Risk mitigation plan specific al contexto del proyecto
+### Decision Criteria
+- Prioritize maintainability and clarity
+- Consider team expertise and preferences
+- Evaluate long-term sustainability
+- Factor in business requirements
 
 ## Usage Examples
 
 ```bash
-# Análisis arquitectural con think harder
-/B-ultra-think "¿Microservicios o monolito?" --depth think-harder
+# Architectural decision analysis
+/B-ultra-think "Should we migrate from REST to GraphQL?" --depth complete
 
-# Decisión técnica con standards flexible
-/B-ultra-think "Implementar cache Redis vs in-memory" --standards flexible
+# Performance optimization
+/B-ultra-think "Database query optimization strategy" --focus analytical
 
-# Problema complejo de performance
-/B-ultra-think "Optimizar sistema para 10x traffic" --stack auto --depth think-harder
+# Feature design analysis
+/B-ultra-think "User authentication flow redesign" --depth deep --focus balanced
 ```
+
+## DoD (Definition of Done)
+- Problem clearly decomposed and understood
+- Multi-perspective analysis completed (technical, business, user, standards)
+- Multiple solution options generated and evaluated
+- Impact analysis covering immediate and long-term effects
+- Clear recommendation with implementation plan
+- Success metrics and risk mitigation defined
+- Standards compliance evaluated and documented

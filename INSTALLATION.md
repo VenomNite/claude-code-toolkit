@@ -148,14 +148,14 @@ cat > ~/.claude/settings.json << 'EOF'
 {
   "statusLine": {
     "type": "command",
-    "command": "python3 ~/.claude/scripts/context-monitor-generic.py"
+    "command": "python3 ~/.claude/scripts/context_monitor_generic.py"
   }
 }
 EOF
 
 # 5. Verify installation
-echo "Commands: $(ls ~/.claude/commands/*.md | wc -l)/18"
-echo "Agents: $(ls ~/.claude/agents/*.md | wc -l)/12"
+echo "Commands: $(ls ~/.claude/commands/*.md | wc -l)/16"
+echo "Agents: $(ls ~/.claude/agents/*.md | wc -l)/10"
 ```
 
 ### For Global Scope (/usr/local/share/claude/)
@@ -180,7 +180,7 @@ sudo tee /usr/local/share/claude/config/global-settings.json > /dev/null << 'EOF
 {
   "statusLine": {
     "type": "command",
-    "command": "python3 /usr/local/share/claude/scripts/context-monitor-generic.py"
+    "command": "python3 /usr/local/share/claude/scripts/context_monitor_generic.py"
   },
   "installation": {
     "scope": "global",
@@ -194,8 +194,8 @@ sudo chown -R root:root /usr/local/share/claude
 sudo chmod -R 755 /usr/local/share/claude
 
 # 6. Verify installation
-echo "Commands: $(ls /usr/local/share/claude/commands/*.md | wc -l)/18"
-echo "Agents: $(ls /usr/local/share/claude/agents/*.md | wc -l)/12"
+echo "Commands: $(ls /usr/local/share/claude/commands/*.md | wc -l)/16"
+echo "Agents: $(ls /usr/local/share/claude/agents/*.md | wc -l)/10"
 ```
 
 ## 🔍 Installation Verification
@@ -215,15 +215,15 @@ GLOBAL_AGENTS=$(ls /usr/local/share/claude/agents/*.md 2>/dev/null | wc -l)
 
 echo "📂 USER SCOPE:"
 echo "  Location: ~/.claude/"
-echo "  Commands: $USER_COMMANDS/18"
-echo "  Agents: $USER_AGENTS/12"
+echo "  Commands: $USER_COMMANDS/16"
+echo "  Agents: $USER_AGENTS/10"
 echo "  Settings: $(test -f ~/.claude/settings.json && echo "✅" || echo "❌")"
 
 echo ""
 echo "🌐 GLOBAL SCOPE:"
 echo "  Location: /usr/local/share/claude/"
-echo "  Commands: $GLOBAL_COMMANDS/18"
-echo "  Agents: $GLOBAL_AGENTS/12"
+echo "  Commands: $GLOBAL_COMMANDS/16"
+echo "  Agents: $GLOBAL_AGENTS/10"
 echo "  Settings: $(test -f /usr/local/share/claude/config/global-settings.json && echo "✅" || echo "❌")"
 
 echo ""
@@ -271,8 +271,8 @@ sudo ./install.sh --global --verify
 python3 -c "import psutil, dateutil; print('✅ Dependencies OK')"
 
 # Test monitoring script
-if [ -f ~/.claude/scripts/context-monitor-generic.py ]; then
-    python3 ~/.claude/scripts/context-monitor-generic.py --version 2>/dev/null || echo "Script requires JSON input (normal)"
+if [ -f ~/.claude/scripts/context_monitor_generic.py ]; then
+    python3 ~/.claude/scripts/context_monitor_generic.py --version 2>/dev/null || echo "Script requires JSON input (normal)"
 fi
 ```
 
@@ -349,7 +349,7 @@ python3 -c "import psutil, dateutil; print('OK')"
 cat ~/.claude/settings.json
 
 # Test script directly
-python3 ~/.claude/scripts/context-monitor-generic.py
+python3 ~/.claude/scripts/context_monitor_generic.py
 
 # Recreate settings
 ./install.sh --force

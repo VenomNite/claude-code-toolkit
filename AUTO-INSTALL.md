@@ -7,8 +7,8 @@ This document allows you to automatically install the complete Claude Code Toolk
 ## 🎯 OBJECTIVE
 
 Automatically install with **dual-scope support**:
-- ✅ 18 specialized commands
-- ✅ 12 specialized M1 agents
+- ✅ 16 specialized commands
+- ✅ 10 specialized M1 agents
 - ✅ Advanced monitoring script
 - ✅ Dual-scope configuration (user/global)
 - ✅ Required Python dependencies
@@ -104,8 +104,8 @@ echo "✅ Available scripts: $(ls scripts/*.py | wc -l)"
 # Show installation details
 echo "📂 USER INSTALLATION SUMMARY:"
 echo "==============================="
-echo "Commands: $(ls ~/.claude/commands/*.md 2>/dev/null | wc -l)/18"
-echo "Agents: $(ls ~/.claude/agents/*.md 2>/dev/null | wc -l)/12"
+echo "Commands: $(ls ~/.claude/commands/*.md 2>/dev/null | wc -l)/16"
+echo "Agents: $(ls ~/.claude/agents/*.md 2>/dev/null | wc -l)/10"
 echo "Scripts: $(ls ~/.claude/scripts/*.py 2>/dev/null | wc -l)"
 echo "Settings: $(test -f ~/.claude/settings.json && echo "✅ Configured" || echo "❌ Missing")"
 
@@ -116,7 +116,7 @@ echo "🔍 KEY FILES VERIFICATION:"
 [ -f ~/.claude/commands/A-ai-code.md ] && echo "  ✅ A-ai-code.md" || echo "  ❌ A-ai-code.md"
 [ -f ~/.claude/agents/M1-qa-gatekeeper.md ] && echo "  ✅ M1-qa-gatekeeper.md" || echo "  ❌ M1-qa-gatekeeper.md"
 [ -f ~/.claude/agents/m1-ultrathink-orchestrator.md ] && echo "  ✅ m1-ultrathink-orchestrator.md" || echo "  ❌ m1-ultrathink-orchestrator.md"
-[ -f ~/.claude/scripts/context-monitor-generic.py ] && echo "  ✅ context-monitor-generic.py" || echo "  ❌ context-monitor-generic.py"
+[ -f ~/.claude/scripts/context_monitor_generic.py ] && echo "  ✅ context_monitor_generic.py" || echo "  ❌ context_monitor_generic.py"
 ```
 
 ### STEP 4B: GLOBAL SCOPE INSTALLATION
@@ -142,8 +142,8 @@ sudo ./install.sh --global --verify --verbose
 # Show installation details
 echo "🌐 GLOBAL INSTALLATION SUMMARY:"
 echo "================================"
-echo "Commands: $(ls /usr/local/share/claude/commands/*.md 2>/dev/null | wc -l)/18"
-echo "Agents: $(ls /usr/local/share/claude/agents/*.md 2>/dev/null | wc -l)/12"
+echo "Commands: $(ls /usr/local/share/claude/commands/*.md 2>/dev/null | wc -l)/16"
+echo "Agents: $(ls /usr/local/share/claude/agents/*.md 2>/dev/null | wc -l)/10"
 echo "Scripts: $(ls /usr/local/share/claude/scripts/*.py 2>/dev/null | wc -l)"
 echo "Settings: $(test -f /usr/local/share/claude/config/global-settings.json && echo "✅ Configured" || echo "❌ Missing")"
 
@@ -154,7 +154,7 @@ echo "🔍 GLOBAL KEY FILES VERIFICATION:"
 [ -f /usr/local/share/claude/commands/A-ai-code.md ] && echo "  ✅ A-ai-code.md" || echo "  ❌ A-ai-code.md"
 [ -f /usr/local/share/claude/agents/M1-qa-gatekeeper.md ] && echo "  ✅ M1-qa-gatekeeper.md" || echo "  ❌ M1-qa-gatekeeper.md"
 [ -f /usr/local/share/claude/agents/m1-ultrathink-orchestrator.md ] && echo "  ✅ m1-ultrathink-orchestrator.md" || echo "  ❌ m1-ultrathink-orchestrator.md"
-[ -f /usr/local/share/claude/scripts/context-monitor-generic.py ] && echo "  ✅ context-monitor-generic.py" || echo "  ❌ context-monitor-generic.py"
+[ -f /usr/local/share/claude/scripts/context_monitor_generic.py ] && echo "  ✅ context_monitor_generic.py" || echo "  ❌ context_monitor_generic.py"
 ```
 
 ### STEP 5: Install Python Dependencies
@@ -184,12 +184,12 @@ GLOBAL_COMMANDS=$(ls /usr/local/share/claude/commands/*.md 2>/dev/null | wc -l)
 GLOBAL_AGENTS=$(ls /usr/local/share/claude/agents/*.md 2>/dev/null | wc -l)
 
 echo "📂 USER SCOPE:"
-echo "  Commands: $USER_COMMANDS/18"
-echo "  Agents: $USER_AGENTS/12"
+echo "  Commands: $USER_COMMANDS/16"
+echo "  Agents: $USER_AGENTS/10"
 
 echo "🌐 GLOBAL SCOPE:"
-echo "  Commands: $GLOBAL_COMMANDS/18"
-echo "  Agents: $GLOBAL_AGENTS/12"
+echo "  Commands: $GLOBAL_COMMANDS/16"
+echo "  Agents: $GLOBAL_AGENTS/10"
 
 # Show effective precedence
 echo ""
@@ -208,12 +208,12 @@ echo "🧪 BASIC FUNCTIONALITY TESTS:"
 echo "=============================="
 
 # Test monitoring script
-if [ -f ~/.claude/scripts/context-monitor-generic.py ]; then
+if [ -f ~/.claude/scripts/context_monitor_generic.py ]; then
     echo "Test 1: User monitoring script..."
-    python3 ~/.claude/scripts/context-monitor-generic.py --help 2>/dev/null && echo "  ✅ User script functional" || echo "  ℹ️ Script requires JSON input (normal)"
-elif [ -f /usr/local/share/claude/scripts/context-monitor-generic.py ]; then
+    python3 ~/.claude/scripts/context_monitor_generic.py --help 2>/dev/null && echo "  ✅ User script functional" || echo "  ℹ️ Script requires JSON input (normal)"
+elif [ -f /usr/local/share/claude/scripts/context_monitor_generic.py ]; then
     echo "Test 1: Global monitoring script..."
-    python3 /usr/local/share/claude/scripts/context-monitor-generic.py --help 2>/dev/null && echo "  ✅ Global script functional" || echo "  ℹ️ Script requires JSON input (normal)"
+    python3 /usr/local/share/claude/scripts/context_monitor_generic.py --help 2>/dev/null && echo "  ✅ Global script functional" || echo "  ℹ️ Script requires JSON input (normal)"
 else
     echo "  ❌ No monitoring script found"
 fi
@@ -256,13 +256,13 @@ echo "✅ Temporary directory cleaned"
 
 **After executing all steps, you will have available:**
 
-### 📋 Main Commands (18 total):
+### 📋 Main Commands (16 total):
 - **`/A-plan`** - Specification generator with gap analysis
 - **`/A-ai-code --coordinar`** - Master agent orchestrator
 - **`/B-HealthCheck`** - Parallel AI tools monitor
 - **`/A-update-docs`** - Intelligent updater with Git context
 
-### 🤖 Specialized Agents (12 total):
+### 🤖 Specialized Agents (10 total):
 - **M1-qa-gatekeeper** - Zero-tolerance quality control
 - **m1-ultrathink-orchestrator** - Supreme AI tools director
 - **M1-general-purpose-agent** - Versatile agent for complex tasks

@@ -313,7 +313,7 @@ test_user_installation() {
     assert_file_exists "$HOME/.claude/commands/A-ai-code.md" "A-ai-code.md command exists"
     assert_file_exists "$HOME/.claude/agents/M1-qa-gatekeeper.md" "M1-qa-gatekeeper.md agent exists"
     assert_file_exists "$HOME/.claude/agents/M1-ultrathink-orchestrator.md" "M1-ultrathink-orchestrator.md agent exists"
-    assert_file_exists "$HOME/.claude/scripts/context-monitor-generic.py" "context-monitor-generic.py script exists"
+    assert_file_exists "$HOME/.claude/scripts/context_monitor_generic.py" "context_monitor_generic.py script exists"
     assert_file_exists "$HOME/.claude/settings.json" "settings.json configuration exists"
 }
 
@@ -333,7 +333,7 @@ test_settings_configuration() {
             TESTS_FAILED=$((TESTS_FAILED + 1))
         fi
 
-        if echo "$settings_content" | grep -q "context-monitor-generic.py"; then
+        if echo "$settings_content" | grep -q "context_monitor_generic.py"; then
             print_success "TEST $((++TOTAL_TESTS)): settings.json references correct monitoring script"
             TESTS_PASSED=$((TESTS_PASSED + 1))
         else
@@ -398,7 +398,7 @@ test_verification_functionality() {
     fi
 
     # Verify file permissions
-    if [[ -x "$HOME/.claude/scripts/context-monitor-generic.py" ]]; then
+    if [[ -x "$HOME/.claude/scripts/context_monitor_generic.py" ]]; then
         print_success "TEST $((++TOTAL_TESTS)): Monitoring script has execute permissions"
         TESTS_PASSED=$((TESTS_PASSED + 1))
     else

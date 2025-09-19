@@ -26,7 +26,7 @@ This testing suite validates the complete dual-scope installation system, ensuri
 - ✅ Installer syntax validation
 - ✅ Help and version flag functionality
 - ✅ Dry run mode (no file creation)
-- ✅ User scope installation (18 commands, 12 agents, 1 script)
+- ✅ User scope installation (16 commands, 10 agents, 1 script)
 - ✅ Settings configuration (`~/.claude/settings.json`)
 - ✅ Backup functionality
 - ✅ Installation verification
@@ -230,7 +230,7 @@ ps aux | grep test  # Check for stuck test processes
 ### Installation Components
 - ✅ **Commands**: 18 files validation (`A-*.md`, `B-*.md`, `claude-toolkit.md`)
 - ✅ **Agents**: 12 files validation (`M1-*.md`)
-- ✅ **Scripts**: 1 monitoring script (`context-monitor-generic.py`)
+- ✅ **Scripts**: 1 monitoring script (`context_monitor_generic.py`)
 - ✅ **Settings**: JSON configuration validation
 
 ### Installation Scenarios

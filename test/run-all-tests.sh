@@ -337,7 +337,7 @@ The test suite validates the following dual-scope architecture features:
 - ✅ Permission handling and sudo detection
 - ✅ Backup and restore functionality
 - ✅ Settings configuration (user and global)
-- ✅ File count validation (18 commands, 12 agents)
+- ✅ File count validation (16 commands, 10 agents)
 - ✅ JSON syntax validation
 - ✅ Python dependency checking
 - ✅ Scope switching and conflict resolution
@@ -435,7 +435,7 @@ print_final_summary() {
         echo -e "   • Permission handling and sudo detection"
         echo -e "   • Backup and restore functionality"
         echo -e "   • Configuration management (user and global)"
-        echo -e "   • File integrity (18 commands, 12 agents, 1 script)"
+        echo -e "   • File integrity (16 commands, 10 agents, 1 script)"
         echo -e "   • Scope switching and conflict resolution"
     else
         echo -e "${RED}${BOLD}❌ $TESTS_FAILED TEST(S) FAILED${NC}"

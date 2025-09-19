@@ -232,7 +232,7 @@ Real-time monitoring with advanced metrics:
 {
   "statusLine": {
     "type": "command",
-    "command": "python3 ~/.claude/scripts/context-monitor-generic.py"
+    "command": "python3 ~/.claude/scripts/context_monitor_generic.py"
   }
 }
 ```
@@ -278,7 +278,7 @@ Real-time monitoring with advanced metrics:
 ### ⚡ **Professional Testing Framework**
 - **45+ Comprehensive Tests**: Complete validation for dual-scope installation
 - **3 Test Suites**: User scope, global scope, and precedence testing
-- **QUICK-TESTS.md**: 30-second validation system for all 18 commands
+- **QUICK-TESTS.md**: 30-second validation system for all 16 commands
 - **CI/CD Ready**: GitHub Actions and Jenkins integration examples
 - **100% Coverage**: Every command validated and verified functional
 

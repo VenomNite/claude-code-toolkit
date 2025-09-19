@@ -239,7 +239,7 @@ simulate_global_installation() {
 {
   "statusLine": {
     "type": "command",
-    "command": "python3 $MOCK_GLOBAL_DIR/scripts/context-monitor-generic.py"
+    "command": "python3 $MOCK_GLOBAL_DIR/scripts/context_monitor_generic.py"
   },
   "installation": {
     "scope": "global",
@@ -340,7 +340,7 @@ test_global_settings_configuration() {
 
     assert_string_contains "$settings_content" "statusLine" "Global settings contain statusLine"
     assert_string_contains "$settings_content" "global" "Global settings indicate global scope"
-    assert_string_contains "$settings_content" "context-monitor-generic.py" "Global settings reference monitoring script"
+    assert_string_contains "$settings_content" "context_monitor_generic.py" "Global settings reference monitoring script"
 
     # Validate JSON syntax
     if python3 -c "import json; json.load(open('$MOCK_GLOBAL_DIR/config/global-settings.json'))" 2>/dev/null; then
@@ -410,7 +410,7 @@ echo "Global Agents: $AGENTS_COUNT/12"
 echo "Global Scripts: $SCRIPTS_COUNT"
 
 # Check key files
-KEY_FILES=("commands/A-plan.md" "agents/M1-qa-gatekeeper.md" "scripts/context-monitor-generic.py" "config/global-settings.json")
+KEY_FILES=("commands/A-plan.md" "agents/M1-qa-gatekeeper.md" "scripts/context_monitor_generic.py" "config/global-settings.json")
 
 for file in "${KEY_FILES[@]}"; do
     if [[ -f "$MOCK_GLOBAL_DIR/$file" ]]; then

@@ -2,4 +2,4 @@
 # Only includes actually used dependencies
 
 # Core dependency for system monitoring
-psutil>=5.8.0                   # Required by context-monitor-generic.py for system stats
+psutil>=5.8.0                   # Required by context_monitor_generic.py for system stats
