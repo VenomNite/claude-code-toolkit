@@ -1,6 +1,6 @@
 # Claude Code Toolkit - User Guide 📖
 
-**Completo pero fácil | Workflows paso a paso**
+**Complete documentation | Step-by-step workflows**
 
 ## 🚀 Getting Started
 

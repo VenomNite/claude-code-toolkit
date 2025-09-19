@@ -1,6 +1,6 @@
-# Claude Code Toolkit - Cheat Sheet ⚡
+# Claude Code Toolkit - Quick Reference ⚡
 
-**Ultra-fast to understand | Everything on one page**
+**Ultra-fast command reference | Everything on one page**
 
 ## 📋 A-Commands (Planning & Management)
 
