@@ -271,7 +271,7 @@ install_python_dependencies() {
     print_info "Installing Python dependencies..."
 
     if [[ "$DRY_RUN" == true ]]; then
-        print_info "[DRY RUN] Would install: psutil, python-dateutil"
+        print_info "[DRY RUN] Would install: psutil"
         return 0
     fi
 
@@ -283,15 +283,15 @@ install_python_dependencies() {
             print_success "Python dependencies installed from requirements.txt"
         else
             print_warning "Failed to install from requirements.txt, trying individual packages"
-            $pip_cmd psutil python-dateutil
+            $pip_cmd psutil
         fi
     else
         print_verbose "Installing basic dependencies manually"
-        $pip_cmd psutil python-dateutil
+        $pip_cmd psutil
     fi
 
     # Verify installation
-    if python3 -c "import psutil, dateutil" 2>/dev/null; then
+    if python3 -c "import psutil" 2>/dev/null; then
         print_success "Python dependencies verified"
     else
         print_error "Python dependency verification failed"

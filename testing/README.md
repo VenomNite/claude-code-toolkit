@@ -30,7 +30,7 @@ This testing suite validates the complete ULTRATHINK dual-scope installation sys
 - ✅ Settings configuration (`~/.claude/settings.json`)
 - ✅ Backup functionality
 - ✅ Installation verification
-- ✅ Python dependencies (psutil, python-dateutil)
+- ✅ Python dependencies (psutil)
 
 **Duration:** ~30-60 seconds
 
@@ -202,10 +202,10 @@ ls -la testing/  # Scripts should be executable
 #### Python Dependency Errors
 ```bash
 # Install required dependencies
-pip3 install --user psutil python-dateutil
+pip3 install --user psutil
 
 # Verify installation
-python3 -c "import psutil, dateutil; print('OK')"
+python3 -c "import psutil; print('OK')"
 ```
 
 #### Tests Hang or Timeout
@@ -270,7 +270,7 @@ jobs:
         with:
           python-version: '3.8'
       - name: Install dependencies
-        run: pip3 install psutil python-dateutil
+        run: pip3 install psutil
       - name: Run test suite
         run: ./testing/run-all-tests.sh
       - name: Upload test reports

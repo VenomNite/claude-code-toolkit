@@ -1,21 +1,5 @@
 # Claude Code Toolkit Dependencies
+# Only includes actually used dependencies
 
-# Core dependencies
-psutil>=5.8.0                   # System monitoring for status line
-python-dateutil>=2.8.2         # Date/time handling for session tracking
-
-# Optional dependencies for enhanced features
-requests>=2.28.0                # HTTP requests for web integration
-urllib3>=1.26.0                 # URL handling
-
-# Development dependencies (optional)
-black>=22.0.0                   # Code formatting
-flake8>=4.0.0                   # Linting
-pytest>=7.0.0                   # Testing framework
-
-# Platform-specific dependencies
-# Windows
-pywin32>=227; platform_system=="Windows"
-
-# macOS
-pyobjc>=8.0; platform_system=="Darwin"
+# Core dependency for system monitoring
+psutil>=5.8.0                   # Required by context-monitor-generic.py for system stats

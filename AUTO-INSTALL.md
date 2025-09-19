@@ -167,7 +167,6 @@ pip3 install --user -r requirements.txt
 
 # Verify installation
 python3 -c "import psutil; print('✅ psutil installed correctly')"
-python3 -c "import dateutil; print('✅ python-dateutil installed correctly')"
 ```
 
 ### STEP 6: Final Verification & Testing
@@ -326,7 +325,7 @@ fi
 ### Common Issues:
 
 1. **Commands don't appear:** Restart Claude Code completely
-2. **Python errors:** Run `pip3 install --user psutil python-dateutil`
+2. **Python errors:** Run `pip3 install --user psutil`
 3. **Global installation fails:** Check sudo permissions or try user scope
 4. **Permissions errors:**
    ```bash

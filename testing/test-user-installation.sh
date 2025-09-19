@@ -419,13 +419,7 @@ test_python_dependencies() {
         TESTS_FAILED=$((TESTS_FAILED + 1))
     fi
 
-    if python3 -c "import dateutil" 2>/dev/null; then
-        print_success "TEST $((++TOTAL_TESTS)): python-dateutil module available"
-        TESTS_PASSED=$((TESTS_PASSED + 1))
-    else
-        print_error "TEST $TOTAL_TESTS: python-dateutil module not available"
-        TESTS_FAILED=$((TESTS_FAILED + 1))
-    fi
+    # Note: python-dateutil not required - only stdlib datetime is used
 }
 
 # ============================================================================
