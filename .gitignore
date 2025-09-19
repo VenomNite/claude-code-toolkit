@@ -50,16 +50,11 @@ scripts/personal/
 # .claude/
 # *.jsonl
 # user-data/
-claude_toolkit_analysis.md
-claude_code_toolkit.md
-brainstorming-mejoras-toolkit.md
-CLAUDE.md
-# SEO and internal documentation files
-.github-topics.md
-SEO-CHECKLIST.md
-# Internal analysis documents (local only)
-ABOUT-OPTIMIZATION.md
-README-FLOW-OPTIMIZATION.md
-README-OPTIMIZED-HERO.md
-SEO-IMPLEMENTATION-SUMMARY.md
-TOPICS-OPTIMIZATION.md
+
+# Internal development files
+*.analysis.*
+*.optimization.*
+*.strategy.*
+DEVELOPMENT-NOTES.md
+INTERNAL-*.md
+*-INTERNAL.*
