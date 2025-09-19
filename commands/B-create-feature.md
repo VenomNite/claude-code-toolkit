@@ -11,6 +11,8 @@ Scaffolding inteligente de features con detección automática de arquitectura: 
 
 ## Contexto Automático & Architecture Detection
 - Root: !`git rev-parse --show-toplevel 2>/dev/null || pwd`
+- Stack detection: !`find . -name "package.json" -o -name "requirements.txt" -o -name "pom.xml" -o -name "Cargo.toml" | head -1`
+- Standards loading: Load standards/{detected-stack}.yaml || standards/general.yaml as fallback
 - Architecture detection: !`find . -name "*.json" -o -name "*.xml" -o -name "*.toml" -o -name "*.yaml" | grep -E "(package|pom|cargo|docker)" | head -5`
 - Project structure: !`find . -maxdepth 3 -type d | grep -E "(src|components|features|services|controllers)" | head -10`
 - Framework detection: !`ls -la | grep -E "(package\.json|pom\.xml|Cargo\.toml|requirements\.txt|composer\.json)"`
@@ -21,6 +23,7 @@ Scaffolding inteligente de features con detección automática de arquitectura: 
 
 **Feature Name**: $ARGUMENTS
 **Auto-Architecture Detection**: Detectar stack, patrones y estructura del proyecto
+**Standards Integration**: Apply standards/{detected-stack}.yaml rules during scaffolding
 **Scaffolding Level**: Auto-determinar complejidad y templates necesarios
 **Integration Strategy**: Detectar puntos de integración y dependencias
 
@@ -80,96 +83,24 @@ grep -r "express" package.json && BACKEND="express"
 
 #### **Backend Scaffolding Templates**
 
-##### **Spring Boot Template (Java)**
+##### **Spring Boot Template**
 ```java
-// Auto-generated based on detected Spring Boot version
-@RestController
-@RequestMapping("/api/v1/${feature-name-kebab}")
-@Validated
-@Slf4j
-public class ${FeatureName}Controller {
-
-    private final ${FeatureName}Service ${featureName}Service;
-
-    public ${FeatureName}Controller(${FeatureName}Service ${featureName}Service) {
-        this.${featureName}Service = ${featureName}Service;
-    }
-
-    @GetMapping
-    public ResponseEntity<Page<${FeatureName}Response>> getAll(
-            @PageableDefault Pageable pageable) {
-        // Auto-generated CRUD with pagination
-    }
-
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<${FeatureName}Response> create(
-            @Valid @RequestBody ${FeatureName}Request request) {
-        // Auto-generated creation with validation
-    }
-}
-
-@Entity
-@Table(name = "${feature_name_snake}")
-public class ${FeatureName} {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    // Auto-generated fields based on feature type
-}
-
-@Service
-@Transactional
-public class ${FeatureName}Service {
-    // Auto-generated business logic template
-}
+@RestController + @Service + @Entity with CRUD operations
+// Full template auto-generated based on detected Spring Boot version
 ```
 
 ##### **Node.js Express Template**
 ```javascript
-// Auto-generated based on detected Express version
-const express = require('express');
-const { body, validationResult } = require('express-validator');
-const ${featureName}Service = require('../services/${featureName}Service');
-
-const router = express.Router();
-
-// GET /api/v1/${feature-name-kebab}
-router.get('/', async (req, res, next) => {
-    try {
-        // Auto-generated CRUD operations
-    } catch (error) {
-        next(error);
-    }
-});
-
-// Auto-generated validation middleware
-const validate${FeatureName} = [
-    // Auto-generated validation rules
-];
-
-module.exports = router;
+Router + Controller + Service with validation
+// Full template auto-generated based on detected Express version
 ```
 
 #### **Frontend Scaffolding Templates**
 
 ##### **React Component Template**
 ```jsx
-// Auto-generated based on detected React version and patterns
-import React, { useState, useEffect } from 'react';
-import { use${FeatureName}s } from '../hooks/use${FeatureName}s';
-import { ${FeatureName}Form } from './components/${FeatureName}Form';
-import { ${FeatureName}List } from './components/${FeatureName}List';
-
-export const ${FeatureName}Page = () => {
-    const { ${featureName}s, loading, error, create${FeatureName}, update${FeatureName} } = use${FeatureName}s();
-
-    return (
-        <div className="${feature-name-kebab}-page">
-            {/* Auto-generated component structure */}
-        </div>
-    );
-};
+Component + Hooks + Form + List patterns
+// Full template auto-generated based on detected React version
 ```
 
 ### **5. Database Schema Generation (Auto-Adaptive)**
@@ -184,26 +115,8 @@ export const ${FeatureName}Page = () => {
 
 #### **Auto-Generated Migration Template**
 ```sql
--- Auto-generated based on detected database and feature
--- Migration: V1__Create_${feature_name_snake}_table.sql
-
-CREATE TABLE ${feature_name_snake} (
-    id BIGSERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    description TEXT,
-    status VARCHAR(50) DEFAULT 'ACTIVE',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    created_by VARCHAR(100),
-
-    -- Auto-generated constraints based on feature type
-    CONSTRAINT uk_${feature_name_snake}_name UNIQUE (name),
-    CONSTRAINT ck_${feature_name_snake}_status CHECK (status IN ('ACTIVE', 'INACTIVE'))
-);
-
--- Auto-generated indexes
-CREATE INDEX idx_${feature_name_snake}_status ON ${feature_name_snake}(status);
-CREATE INDEX idx_${feature_name_snake}_created_at ON ${feature_name_snake}(created_at);
+CREATE TABLE + constraints + indexes
+-- Full migration auto-generated based on detected database and feature
 ```
 
 ### **6. Testing Strategy Matrix (Comprehensive)**
@@ -219,24 +132,8 @@ CREATE INDEX idx_${feature_name_snake}_created_at ON ${feature_name_snake}(creat
 
 #### **Auto-Generated Test Templates**
 ```java
-// Spring Boot Test Template
-@SpringBootTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@Testcontainers
-class ${FeatureName}IntegrationTest {
-
-    @Container
-    static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:15")
-            .withDatabaseName("testdb")
-            .withUsername("test")
-            .withPassword("test");
-
-    @Test
-    @DisplayName("Should create ${featureName} successfully")
-    void shouldCreate${FeatureName}Successfully() {
-        // Auto-generated test scenarios
-    }
-}
+@SpringBootTest + @Testcontainers + Unit/Integration tests
+// Full test suite auto-generated based on detected framework
 ```
 
 ### **7. Configuration & Environment Setup (Intelligent)**

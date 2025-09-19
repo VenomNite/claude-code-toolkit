@@ -4,16 +4,16 @@ description: Auto-organización inteligente con preservación total de dependenc
 argument-hint: [--scan|--apply|--predict-issues|--full-restructure] [--scope project|module|dir] [--stack auto|react|node|python|java] [--horizon 1d|1w|2w|1m|3m|6m|1y]
 ---
 
-# Auto-Organize (coding standards
+# Auto-Organize with Standards
 
-Reorganización inteligente con preservación total de dependencias aplicando coding standards $ARGUMENTS
+Reorganización inteligente con preservación total de dependencias aplicando standards/{detected-stack}.yaml $ARGUMENTS
 
 ## Contexto  
 - Root: !`git rev-parse --show-toplevel 2>/dev/null || pwd`
 - Stack detection: !`find . -name "package.json" -o -name "requirements.txt" -o -name "pom.xml" | head -1`
 - Current files: !`find . -type f \( -name "*.js" -o -name "*.ts" -o -name "*.py" -o -name "*.java" \) | wc -l`
 - Git activity: !`git log --oneline --since="3 months" --name-only | sort | uniq -c | sort -nr | head -10`
-- coding standards rules: Cargar coding standards o fallback coding standards
+- Standards loading: Load standards/{detected-stack}.yaml || standards/general.yaml as fallback
 
 ## Modes & Workflow
 
@@ -50,7 +50,7 @@ Reorganización inteligente con preservación total de dependencias aplicando co
 - **1y**: Strategic structure sustainability analysis
 
 ### **Full Restructure** 
-- Load coding standards architecture patterns
+- Load standards/{detected-stack}.yaml architecture patterns
 - Apply best practices: React (features/), Node (modules/), Python (packages/), etc.
 - Complete structural transformation with dependency preservation
 
@@ -68,7 +68,7 @@ Reorganización inteligente con preservación total de dependencias aplicando co
 | Directorio/Archivo | Issue Predicho | Probabilidad | Horizon | Acción Preventiva |
 |---|---|---|---|---|
 
-**Matriz coding standards Compliance**
+**Matriz Standards Compliance**
 | Regla | Violación Actual | Fix Propuesto | Transgresión Justificada | Beneficio |
 |---|---|---|---|---|
 
@@ -85,7 +85,7 @@ Reorganización inteligente con preservación total de dependencias aplicando co
 - **Predict**: `Claude/predictions/organize-issues-${horizon}-${timestamp}.md`
 - **Full**: `Claude/restructure/plan-execution-${timestamp}.md`
 
-## coding standards Integration
+## Standards Integration
 - **"Less is sometimes better"**: Estructura simple, lógica, mantenible
 - **Modularidad SIEMPRE**: Interfaces claras entre directorios reorganizados  
 - **Transgresión justificada**: Documentar cuando organización rompe convención por beneficio
@@ -119,7 +119,7 @@ Reorganización inteligente con preservación total de dependencias aplicando co
 ```
 
 ## DoD
-- Stack detectado y coding standards rules cargadas
+- Stack detectado y standards/{detected-stack}.yaml rules cargadas
 - Dependency map completo pre-move
 - ALL imports/exports/paths actualizados correctamente
 - Post-reorganization validation passed (no broken imports)  

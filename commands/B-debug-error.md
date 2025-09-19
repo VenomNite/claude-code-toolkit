@@ -11,8 +11,9 @@ Debug sistemático y forensic analysis: $ARGUMENTS
 ## Contexto Automático
 - Root: !`git rev-parse --show-toplevel 2>/dev/null || pwd`
 - Stack detection: !`find . -name "package.json" -o -name "requirements.txt" -o -name "pom.xml" -o -name "Cargo.toml" -o -name "*.sln" | head -3`
+- Standards loading: Load standards/{detected-stack}.yaml || standards/general.yaml as fallback
 - Recent changes: !`git log --oneline -5 --stat 2>/dev/null || echo "No git history"`
-- Error context: Auto-cargar stack-specific debugging
+- Error context: Auto-cargar stack-specific debugging + standards compliance checking
 
 ## 🔍 Forensic Mode Activation
 
@@ -20,6 +21,7 @@ Debug sistemático y forensic analysis: $ARGUMENTS
 
 **Error/Problema**: $ARGUMENTS
 **Stack detectado**: Aplicar debugging específico del stack
+**Standards compliance**: Check error against standards/{detected-stack}.yaml rules
 **Forensic Level**: Auto-detectar complejidad y aplicar deep analysis si es necesario
 
 ### **1. Error Intelligence Gathering (Enhanced)**

@@ -1,0 +1,110 @@
+version: "2025.09-Angular-v2"
+stack:
+  framework: angular
+  language: typescript
+  version: "18+"
+  philosophy: "signals_standalone_onpush_first"
+
+metadata:
+  description: "Angular Standards — Signals, standalone components, OnPush strategy y performance-first"
+  based_on: "Modern Angular 18+ best practices 2024-2025 con signals y optimización"
+
+policy:
+  severity_actions:
+    critical: ["warn", "block", "show_metrics"]
+    high: ["warn", "require_review", "show_metrics"]
+    medium: ["warn", "show_metrics", "autofix"]
+    low: ["info", "show_metrics", "autofix"]
+  gates:
+    strict: true
+    complexity_limit: 6
+    component_size_limit: 90
+    function_size_limit: 35
+    module_size_limit: 220
+
+scan:
+  include: ["**/*.ts", "**/*.html", "**/*.scss", "src/**/*.ts", "src/**/*.html", "apps/**/*.ts", "libs/**/*.ts"]
+  exclude: ["**/node_modules/**", "**/dist/**", "**/build/**", "**/.angular/**", "**/coverage/**", "**/*.spec.ts"]
+
+core_principles:
+  - signals_over_rxjs_local_state: true
+  - standalone_components_first: true
+  - onpush_change_detection: true
+  - inject_function_over_constructor: true
+  - immutable_updates_required: true
+
+anti_patterns:
+
+  - id: NG-SIGNALS-001
+    name: Effect overuse y mutation en computed
+    severity: high
+    detect:
+      patterns:
+        - "effect\\(.*effect\\(.*effect\\("
+        - "computed\\(.*\\.set\\("
+        - "computed\\(.*\\.update\\("
+      heuristics: ["effect_overuse", "computed_side_effects"]
+    remediation: "Evitar effect(), preferir declarative code. No mutar en computed(), solo computar."
+
+  - id: NG-CHANGE-DETECTION-001
+    name: Default change detection cuando OnPush sería mejor
+    severity: medium
+    detect:
+      heuristics: ["missing_onpush_strategy", "manual_subscriptions_onpush"]
+      patterns:
+        - "@Component\\(\\{[^}]*\\}\\).*(?!changeDetection)"
+        - "ngOnInit.*subscribe.*OnPush"
+    remediation: "Usar OnPush + signals, async pipe para observables, immutable updates."
+
+  - id: NG-DI-001
+    name: Constructor DI overuse cuando inject() sería mejor
+    severity: low
+    detect:
+      patterns:
+        - "constructor\\([^\\)]{150,}\\)"
+        - "private \\w+Service.*private \\w+Service.*private \\w+Service.*private \\w+Service"
+    remediation: "Usar inject() function para utility services, constructor DI solo para core dependencies."
+
+  - id: NG-RXJS-001
+    name: Complex RxJS chains cuando async/await suffices
+    severity: medium
+    detect:
+      patterns:
+        - "switchMap\\(.*switchMap\\(.*switchMap\\("
+        - "\\.pipe\\(.*\\.pipe\\(.*\\.pipe\\("
+        - "combineLatest.*switchMap.*mergeMap.*retry"
+    remediation: "Usar async/await para simple operations, RxJS solo para concurrent operations."
+
+  - id: NG-STANDALONE-001
+    name: NgModule usage cuando standalone components serían mejores
+    severity: medium
+    detect:
+      heuristics: ["ngmodule_for_simple_components", "missing_standalone_opportunity"]
+    remediation: "Migrar gradualmente a standalone components, empezar con key components y routes."
+
+clean_patterns:
+
+  - id: CLEAN-NG-SIGNALS-001
+    name: Signals para local component state
+    benefits: ["predictable_updates", "automatic_change_detection", "performance_optimization"]
+    implementation: "signal() para state, computed() para derived values, input.required() para mandatory inputs."
+
+  - id: CLEAN-NG-STANDALONE-001
+    name: Standalone components arquitectura
+    benefits: ["modular_design", "reduced_bundle_size", "simplified_testing"]
+    implementation: "standalone: true, direct imports, skip NgModules para new components."
+
+  - id: CLEAN-NG-ONPUSH-001
+    name: OnPush change detection strategy
+    benefits: ["performance_optimization", "predictable_updates", "reduced_checks"]
+    implementation: "ChangeDetectionStrategy.OnPush + signals + async pipe + immutable updates."
+
+  - id: CLEAN-NG-INJECT-001
+    name: inject() function para dependency injection
+    benefits: ["cleaner_code", "easier_testing", "functional_approach"]
+    implementation: "inject() en functions, constructor DI para class-based components con multiple deps."
+
+  - id: CLEAN-NG-TEMPLATE-001
+    name: Signal-based inputs y built-in control flow
+    benefits: ["type_safety", "performance", "modern_syntax"]
+    implementation: "@if @for @let syntax, input.required(), model() para two-way binding."

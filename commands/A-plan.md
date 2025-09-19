@@ -63,9 +63,9 @@ Identifica **TOP 3 GAPS más críticos** para orientar preguntas.
 
 Ahora con todas las respuestas, activa THINK HARD MODE y aplica razonamiento profundo para generar especificaciones COMPLETAS y de calidad senior.
 
-### **coding standards INTEGRATION REAL**
+### **STANDARDS INTEGRATION REAL**
 - **Auto-detecta stack** mencionado en respuestas (Python, FastAPI, React, etc.)
-- **Carga coding standards rules** específicas: `project documentation standards (example)`
+- **Carga standards rules** desde standards/{detected-stack}.yaml || standards/general.yaml fallback
 - **Aplica "Less is sometimes better"** + modularidad en todas las decisiones
 - **Documenta transgresiones justificadas** si mejoran calidad/funcionalidad
 
@@ -102,7 +102,7 @@ Con las specs completas generadas, activa PLAN MODE con THINK HARD para crear el
 
 Crea un plan estratégico completo que incluya:
 
-- **Master Strategy**: Development philosophy coding standards milestone strategy
+- **Master Strategy**: Development philosophy standards milestone strategy
 - **Implementation Phases**: 3 phases detalladas con timeline, objectives, deliverables, dependencies, risks
 - **Resource Allocation**: Team requirements, skill needs, time allocation
 - **Risk Management Matrix**: Comprehensive risk analysis con probability + impact + mitigation
@@ -146,7 +146,7 @@ Antes de entregar, VALIDA que has completado:
 - ✅ PLAN MODE Think Hard activado
 - ✅ **DOCUMENTO 2**: Strategic Plan generado
 - ✅ **DOCUMENTO 3**: TO-DO Roadmap granular generado
-- ✅ coding standards philosophy aplicada con stack-specific rules
+- ✅ Standards philosophy aplicada con stack-specific rules
 - ✅ Workflow completo ejecutado secuencialmente
 - ✅ TODOS los gaps originales compensados y especificados
 

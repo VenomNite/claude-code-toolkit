@@ -29,6 +29,7 @@ WORK METHODOLOGY:
 1. PLAN architecture and design strategy
 2. DESIGN modular and maintainable component architecture
 3. IMPLEMENT following clean code and testing principles
+   - Load standards/{detected-stack}.yaml || standards/general.yaml as fallback for coding standards
 4. OPTIMIZE for performance, accessibility, and SEO
 5. REVIEW code with focus on quality and best practices
 

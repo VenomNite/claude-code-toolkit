@@ -1,0 +1,115 @@
+version: "2025.09-SpringBoot-v2"
+stack:
+  framework: springboot
+  language: java
+  version: "3.2+"
+  philosophy: "virtual_threads_reactive_native_secure"
+
+metadata:
+  description: "Spring Boot Standards — Virtual threads, reactive patterns, native compilation y security-first"
+  based_on: "Modern Spring Boot best practices 2024-2025 con Spring Boot 3.2+ y Java 21+"
+
+policy:
+  severity_actions:
+    critical: ["warn", "block", "show_metrics"]
+    high: ["warn", "require_review", "show_metrics"]
+    medium: ["warn", "show_metrics", "autofix"]
+    low: ["info", "show_metrics", "autofix"]
+  gates:
+    strict: true
+    complexity_limit: 8
+    controller_size_limit: 60
+    service_size_limit: 80
+
+scan:
+  include: ["**/*.java", "src/**/*.java", "**/*Controller.java", "**/*Service.java", "**/*Repository.java"]
+  exclude: ["**/target/**", "**/build/**", "**/test/**", "**/*Test.java", "**/*Tests.java"]
+
+core_principles:
+  - virtual_threads_enabled: true
+  - constructor_injection_preferred: true
+  - reactive_webflux_strategic: true
+  - native_compilation_ready: true
+  - security_by_design: true
+
+anti_patterns:
+
+  - id: SPRINGBOOT-DI-001
+    name: Field injection y @Autowired overuse
+    severity: high
+    detect:
+      patterns:
+        - "@Autowired.*private.*[a-zA-Z]"
+        - "@Autowired.*[a-zA-Z].*Service.*Repository"
+        - "public.*void.*set[A-Z].*@Autowired"
+      heuristics: ["field_injection_overuse", "constructor_parameter_bloat"]
+    remediation: "Constructor injection preferred, immutable fields, testability improvement, dependency clarity."
+
+  - id: SPRINGBOOT-TEST-001
+    name: @SpringBootTest overuse y heavy testing
+    severity: medium
+    detect:
+      patterns:
+        - "@SpringBootTest.*@Test.*@Test.*@Test"
+        - "@SpringBootTest.*webEnvironment.*RANDOM_PORT"
+        - "TestContainers.*@SpringBootTest.*integration"
+      heuristics: ["springboottest_overuse"]
+    remediation: "@MockBean, @WebMvcTest, @DataJpaTest para unit testing, @SpringBootTest solo para integration."
+
+  - id: SPRINGBOOT-CONFIG-001
+    name: Hardcoded configuration y security issues
+    severity: critical
+    detect:
+      patterns:
+        - "spring\\.datasource\\.url.*localhost"
+        - "spring\\.datasource\\.password.*=[^$]"
+        - "jwt\\.secret.*=[^$]"
+      heuristics: ["hardcoded_credentials", "missing_externalization"]
+    remediation: "Environment variables, Spring Vault, AWS Secrets Manager, @ConfigurationProperties."
+
+  - id: SPRINGBOOT-PERFORMANCE-001
+    name: Blocking operations sin virtual threads
+    severity: high
+    detect:
+      heuristics: ["platform_threads_io_bound", "missing_virtual_thread_config"]
+      patterns:
+        - "@RestController.*Thread\\.sleep"
+        - "@Service.*blocking.*operation.*without.*virtual"
+    remediation: "spring.threads.virtual.enabled=true, RestClient over RestTemplate, async patterns."
+
+  - id: SPRINGBOOT-ARCHITECTURE-001
+    name: God classes y monolithic services
+    severity: medium
+    detect:
+      heuristics: ["god_class_pattern", "service_too_many_dependencies"]
+      patterns:
+        - "public.*class.*Service.*implements.*Repository.*Controller"
+        - "@Service.*@Autowired.*@Autowired.*@Autowired.*@Autowired.*@Autowired"
+    remediation: "Single responsibility, domain-driven design, service decomposition, clear boundaries."
+
+clean_patterns:
+
+  - id: CLEAN-SPRINGBOOT-VIRTUAL-001
+    name: Virtual threads configuration y usage
+    benefits: ["scalability", "resource_efficiency", "simplified_concurrency"]
+    implementation: "spring.threads.virtual.enabled=true, RestClient usage, I/O-bound optimization."
+
+  - id: CLEAN-SPRINGBOOT-DI-001
+    name: Constructor injection y immutable dependencies
+    benefits: ["testability", "immutability", "dependency_clarity"]
+    implementation: "Constructor injection, final fields, @RequiredArgsConstructor, clear dependencies."
+
+  - id: CLEAN-SPRINGBOOT-REACTIVE-001
+    name: Strategic reactive programming
+    benefits: ["non_blocking_io", "backpressure_handling", "stream_processing"]
+    implementation: "WebFlux para high-throughput, reactive WebClient, context propagation."
+
+  - id: CLEAN-SPRINGBOOT-SECURITY-001
+    name: Security-first configuration patterns
+    benefits: ["attack_prevention", "data_protection", "compliance"]
+    implementation: "Externalized config, OAuth2, method security, HTTPS enforcement."
+
+  - id: CLEAN-SPRINGBOOT-NATIVE-001
+    name: Native compilation optimization
+    benefits: ["startup_speed", "memory_efficiency", "cloud_native"]
+    implementation: "GraalVM native hints, AOT transformations, reflection configuration."

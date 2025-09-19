@@ -1,0 +1,102 @@
+version: "2025.09-JavaScript-v2"
+stack:
+  runtime: browser+node
+  language: javascript
+  philosophy: "modern_es2024_clean_code"
+
+metadata:
+  description: "JavaScript Standards — ES2024, async/await, immutability y funciones puras"
+  based_on: "Modern JavaScript best practices 2024-2025 con ES2024 features"
+
+policy:
+  severity_actions:
+    critical: ["warn", "block", "show_metrics"]
+    high: ["warn", "require_review", "show_metrics"]
+    medium: ["warn", "show_metrics", "autofix"]
+    low: ["info", "show_metrics", "autofix"]
+  gates:
+    strict: true
+    complexity_limit: 8
+    function_size_limit: 50
+    module_size_limit: 300
+
+scan:
+  include: ["**/*.js", "**/*.mjs", "**/*.jsx", "src/**/*.js", "lib/**/*.js", "pages/**/*.js", "components/**/*.js"]
+  exclude: ["**/node_modules/**", "**/dist/**", "**/build/**", "**/*.min.js", "**/coverage/**", "**/*.test.*", "**/*.spec.*"]
+
+core_principles:
+  - es2024_immutability: true
+  - async_await_first: true
+  - functional_composition: true
+  - top_level_await: true
+  - minimal_side_effects: true
+
+anti_patterns:
+
+  - id: JS-CALLBACK-001
+    name: Callback hell en era async/await
+    severity: high
+    detect:
+      patterns:
+        - "\.then\(.*\.then\(.*\.then\(.*\.then\("
+        - "callback\(.*callback\(.*callback\("
+    remediation: "Usar async/await, top-level await y Promise.withResolvers() para control de flujo."
+
+  - id: JS-PROMISE-001
+    name: Explicit Promise construction anti-pattern
+    severity: medium
+    detect:
+      patterns:
+        - "new Promise\(.*resolve.*myPromise"
+        - "new Promise\(.*async\s*\("
+    remediation: "Retornar promises directamente, evitar wrapping innecesario."
+
+  - id: JS-MUTATION-001
+    name: Mutación directa de objetos/arrays
+    severity: high
+    detect:
+      heuristics: ["direct_array_mutation", "object_property_assignment", "missing_immutable_update"]
+    remediation: "Usar Records/Tuples ES2024, toSorted(), spread operator para immutability."
+
+  - id: JS-COLLECTION-001
+    name: Side effects en operaciones de colecciones
+    severity: medium
+    detect:
+      heuristics: ["foreach_external_mutation", "map_side_effects"]
+    remediation: "Usar reduce, evitar mutar estado externo en forEach/map."
+
+  - id: JS-GLOBAL-001
+    name: Contaminación del namespace global
+    severity: medium
+    detect:
+      patterns:
+        - "window\.[a-zA-Z_]"
+        - "globalThis\.[a-zA-Z_]"
+    remediation: "Usar ESM imports/exports, encapsular en módulos."
+
+clean_patterns:
+
+  - id: CLEAN-JS-IMMUTABILITY-001
+    name: ES2024 Records/Tuples immutability
+    benefits: ["predictable_state", "thread_safety", "easier_debugging"]
+    implementation: "Usar Records #{}, Tuples #[], toSorted(), toReversed() en lugar de mutaciones."
+
+  - id: CLEAN-JS-ASYNC-001
+    name: Modern async patterns
+    benefits: ["readable_flow", "error_handling", "composability"]
+    implementation: "Top-level await, Promise.withResolvers(), async iteration (for await...of)."
+
+  - id: CLEAN-JS-FUNCTIONAL-001
+    name: Composición funcional y pure functions
+    benefits: ["testability", "reusability", "no_side_effects"]
+    implementation: "Pipeline operator |>, reduce en lugar de forEach, funciones puras."
+
+  - id: CLEAN-JS-ESM-001
+    name: ESM modules y tree-shaking
+    benefits: ["bundle_optimization", "clear_dependencies", "static_analysis"]
+    implementation: "Import/export específicos, named exports, evitar default exports complejos."
+
+  - id: CLEAN-JS-COLLECTIONS-001
+    name: Enhanced array methods sin mutación
+    benefits: ["immutability", "functional_style", "predictable_results"]
+    implementation: "Usar toSorted(), toReversed(), with() en lugar de sort(), reverse(), [index]=value."

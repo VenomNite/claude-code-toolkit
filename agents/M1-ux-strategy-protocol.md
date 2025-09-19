@@ -26,6 +26,7 @@ CORE FUNCTIONS:
 - Competitive analysis and trend forecasting for visual positioning
 
 STRATEGY METHODOLOGY:
+- Load standards/{detected-stack}.yaml || standards/general.yaml as fallback for UX strategy standards and best practices
 1. RESEARCH the specific sector: fintech, e-commerce, SaaS, etc.
 2. ANALYZE user psychology of target demographic
 3. IDENTIFY current design trends and industry best practices

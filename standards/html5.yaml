@@ -1,0 +1,115 @@
+version: "2025.09-HTML5-v2"
+stack:
+  framework: html5
+  language: javascript
+  version: "ES2024+"
+  philosophy: "semantic_progressive_accessible_performance"
+
+metadata:
+  description: "HTML5 Standards — Semantic markup, progressive enhancement, accessibility-first y performance"
+  based_on: "Modern web best practices 2024-2025 con semantic HTML y accessibility focus"
+
+policy:
+  severity_actions:
+    critical: ["warn", "block", "show_metrics"]
+    high: ["warn", "require_review", "show_metrics"]
+    medium: ["warn", "show_metrics", "autofix"]
+    low: ["info", "show_metrics", "autofix"]
+  gates:
+    strict: true
+    complexity_limit: 4
+    file_size_limit: 150
+    module_size_limit: 200
+
+scan:
+  include: ["**/*.html", "**/*.css", "**/*.js", "src/**/*.html", "assets/**/*.css", "js/**/*.js"]
+  exclude: ["**/node_modules/**", "**/dist/**", "**/build/**", "**/vendor/**", "**/*.min.*"]
+
+core_principles:
+  - semantic_html_first: true
+  - progressive_enhancement: true
+  - accessibility_aa_compliance: true
+  - performance_conscious: true
+  - minimal_framework_usage: true
+
+anti_patterns:
+
+  - id: HTML-SEMANTIC-001
+    name: Div soup vs semantic HTML elements
+    severity: critical
+    detect:
+      patterns:
+        - "<div.*<div.*<div.*<div.*<div.*<div"
+        - "<div class=\"(header|nav|main|footer)\""
+        - "<div.*<div.*</div>.*</div>.*<div.*<div"
+      heuristics: ["excessive_div_nesting", "non_semantic_markup"]
+    remediation: "Usar header, nav, main, section, article, aside, footer. Semantic HTML para mejor SEO y accessibility."
+
+  - id: HTML-ACCESSIBILITY-001
+    name: Missing accessibility attributes y keyboard navigation
+    severity: high
+    detect:
+      patterns:
+        - "<img(?![^>]*alt=)"
+        - "<button.*onclick=.*<div.*onclick="
+        - "<input(?![^>]*id=).*<label(?![^>]*for=)"
+      heuristics: ["missing_aria_labels", "non_keyboard_accessible"]
+    remediation: "Alt attributes, ARIA labels, semantic buttons, keyboard navigation, AA compliance testing."
+
+  - id: HTML-PERFORMANCE-001
+    name: Performance bottlenecks y resource blocking
+    severity: medium
+    detect:
+      patterns:
+        - "<script.*src.*<script.*src.*<script.*src.*<script.*src"
+        - "<link.*css.*<link.*css.*<link.*css.*<link.*css"
+        - "class=\"[^\"]{100,}\""
+      heuristics: ["large_bundles", "blocking_resources", "framework_overuse"]
+    remediation: "Bundle optimization, async loading, responsive images, Core Web Vitals optimization."
+
+  - id: HTML-FRAMEWORK-001
+    name: JavaScript framework overuse para static content
+    severity: medium
+    detect:
+      heuristics: ["spa_for_static", "framework_for_simple_interactions"]
+      patterns:
+        - "React\\.createElement.*static.*content"
+        - "import.*vue.*import.*react.*simple.*site"
+    remediation: "Progressive enhancement, vanilla JS para simple interactions, frameworks solo para complex state."
+
+  - id: HTML-CSS-001
+    name: CSS framework utility class hell
+    severity: low
+    detect:
+      patterns:
+        - "flex.*justify.*items.*gap.*lg:.*xl:.*2xl:"
+        - "col-xs.*col-sm.*col-md.*col-lg.*col-xl"
+        - "@apply.*@apply.*@apply.*@apply"
+    remediation: "Semantic CSS classes, utility classes solo cuando añaden valor, custom CSS preferred."
+
+clean_patterns:
+
+  - id: CLEAN-HTML-SEMANTIC-001
+    name: Semantic HTML structure con accessibility
+    benefits: ["seo_optimization", "accessibility", "screen_reader_support"]
+    implementation: "header, nav, main, article, section, aside, footer. Proper heading hierarchy, ARIA labels."
+
+  - id: CLEAN-HTML-PROGRESSIVE-001
+    name: Progressive enhancement patterns
+    benefits: ["universal_access", "performance", "reliability"]
+    implementation: "Works without JS, enhanced with JS, graceful degradation, form functionality baseline."
+
+  - id: CLEAN-HTML-PERFORMANCE-001
+    name: Performance optimization strategies
+    benefits: ["core_web_vitals", "user_experience", "seo_ranking"]
+    implementation: "Responsive images, async loading, local storage APIs, minimal bundle sizes."
+
+  - id: CLEAN-HTML-ACCESSIBILITY-001
+    name: AA accessibility compliance
+    benefits: ["inclusive_design", "legal_compliance", "usability"]
+    implementation: "Screen reader testing, keyboard navigation, ARIA attributes, semantic associations."
+
+  - id: CLEAN-HTML-CSS-001
+    name: Modern CSS con semantic naming
+    benefits: ["maintainability", "responsive_design", "performance"]
+    implementation: "CSS Grid/Flexbox, semantic class names, mobile-first approach, minimal framework dependency."

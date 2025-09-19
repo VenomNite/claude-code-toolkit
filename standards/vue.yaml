@@ -1,0 +1,109 @@
+version: "2025.09-Vue-v2"
+stack:
+  framework: vue
+  language: typescript
+  version: "3+"
+  philosophy: "composition_api_with_focused_composables"
+
+metadata:
+  description: "Vue Standards — Script setup, Pinia stores, composables patterns y anti-complexity"
+  based_on: "Modern Vue 3 best practices 2024-2025 con Composition API y performance-first"
+
+policy:
+  severity_actions:
+    critical: ["warn", "block", "show_metrics"]
+    high: ["warn", "require_review", "show_metrics"]
+    medium: ["warn", "show_metrics", "autofix"]
+    low: ["info", "show_metrics", "autofix"]
+  gates:
+    strict: true
+    complexity_limit: 5
+    component_size_limit: 75
+    function_size_limit: 30
+    module_size_limit: 180
+
+scan:
+  include: ["**/*.vue", "**/*.ts", "**/*.js", "src/**/*.vue", "components/**/*.vue", "pages/**/*.vue", "composables/**/*.ts"]
+  exclude: ["**/node_modules/**", "**/dist/**", "**/build/**", "**/.nuxt/**", "**/coverage/**", "**/*.test.*", "**/*.spec.*"]
+
+core_principles:
+  - composition_api_first: true
+  - script_setup_syntax: true
+  - focused_composables: true
+  - pinia_modular_stores: true
+  - performance_conscious_reactivity: true
+
+anti_patterns:
+
+  - id: VUE-API-001
+    name: Options API mixing con Composition API
+    severity: critical
+    detect:
+      patterns:
+        - "<script setup.*export default \\{"
+        - "setup\\(\\).*data\\(\\)"
+        - "defineComponent.*data:.*methods:"
+    remediation: "Usar Composition API consistentemente, script setup syntax para nuevos components."
+
+  - id: VUE-REACTIVE-001
+    name: Watch dependency hell y watchers complejos
+    severity: high
+    detect:
+      patterns:
+        - "watch\\(\\[.*,.*,.*,.*,.*\\]"
+        - "watchEffect\\(.*watch\\(.*watchEffect\\("
+        - "\\{ deep: true \\}.*\\{ deep: true \\}.*\\{ deep: true \\}"
+    remediation: "Watchers simples con dependencias claras, evitar deep watchers innecesarios."
+
+  - id: VUE-TEMPLATE-001
+    name: Template complexity y v-if + v-for together
+    severity: medium
+    detect:
+      patterns:
+        - "v-if.*v-for.*v-if.*v-for"
+        - "v-for.*v-if.*v-for.*v-if"
+        - "v-if.*v-if.*v-if.*v-if"
+    remediation: "Separar v-if y v-for, usar computed properties para logic complejo, template wrapper elements."
+
+  - id: VUE-PROPS-001
+    name: Prop mutation desde child components
+    severity: high
+    detect:
+      heuristics: ["prop_direct_mutation", "prop_assignment", "prop_array_mutation"]
+    remediation: "Emit events a parent component, usar v-model para two-way binding, no mutar props directamente."
+
+  - id: VUE-STORE-001
+    name: Monolithic stores cuando modular sería mejor
+    severity: medium
+    detect:
+      heuristics: ["large_store_definition", "single_store_for_multiple_domains"]
+      patterns:
+        - "defineStore.*actions: \\{[\\s\\S]{500,}\\}"
+    remediation: "Crear focused stores por domain, lazy loading stores, usar composables para simple state."
+
+clean_patterns:
+
+  - id: CLEAN-VUE-SETUP-001
+    name: Script setup syntax y Composition API
+    benefits: ["smaller_bundles", "better_performance", "type_inference"]
+    implementation: "<script setup> syntax, defineProps/defineEmits, auto-imported utilities."
+
+  - id: CLEAN-VUE-COMPOSABLES-001
+    name: Focused composables para reusable logic
+    benefits: ["code_reuse", "single_responsibility", "testability"]
+    implementation: "use* prefix, single purpose por composable, return reactive refs/computed."
+
+  - id: CLEAN-VUE-PINIA-001
+    name: Modular Pinia stores con lazy loading
+    benefits: ["performance_optimization", "code_organization", "type_safety"]
+    implementation: "Domain-specific stores, lazy imports, getters para derived state."
+
+  - id: CLEAN-VUE-PERFORMANCE-001
+    name: Performance-conscious reactivity patterns
+    benefits: ["optimized_renders", "memory_efficiency", "bundle_optimization"]
+    implementation: "v-show para frequent toggles, dynamic imports, functional components para static content."
+
+  - id: CLEAN-VUE-TYPESCRIPT-001
+    name: TypeScript integration con type inference
+    benefits: ["type_safety", "intellisense_support", "compile_time_errors"]
+    implementation: "Composition API type inference, defineProps<interface>, typed stores y composables."

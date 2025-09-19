@@ -1,0 +1,104 @@
+version: "2025.09-MCP-v2"
+stack:
+  domain: mcp
+  language: polyglot
+  philosophy: "secure_simple_human_controlled"
+
+metadata:
+  description: "MCP Standards — OAuth security, human-in-loop, three primitives mastery y enterprise safety"
+  based_on: "Modern MCP best practices 2024-2025 con security emphasis y enterprise adoption"
+
+policy:
+  severity_actions:
+    critical: ["warn", "block", "show_metrics"]
+    high: ["warn", "require_review", "show_metrics"]
+    medium: ["warn", "show_metrics", "autofix"]
+    low: ["info", "show_metrics", "autofix"]
+  gates:
+    strict: true
+    complexity_limit: 5
+    tool_handler_size_limit: 40
+    schema_depth_limit: 3
+
+scan:
+  include: ["**/*.ts", "**/*.js", "**/*.py", "**/*.json", "**/*.yaml", "mcp/**/*", "servers/**/*"]
+  exclude: ["**/node_modules/**", "**/dist/**", "**/build/**", "**/*.test.*", "**/*.spec.*"]
+
+core_principles:
+  - oauth_resource_server_compliance: true
+  - human_in_loop_required: true
+  - three_primitives_mastery: true
+  - enterprise_security_first: true
+  - minimal_viable_transport: true
+
+anti_patterns:
+
+  - id: MCP-SECURITY-001
+    name: Missing authentication y exposed servers
+    severity: critical
+    detect:
+      heuristics: ["no_auth_implementation", "exposed_server_patterns"]
+      patterns:
+        - "server.*start.*no.*auth"
+        - "mcp.*server.*public.*access"
+    remediation: "OAuth Resource Server compliance RFC 8707, authentication required, behind firewall deployment."
+
+  - id: MCP-PERMISSIONS-001
+    name: Over-permissioning y production access
+    severity: high
+    detect:
+      heuristics: ["database_write_access", "production_system_access", "broad_permissions"]
+    remediation: "Human-in-the-loop required, explicit permission prompts, scope limitation, read-only default."
+
+  - id: MCP-PRIMITIVES-001
+    name: Wrong primitive choice y complex implementations
+    severity: medium
+    detect:
+      heuristics: ["tool_for_app_controlled", "resource_for_model_controlled", "complex_prompt_patterns"]
+    remediation: "Tools (model-controlled), resources (app-controlled), prompts (user-controlled). Master three primitives."
+
+  - id: MCP-TRANSPORT-001
+    name: Over-engineered transport y unnecessary complexity
+    severity: low
+    detect:
+      patterns:
+        - "multi.*transport.*bridge"
+        - "complex.*websocket.*multiplexing"
+      heuristics: ["transport_overengineering"]
+    remediation: "Minimal viable transport: stdio/local, websocket/interactive, simple JSON-RPC 2.0."
+
+  - id: MCP-DEPLOYMENT-001
+    name: Local servers exposed to internet y insecure deployment
+    severity: high
+    detect:
+      patterns:
+        - "server.*bind.*0\\.0\\.0\\.0"
+        - "mcp.*server.*public.*endpoint"
+    remediation: "Local development behind firewall, enterprise infrastructure hosting, secure deployment patterns."
+
+clean_patterns:
+
+  - id: CLEAN-MCP-SECURITY-001
+    name: OAuth Resource Server implementation
+    benefits: ["authentication_control", "token_security", "scope_limitation"]
+    implementation: "RFC 8707 compliance, Resource Indicators, explicit permission requests, secure token handling."
+
+  - id: CLEAN-MCP-HUMAN-LOOP-001
+    name: Human-in-the-loop design patterns
+    benefits: ["safety_control", "user_understanding", "disaster_prevention"]
+    implementation: "Permission prompts, user education, read-only defaults, production system protection."
+
+  - id: CLEAN-MCP-PRIMITIVES-001
+    name: Three primitives mastery
+    benefits: ["architectural_clarity", "proper_separation", "predictable_behavior"]
+    implementation: "Tools for model actions, resources for app data, prompts for user templates. Clear boundaries."
+
+  - id: CLEAN-MCP-ENTERPRISE-001
+    name: Enterprise security y infrastructure patterns
+    benefits: ["data_protection", "compliance", "infrastructure_control"]
+    implementation: "Behind firewall deployment, enterprise hosting, data residency control, audit trails."
+
+  - id: CLEAN-MCP-SDKS-001
+    name: Official SDK usage y best practices
+    benefits: ["standard_compliance", "security_updates", "community_support"]
+    implementation: "Python/TypeScript/Java official SDKs, JSON-RPC 2.0 compliance, modular component design."

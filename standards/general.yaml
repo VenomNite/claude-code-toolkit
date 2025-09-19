@@ -1,0 +1,114 @@
+version: "2025.09-General-v2"
+stack:
+  domain: general
+  language: polyglot
+  philosophy: "clean_code_with_limits"
+
+metadata:
+  description: "General Standards — principios transversales de simplicidad, límites y enfoque"
+  based_on: "Clean code principles aplicados de forma agnóstica al stack"
+
+policy:
+  severity_actions:
+    critical: ["warn", "block", "show_metrics"]
+    high: ["warn", "require_review", "show_metrics"]
+    medium: ["warn", "show_metrics", "autofix"]
+    low: ["info", "show_metrics", "autofix"]
+  gates:
+    strict: true
+    complexity_limit: 9
+    function_size_limit: 55
+    module_size_limit: 320
+
+scan:
+  include: ["**/*.js", "**/*.ts", "**/*.py", "**/*.java", "**/*.go", "**/*.rs", "**/*.php", "**/*.c", "**/*.cpp", "**/*.cs", "**/*.rb", "**/*.kt", "**/*.swift", "**/*.dart", "**/*.sql", "**/*.sh", "**/*.vue", "**/*.html", "**/*.css"]
+  exclude: ["**/node_modules/**", "**/dist/**", "**/build/**", "**/target/**", "**/vendor/**", "**/.git/**", "**/coverage/**", "**/tmp/**", "**/temp/**", "**/*.min.js", "**/*.min.css", "**/logs/**", "**/.next/**", "**/.nuxt/**", "**/public/**", "**/*.test.*", "**/*.spec.*"]
+
+core_principles:
+  - extreme_functional_simplicity: true
+  - intelligent_configuration: true
+  - abstraction_with_criteria: true
+  - operational_immutability: true
+  - concise_observability: true
+
+anti_patterns:
+
+  - id: GEN-COMPLEXITY-001
+    name: Funciones demasiado grandes/complicadas
+    severity: high
+    detect:
+      heuristics: ["function_over_55_lines", "complexity_over_9", "nested_conditionals_depth_gt_4"]
+    remediation: "Dividir en funciones pequeñas con responsabilidades claras."
+
+  - id: GEN-SIZE-001
+    name: Módulos demasiado grandes
+    severity: medium
+    detect:
+      heuristics: ["module_over_320_lines", "too_many_exports"]
+    remediation: "Dividir módulo en archivos más específicos y cohesivos."
+
+  - id: GEN-ABSTRACTION-001
+    name: Jerarquías profundas o innecesarias
+    severity: medium
+    detect:
+      heuristics: ["deep_inheritance", "abstract_base_without_variants"]
+    remediation: "Preferir composición y abstracciones mínimas que eliminen duplicación real."
+
+  - id: GEN-CONFIG-001
+    name: Configuración opaca/no validada
+    severity: critical
+    detect:
+      heuristics: ["env_access_without_validation", "hardcoded_secrets"]
+    remediation: "Validar config al arranque y fallar rápido con mensajes claros."
+
+  - id: GEN-ERRORS-001
+    name: Capturas silenciosas
+    severity: medium
+    detect:
+      patterns:
+        - "catch \(.*\) \{\s*\}"
+        - "except:\\s*pass"
+        - "catch \\{\\s*\\}"
+    remediation: "Mapear a errores significativos y registrar de forma estructurada."
+
+  - id: GEN-MUTABILITY-001
+    name: Estado mutable compartido sin protección
+    severity: high
+    detect:
+      heuristics: ["shared_mutable_state", "missing_thread_safety", "global_variables"]
+    remediation: "Usar immutability, thread-safe collections o synchronization primitives."
+
+  - id: GEN-DEPENDENCY-001
+    name: Dependencias acopladas y difíciles de testear
+    severity: medium
+    detect:
+      heuristics: ["hard_coded_dependencies", "new_in_constructor", "singleton_abuse"]
+    remediation: "Aplicar dependency injection o partial application para desacoplar."
+
+clean_patterns:
+
+  - id: CLEAN-IMMUTABILITY-001
+    name: Immutable objects y pure functions
+    benefits: ["thread_safety", "predictable_behavior", "easier_testing"]
+    implementation: "Eliminar setters, usar readonly/final, retornar nuevos objetos."
+
+  - id: CLEAN-SINGLE-RESPONSIBILITY-001
+    name: Single Responsibility Principle modernizado
+    benefits: ["maintainability", "testability", "modularity"]
+    implementation: "Una función = una responsabilidad. Máximo 55 líneas, complejidad ≤9."
+
+  - id: CLEAN-FUNCTIONAL-DI-001
+    name: Dependency injection funcional
+    benefits: ["loose_coupling", "easier_mocking", "composability"]
+    implementation: "Inyectar funciones como dependencias, usar partial application."
+
+  - id: CLEAN-MEANINGFUL-NAMING-001
+    name: Naming conventions expresivos
+    benefits: ["self_documenting", "reduced_cognitive_load", "faster_onboarding"]
+    implementation: "Variables/funciones descriptivas, evitar abreviaciones, usar dominio ubiquo."
+
+  - id: CLEAN-COMPOSABILITY-001
+    name: Composición sobre herencia
+    benefits: ["flexibility", "lower_coupling", "easier_testing"]
+    implementation: "Preferir composition, interfaces pequeñas, favor delegation over inheritance."
+

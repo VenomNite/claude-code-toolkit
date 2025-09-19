@@ -1,0 +1,108 @@
+version: "2025.09-TypeScript-v2"
+stack:
+  framework: typescript
+  language: typescript
+  version: "5+"
+  philosophy: "strict_type_safety_with_simplicity"
+
+metadata:
+  description: "TypeScript Standards — Strict mode, type inference, simple generics y anti-gymnastics"
+  based_on: "Modern TypeScript best practices 2024-2025 con enfoque en simplicidad"
+
+policy:
+  severity_actions:
+    critical: ["warn", "block", "show_metrics"]
+    high: ["warn", "require_review", "show_metrics"]
+    medium: ["warn", "show_metrics", "autofix"]
+    low: ["info", "show_metrics", "autofix"]
+  gates:
+    strict: true
+    complexity_limit: 6
+    function_size_limit: 40
+    module_size_limit: 250
+    type_size_limit: 15
+    generic_params_limit: 2
+
+scan:
+  include: ["**/*.ts", "**/*.tsx", "**/*.d.ts", "src/**/*.ts", "lib/**/*.ts", "types/**/*.ts", "components/**/*.ts"]
+  exclude: ["**/node_modules/**", "**/dist/**", "**/build/**", "**/coverage/**", "**/*.test.*", "**/*.spec.*"]
+
+core_principles:
+  - strict_mode_mandatory: true
+  - type_inference_first: true
+  - golden_rule_generics: true
+  - anti_type_gymnastics: true
+  - performance_conscious_types: true
+
+anti_patterns:
+
+  - id: TS-ANY-001
+    name: Uso de 'any' type (escapismo del type system)
+    severity: critical
+    detect:
+      patterns:
+        - ": any\\b"
+        - "as any\\b"
+        - "Record<string, any>"
+    remediation: "Usar types específicos, unknown para contenido dinámico, type guards para runtime safety."
+
+  - id: TS-GYMNASTICS-001
+    name: Type gymnastics y conditional types complejos
+    severity: high
+    detect:
+      patterns:
+        - "T extends.*\\? .*: T extends.*\\? .*: T extends.*\\?"
+        - "infer .*infer .*infer"
+        - "keyof.*keyof.*keyof"
+    remediation: "Usar interfaces específicas y union types. Evitar conditional types complejos."
+
+  - id: TS-GENERIC-001
+    name: Violación Golden Rule de generics
+    severity: high
+    detect:
+      heuristics: ["generic_params_over_2", "single_use_generic", "unnecessary_constraints"]
+    remediation: "Máximo 2 generic parameters. Generic solo si relaciona múltiples tipos."
+
+  - id: TS-UTILITY-001
+    name: Utility type chains y over-engineering
+    severity: medium
+    detect:
+      patterns:
+        - "Partial<.*Partial<.*Partial<"
+        - "Pick<.*Omit<.*Pick<.*Omit<"
+        - "Record<.*Record<.*Record<"
+    remediation: "Definir interfaces específicas. Built-in utilities solo cuando hay duplicación real."
+
+  - id: TS-STRICT-001
+    name: Configuración no-strict y null checks faltantes
+    severity: critical
+    detect:
+      heuristics: ["strict_false", "missing_strict_null_checks", "implicit_any_usage"]
+    remediation: "Activar strict mode, strictNullChecks en tsconfig.json. Manejar null/undefined explícitamente."
+
+clean_patterns:
+
+  - id: CLEAN-TS-STRICT-001
+    name: Strict mode configuration
+    benefits: ["type_safety", "null_safety", "implicit_any_prevention"]
+    implementation: "strict: true, strictNullChecks: true en tsconfig.json. Manejar null/undefined explícitamente."
+
+  - id: CLEAN-TS-INFERENCE-001
+    name: Type inference inteligente
+    benefits: ["code_conciseness", "maintainability", "compiler_optimization"]
+    implementation: "Dejar que TS infiera tipos cuando es claro. Explicit types solo cuando necesario."
+
+  - id: CLEAN-TS-GUARDS-001
+    name: Type guards para runtime safety
+    benefits: ["runtime_safety", "type_narrowing", "error_prevention"]
+    implementation: "Funciones is/typeof guards, discriminated unions, assertion functions."
+
+  - id: CLEAN-TS-UTILITIES-001
+    name: Built-in utility types apropiados
+    benefits: ["standard_patterns", "compiler_optimized", "community_familiarity"]
+    implementation: "Partial<T>, Required<T>, Pick<T>, Omit<T> cuando realmente simplifican código."
+
+  - id: CLEAN-TS-TEMPLATES-001
+    name: Template literal types y const assertions
+    benefits: ["string_type_safety", "api_type_generation", "autocomplete_enhancement"]
+    implementation: "Template literals para APIs tipadas, const assertions para immutability."

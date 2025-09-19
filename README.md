@@ -3,9 +3,6 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.7+](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/)
 [![GitHub release](https://img.shields.io/github/v/release/Ghenwy/claude-code-toolkit)](https://github.com/Ghenwy/claude-code-toolkit/releases)
-[![GitHub last commit](https://img.shields.io/github/last-commit/Ghenwy/claude-code-toolkit)](https://github.com/Ghenwy/claude-code-toolkit/commits/main)
-
-[![Platform](https://img.shields.io/badge/platform-linux%20%7C%20macOS%20%7C%20windows-lightgrey)](https://github.com/Ghenwy/claude-code-toolkit)
 [![Claude AI](https://img.shields.io/badge/Claude%20AI-Compatible-orange)](https://claude.ai)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 [![Maintenance](https://img.shields.io/maintenance/yes/2025)](https://github.com/Ghenwy/claude-code-toolkit/graphs/commit-activity)
@@ -31,16 +28,19 @@ graph LR
     style E fill:#e8f5e8
 ```
 
+> **🏆 Version 2.1.0 - Dual-Scope Architecture**
+> Supports both user (`~/.claude/`) and global (`/usr/local/share/claude/`) installations with automatic precedence management and comprehensive testing framework.
+
 ## 📋 Table of Contents
 
 - [Quick Start](#-quick-start)
-- [Installation](#️-installation)
 - [Commands Matrix](#-commands-matrix)
 - [Agents Matrix](#-agents-matrix)
 - [Status Line Integration](#-status-line-integration)
 - [Key Features](#-key-features)
 - [Usage Examples](#-usage-examples)
 - [Dependencies](#-dependencies)
+- [Documentation](#-documentation)
 - [Contributing](#-contributing)
 
 ## 🚀 What's Included
@@ -74,24 +74,30 @@ cd claude-code-toolkit
 /A-ai-code --coordinar "Add user authentication"
 ```
 
+
 ## 📋 Commands Matrix
 
 | Command | Category | Purpose | Key Features |
 |---------|----------|---------|--------------|
 | **A-plan** | 📈 Planning | Project specifications generator | Gap analysis, adaptive questions, 3-doc output |
-| **A-ai-code** | 🤖 Orchestration | AI agent coordinator | Agent delegation, progress tracking, parallel execution |
+| **A-ai-code** | 🤖 Orchestration | Multi-agent project coordinator | Agent delegation, progress tracking, parallel execution |
+| **B-create-feature** | 🏗️ Scaffolding | Intelligent feature scaffolding | Auto-detection, templates, instant creation |
+| **B-explain-code** | 📖 Analysis | Structured code analysis vs native | 13 matrices, auto-detection, standards integration, diagrams |
+| **B-debug-error** | 🐛 Debugging | Systematic error analysis and resolution | Error classification, forensics, stack-specific solutions |
 | **B-HealthCheck** | 🏥 Monitoring | AI tools health monitor | Parallel testing, diagnostics, troubleshooting |
 | **A-update-docs** | 📚 Documentation | Smart doc updater | Git context, auto-compaction, critical preservation |
 | **A-architecture** | 🏗️ Architecture | System design assistant | Architecture patterns, best practices |
 | **A-audit** | 🔍 Quality | Code audit automation | Quality metrics, compliance checks |
 | **A-changelog** | 📝 Documentation | Changelog generator | Release notes, version tracking |
 | **A-commit** | 📝 Git | Smart commit assistant | Conventional commits, message optimization |
-| **A-insights** | 📊 Analysis | Project insights generator | Metrics, trends, recommendations |
-| **A-onboarding** | 🎯 Setup | Project onboarding | Developer setup, guidelines |
-| **A-organize** | 📁 Organization | Project structure optimizer | File organization, cleanup |
+| **A-insights** | 📊 Analytics | Developer behavior + codebase curiosities | Git patterns, hotspots, team analytics, fun facts |
+| **A-onboarding** | 🎯 Setup | Auto-discovery onboarding generator | Project analysis, setup commands, no docs assumed |
+| **A-organize** | 📁 Organization | Physical file reorganization vs manual | Auto dependency updates, path preservation, backup |
 | **A-todo** | ✅ Tasks | Smart todo management | Task tracking, prioritization |
 | **A-workflow** | 🔄 Process | Workflow orchestrator | Agent coordination, task delegation |
 | **B-ultra-think** | 🧠 Analysis | Deep thinking assistant | Complex problem solving |
+
+> **⚡ Quick Reference**: See [CHEAT-SHEET.md](docs/CHEAT-SHEET.md) for ultra-fast command reference
 
 ## 🤖 Agents Matrix
 
@@ -112,7 +118,11 @@ cd claude-code-toolkit
 
 ## 🔄 Workflow
 
+**Entry Point:** Use `/claude-toolkit "your request"` for universal intent recognition and auto-routing
+
 **Development Flow:** Project Idea → `/A-plan` → Specifications → `/A-ai-code --coordinar` → Agent Orchestration → Development → `/M1-qa-gatekeeper` → Quality Validation → Production Ready
+
+**Analytics & Discovery:** `/A-insights` reveals team patterns and codebase curiosities, `/A-onboarding` generates setup guides from project analysis
 
 **Supporting Tools:** `/B-HealthCheck` monitors AI tools, `/A-update-docs` maintains documentation throughout the process.
 
@@ -148,7 +158,7 @@ cp scripts/* ~/.claude/scripts/
 Real-time monitoring with advanced metrics:
 
 ```
-📁 my-project 🌿main || 🟡 █████▁▁▁ ~65% || L.R. @ 19:00⚡ C.U. 🟢 █▁▁▁▁▁▁▁ 22%⚡ ⌚ 16:09 Sep 18
+📁 my-project 🌿main | 🟡 ██▁▁ ✓69% (138k) | L.R. @ 04:00🕐 C.U. 🟢 ▁▁▁▁ 19% ⌚ 02:25 Sep 19
 ```
 
 **Setup:**
@@ -183,6 +193,26 @@ Real-time monitoring with advanced metrics:
 - **Security Compliance**: OWASP validation
 - **Performance SLAs**: Real load testing
 
+### 📋 **Standards System**
+- **11 YAML Standards**: Technology-specific coding standards and best practices
+- **Auto-Detection**: `standards/{detected-stack}.yaml || standards/general.yaml` fallback
+- **Universal Integration**: All commands leverage standards for consistent output
+
+### 🎯 **Learning Curve Solutions**
+- **Progressive Disclosure**: CHEAT-SHEET.md (beginner) → USER-GUIDE.md (intermediate) → individual commands (advanced)
+- **Universal Router**: `claude-toolkit.md` with intent recognition and confidence scoring
+- **Smart Defaults**: Context-aware depth control and audience-appropriate explanations
+
+### 🔍 **Auto-Discovery Capabilities**
+- **Project Analysis**: Technology stack, framework, and architecture detection without assuming documentation
+- **Developer Analytics**: Real git patterns, team working hours, codebase hotspots and curiosities
+- **Environment Setup**: Automatic extraction of setup commands from package.json, requirements.txt, etc.
+
+### ⚡ **Testing Infrastructure**
+- **QUICK-TESTS.md**: 30-second validation system for all 17 commands
+- **Minimal Context**: Efficient testing with automatic cleanup procedures
+- **100% Coverage**: Every command validated and verified functional
+
 ## 📈 Usage Examples
 
 ### Project Planning
@@ -203,6 +233,30 @@ Real-time monitoring with advanced metrics:
 # → Tests all AI tools in parallel, provides diagnostic report
 ```
 
+### Developer Analytics
+```bash
+/A-insights . --git --files --deps
+# → Real analytics: peak coding hours, hotspots, technical debt, fun facts
+```
+
+### Auto-Discovery Onboarding
+```bash
+/A-onboarding --role developer --depth comprehensive
+# → Complete setup guide from project analysis, no docs assumed
+```
+
+### Code Analysis vs Native Claude
+```bash
+/B-explain-code "src/auth/UserService.java" --audience senior --diagrams both
+# → 13 structured matrices, auto-detection, ASCII/Mermaid diagrams
+```
+
+### Universal Command Router
+```bash
+/claude-toolkit "build todo app"
+# → Intent recognition → auto-routes to /A-plan with confidence scoring
+```
+
 ## 🔧 Dependencies
 
 - **Python 3.7+** (for status monitoring)
@@ -210,7 +264,27 @@ Real-time monitoring with advanced metrics:
 - **Claude Code** (latest version)
 
 Optional AI Tools:
-- **codex, qwen, opencode, gemini** (for enhanced orchestration)
+- **codex, qwen, opencode, gemini** (for enhanced orchestration via M1-ultrathink-orchestrator)
+- **MCP Servers** (for specialized agent capabilities)
+
+## 📚 Documentation
+
+### 📋 **Quick References**
+- **[CHEAT-SHEET.md](docs/CHEAT-SHEET.md)**: Ultra-fast command reference (beginner level)
+- **[USER-GUIDE.md](docs/USER-GUIDE.md)**: Step-by-step workflows and examples (intermediate level)
+
+### 🔧 **Installation Guides**
+- **[AUTO-INSTALL.md](AUTO-INSTALL.md)**: Automated installation for Claude Code users
+- **[install.sh](install.sh)**: Quick installation script for human users
+
+### ⚡ **Testing & Validation**
+- **[QUICK-TESTS.md](testing/QUICK-TESTS.md)**: 30-second validation system for all 17 commands
+- **[STANDARDS/](standards/)**: 11 YAML files with technology-specific coding standards
+
+### 🎯 **Progressive Learning Path**
+1. **Beginner**: Start with [CHEAT-SHEET.md](docs/CHEAT-SHEET.md) for quick command overview
+2. **Intermediate**: Follow [USER-GUIDE.md](docs/USER-GUIDE.md) for detailed workflows
+3. **Advanced**: Use individual commands directly or `/claude-toolkit` universal router
 
 ## 🤝 Contributing
 

@@ -29,6 +29,7 @@ WORK METHODOLOGY:
 1. ANALYZE complete context before proposing solutions
 2. DESIGN with SOLID principles and proven architectural patterns
 3. IMPLEMENT following best practices of the specific tech stack
+   - Load standards/{detected-stack}.yaml || standards/general.yaml as fallback for coding standards
 4. VALIDATE security, performance, and scalability in every decision
 5. DOCUMENT architectural decisions and trade-offs
 

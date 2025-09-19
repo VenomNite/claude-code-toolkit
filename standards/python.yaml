@@ -1,0 +1,115 @@
+version: "2025.09-Python-v2"
+stack:
+  framework: fastapi
+  language: python
+  version: "3.11+"
+  philosophy: "type_safety_performance_modern_patterns"
+
+metadata:
+  description: "Python Standards — Type hints, async mastery, performance-first y modern tooling"
+  based_on: "Modern Python best practices 2024-2025 con type safety y performance focus"
+
+policy:
+  severity_actions:
+    critical: ["warn", "block", "show_metrics"]
+    high: ["warn", "require_review", "show_metrics"]
+    medium: ["warn", "show_metrics", "autofix"]
+    low: ["info", "show_metrics", "autofix"]
+  gates:
+    strict: true
+    complexity_limit: 8
+    function_size_limit: 45
+    module_size_limit: 300
+
+scan:
+  include: ["**/*.py", "src/**/*.py", "app/**/*.py", "api/**/*.py", "models/**/*.py", "services/**/*.py"]
+  exclude: ["**/tests/**", "**/build/**", "**/__pycache__/**", "**/generated/**", "**/*.pyc"]
+
+core_principles:
+  - modern_type_hints_required: true
+  - strategic_data_structures: true
+  - async_mastery: true
+  - performance_conscious: true
+  - modern_tooling_preferred: true
+
+anti_patterns:
+
+  - id: PY-TYPING-001
+    name: Old typing syntax y missing type hints
+    severity: high
+    detect:
+      patterns:
+        - "from typing import List, Dict, Tuple"
+        - "typing\\.List\\[.*\\]"
+        - "def.*\\(.*\\).*->.*None.*without.*type.*hints"
+      heuristics: ["missing_type_hints", "old_typing_syntax"]
+    remediation: "Usar native generics (list[str]), mypy/pyright para static checking, type hints obligatorios."
+
+  - id: PY-DATA-001
+    name: Wrong data structure choice (Pydantic vs dataclasses)
+    severity: medium
+    detect:
+      heuristics: ["pydantic_for_internal_data", "dataclass_for_external_validation"]
+      patterns:
+        - "BaseModel.*internal.*config"
+        - "@dataclass.*external.*api"
+    remediation: "Pydantic para external/API data, dataclasses para internal structures, validation strategy clear."
+
+  - id: PY-ASYNC-001
+    name: Blocking operations en async functions
+    severity: high
+    detect:
+      patterns:
+        - "async def.*time\\.sleep\\("
+        - "async def.*requests\\.get\\("
+        - "async def.*sync.*database.*call"
+      heuristics: ["cpu_bound_in_async", "blocking_calls_async"]
+    remediation: "ThreadPoolExecutor para CPU-bound, async libraries para I/O, asyncio.create_task() para concurrency."
+
+  - id: PY-PERFORMANCE-001
+    name: Performance anti-patterns y global variables
+    severity: medium
+    detect:
+      patterns:
+        - "global \\w+.*global \\w+.*global \\w+"
+        - "for.*in.*range.*append"
+        - "\\+.*string.*concatenation.*loop"
+      heuristics: ["global_variable_overuse", "inefficient_loops"]
+    remediation: "Local variables, list comprehensions, join() para strings, profile before optimize."
+
+  - id: PY-VERSION-001
+    name: Old Python version patterns y outdated practices
+    severity: low
+    detect:
+      patterns:
+        - "python_requires.*3\\.[7-9]"
+        - "from __future__ import annotations"
+        - "typing_extensions.*import"
+    remediation: "Python 3.11+ features, native type hints, modern syntax patterns."
+
+clean_patterns:
+
+  - id: CLEAN-PY-TYPING-001
+    name: Modern type hints con runtime validation
+    benefits: ["static_checking", "runtime_safety", "better_ide_support"]
+    implementation: "Native generics (list[str]), mypy/pyright, Beartype/Pydantic runtime validation."
+
+  - id: CLEAN-PY-DATA-001
+    name: Strategic data structure selection
+    benefits: ["performance", "validation", "maintainability"]
+    implementation: "Dataclasses para internal, Pydantic para external/API, frozen=True para immutability."
+
+  - id: CLEAN-PY-ASYNC-001
+    name: Async mastery con proper patterns
+    benefits: ["scalability", "performance", "resource_efficiency"]
+    implementation: "asyncio.create_task() + gather(), async libraries, proper I/O-bound handling."
+
+  - id: CLEAN-PY-PERFORMANCE-001
+    name: Performance-conscious patterns
+    benefits: ["execution_speed", "memory_efficiency", "scalability"]
+    implementation: "Profile first, built-in functions, NumPy para math, local variables preferred."
+
+  - id: CLEAN-PY-TOOLING-001
+    name: Modern Python tooling y ecosystem
+    benefits: ["development_speed", "dependency_management", "performance"]
+    implementation: "uv package manager, FastAPI para APIs, current Python versions (3.11+)."

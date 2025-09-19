@@ -11,7 +11,7 @@ Delega y coordina trabajo entre agentes M1 especializados: $ARGUMENTS
 ## Contexto
 - Proyecto actual: !`git rev-parse --show-toplevel 2>/dev/null || pwd` + detección de estructura
 - Stack: autodetección vía package.json/@angular/cli.json/requirements.txt o --stack
-- jStyle rules: Claude/Doc/jStyle-{stack}/ + Claude/Doc/jStyle-General/
+- Coding standards: Load standards/{detected-stack}.yaml || standards/general.yaml as fallback
 - Agentes disponibles: !`ls ~/.claude/commands/M1-*.md | wc -l` agentes especializados
 - Plan existente: Si se pasa archivo, cargar desde ruta especificada
 
@@ -43,7 +43,7 @@ Delega y coordina trabajo entre agentes M1 especializados: $ARGUMENTS
 
 ### 5. **Context Preparation**
 - **Project state**: Estructura actual, archivos relevantes, configuraciones
-- **jStyle injection**: Reglas específicas del stack + generales
+- **Standards injection**: Load standards/{detected-stack}.yaml rules + apply during development
 - **Historical context**: Commits recientes, decisiones arquitecturales
 - **Agent briefing**: Contexto específico para cada agente especializado
 
@@ -70,7 +70,7 @@ Delega y coordina trabajo entre agentes M1 especializados: $ARGUMENTS
 
 **Instrucción crítica**: Usar TODAS las herramientas + MCPs disponibles para máxima calidad
 
-## jStyle Philosophy Integration
+## Coding Standards Philosophy Integration
 
 ### **Core Principles** (NON-NEGOTIABLE)
 - **"Less is sometimes better"** → Simplicidad sostenible > barroquismo
@@ -96,7 +96,7 @@ Delega y coordina trabajo entre agentes M1 especializados: $ARGUMENTS
 Research → Architecture → Development → Testing → Documentation → Deployment
 Backend API → Frontend Integration → E2E Testing  
 UX Strategy → UI Components → User Testing
-jStyle Review → Implementation → Quality Gates → Integration
+Standards Review → Implementation → Quality Gates → Integration
 ```
 
 ### **Parallel Execution** 
@@ -116,9 +116,9 @@ Security audit → (Code hardening || Documentation || Testing updates)
 
 ### **Sync Points**
 ```
-Architecture Review: Requires jStyle compliance + modular design approval
+Architecture Review: Requires coding standards compliance + modular design approval
 Integration Testing: Requires (Backend + Frontend) COMPLETE + API contracts validated
-Quality Gates: Requires (Development + Testing + Security) COMPLETE + jStyle standards met
+Quality Gates: Requires (Development + Testing + Security) COMPLETE + coding standards met
 Final Review: Requires ALL AGENTS COMPLETE + consolidated quality validation
 ```
 
@@ -145,7 +145,7 @@ Final Review: Requires ALL AGENTS COMPLETE + consolidated quality validation
 ```bash
 /A-workflow "Añadir validación email a formulario"
 # → M1-frontend (UI validation) || M1-backend (API validation) || M1-qa (testing)
-# → All agents use full toolset + jStyle + modular approach
+# → All agents use full toolset + coding standards + modular approach
 ```
 
 ### **Complex Feature**
@@ -159,19 +159,19 @@ Final Review: Requires ALL AGENTS COMPLETE + consolidated quality validation
 ### **Plan File Execution**
 ```bash
 /A-workflow Claude/Plan/nueva-fase-implementacion.md
-# → Parser plan → Extract tasks → Map agents → Execute with jStyle compliance
+# → Parser plan → Extract tasks → Map agents → Execute with coding standards compliance
 ```
 
 ### **Planning Only**
 ```bash
 /A-workflow "Migración completa a TypeScript" --plan-only  
-# → Generate detailed plan with dependencies + jStyle considerations
+# → Generate detailed plan with dependencies + coding standards considerations
 ```
 
 ## DoD (Definition of Done)
 
 - **Master todo**: Creado y ubicado correctamente  
-- **Agent context**: Preparado con jStyle + project info + think prompt
+- **Agent context**: Preparado con coding standards + project info + think prompt
 - **Dependency graph**: Construido y validado
 - **Agentes launched**: Con contexto completo y instrucciones específicas
 - **Progress tracking**: Sistema de seguimiento activo

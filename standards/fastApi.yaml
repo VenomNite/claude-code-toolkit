@@ -1,0 +1,110 @@
+version: "2025.09-FastAPI-v2"
+stack:
+  framework: fastapi
+  language: python
+  version: "0.100+"
+  philosophy: "async_mastery_strategic_dependencies"
+
+metadata:
+  description: "FastAPI Standards — Async patterns, strategic DI, Pydantic v2 optimization y performance"
+  based_on: "Modern FastAPI best practices 2024-2025 con async mastery y performance focus"
+
+policy:
+  severity_actions:
+    critical: ["warn", "block", "show_metrics"]
+    high: ["warn", "require_review", "show_metrics"]
+    medium: ["warn", "show_metrics", "autofix"]
+    low: ["info", "show_metrics", "autofix"]
+  gates:
+    strict: true
+    complexity_limit: 6
+    endpoint_size_limit: 25
+    module_size_limit: 200
+
+scan:
+  include: ["**/*.py", "app/**/*.py", "api/**/*.py", "routers/**/*.py", "models/**/*.py", "schemas/**/*.py"]
+  exclude: ["**/tests/**", "**/test_*.py", "**/*_test.py", "**/venv/**", "**/__pycache__/**"]
+
+core_principles:
+  - async_for_io_only: true
+  - strategic_dependency_injection: true
+  - pydantic_v2_optimization: true
+  - performance_caching: true
+  - domain_driven_structure: true
+
+anti_patterns:
+
+  - id: FASTAPI-ASYNC-001
+    name: Blocking operations en async endpoints
+    severity: critical
+    detect:
+      patterns:
+        - "async def.*time\\.sleep\\("
+        - "async def.*requests\\.(get|post)\\("
+        - "async def.*synchronous.*database.*call"
+      heuristics: ["cpu_bound_in_async", "blocking_calls_async"]
+    remediation: "run_in_executor() para blocking calls, async libraries para I/O, await asyncio.sleep()."
+
+  - id: FASTAPI-DI-001
+    name: Dependency injection overuse y performance issues
+    severity: medium
+    detect:
+      patterns:
+        - "= Depends\\(.*= Depends\\(.*= Depends\\(.*= Depends\\(.*= Depends\\("
+        - "def get_.*_service\\(.*def get_.*_service\\(.*def get_.*_service\\("
+      heuristics: ["dependency_overuse", "global_scope_dependencies"]
+    remediation: "Strategic DI only, use_cache=True para heavy deps, avoid global scope side effects."
+
+  - id: FASTAPI-PYDANTIC-001
+    name: Pydantic v2 performance bottlenecks
+    severity: high
+    detect:
+      heuristics: ["complex_validation_bottleneck", "mixed_sqlalchemy_pydantic"]
+      patterns:
+        - "@field_validator.*@field_validator.*@field_validator.*@field_validator"
+        - "SQLAlchemy.*model.*Pydantic.*inheritance"
+    remediation: "Separate SQLAlchemy/Pydantic schemas, optimize validators, profile validation performance."
+
+  - id: FASTAPI-STRUCTURE-001
+    name: File-type organization vs domain-driven structure
+    severity: low
+    detect:
+      heuristics: ["file_type_organization", "monolithic_routers"]
+    remediation: "Domain-driven structure para large apps, business-focused modules, cohesive routers."
+
+  - id: FASTAPI-DEPLOYMENT-001
+    name: Development patterns en production
+    severity: high
+    detect:
+      patterns:
+        - "reload=True.*production"
+        - "host.*127\\.0\\.0\\.1.*container"
+        - "debug=True.*production"
+    remediation: "Uvicorn + Gunicorn multi-worker, bind 0.0.0.0 para containers, disable reload/debug."
+
+clean_patterns:
+
+  - id: CLEAN-FASTAPI-ASYNC-001
+    name: Strategic async patterns para I/O-bound operations
+    benefits: ["non_blocking_io", "concurrency", "scalability"]
+    implementation: "async def para I/O only, run_in_executor() para CPU-bound, proper await usage."
+
+  - id: CLEAN-FASTAPI-DI-001
+    name: Optimized dependency injection
+    benefits: ["reusability", "testability", "performance"]
+    implementation: "Strategic Depends() usage, dependency caching, clear separation of concerns."
+
+  - id: CLEAN-FASTAPI-PYDANTIC-001
+    name: Pydantic v2 optimization strategies
+    benefits: ["performance", "validation", "serialization"]
+    implementation: "Separate schemas/models, strategic validators, response_model optimization."
+
+  - id: CLEAN-FASTAPI-PERFORMANCE-001
+    name: Performance optimization patterns
+    benefits: ["response_time", "throughput", "resource_efficiency"]
+    implementation: "Response caching, middleware optimization, async connection pooling."
+
+  - id: CLEAN-FASTAPI-STRUCTURE-001
+    name: Domain-driven project structure
+    benefits: ["maintainability", "scalability", "team_productivity"]
+    implementation: "Business-focused modules, feature-based routing, clear domain boundaries."

@@ -1,7 +1,7 @@
 ---
 model: sonnet
-description: Análisis profundo multi-perspectiva con coding standards flexible, auto-detección de stack y think harder mode
-argument-hint: [problema/pregunta] [--depth surface|deep|think-harder] [--stack auto|detect] [--jstyle flexible|advisory|strict]
+description: Análisis profundo multi-perspectiva con standards flexible, auto-detección de stack y think harder mode
+argument-hint: [problema/pregunta] [--depth surface|deep|think-harder] [--stack auto|detect] [--standards flexible|advisory|strict]
 ---
 
 # B-Ultra Think - Deep Analysis & Think Harder Mode
@@ -12,7 +12,7 @@ Análisis profundo y resolución de problemas complejos con metodología mejorad
 - Root: !`git rev-parse --show-toplevel 2>/dev/null || pwd`
 - Stack detection: !`find . -name "package.json" -o -name "requirements.txt" -o -name "pom.xml" -o -name "Cargo.toml" -o -name "*.sln" | head -3`
 - Recent activity: !`git log --oneline -5 2>/dev/null || echo "No git history"`
-- coding standards rules: Auto-cargar coding standards con **enfoque flexible**
+- Standards loading: Load standards/{detected-stack}.yaml || standards/general.yaml with **flexible approach**
 
 ## Think Harder Mode Activation
 
@@ -25,7 +25,7 @@ Análisis profundo y resolución de problemas complejos con metodología mejorad
 ### **1. Parse del Problema (Enhanced)**
 - Extraer desafío core de: **$ARGUMENTS**
 - **Stack Context**: Aplicar conocimiento específico de tecnologías detectadas
-- **coding standards Lens**: Evaluar con "Less is sometimes better" + modularidad (flexible)
+- **Standards Lens**: Evaluar con "Less is sometimes better" + modularidad (flexible)
 - Identificar stakeholders, constraints y complejidades ocultas
 - **Assumption Challenge**: Cuestionar supuestos automáticamente
 
@@ -47,7 +47,7 @@ Análisis profundo y resolución de problemas complejos con metodología mejorad
 - Integration points en arquitectura actual
 - Performance characteristics del stack
 
-#### **coding standards Perspective (Flexible)**
+#### **Standards Perspective (Flexible)**
 - **"Less is sometimes better"**: ¿Simplificar o añadir complejidad justificada?
 - **Modularidad**: Impacto en separación de responsabilidades
 - **Transgresión Justificada**: Cuándo saltarse reglas por calidad/funcionalidad
@@ -96,7 +96,7 @@ Análisis profundo y resolución de problemas complejos con metodología mejorad
 - Hybrid approaches innovadores
 - Contrarian solutions que desafían normas
 
-#### **coding standards Solutions**
+#### **Standards-Compliant Solutions**
 - Soluciones que respetan modularidad
 - "Less is better" implementations
 - Transgresiones justificadas cuando mejoran calidad
@@ -104,11 +104,11 @@ Análisis profundo y resolución de problemas complejos con metodología mejorad
 ### **6. Structured Output (Matrices)**
 
 **Matriz de Análisis Multi-Perspectiva**
-| Perspectiva | Análisis | Pros | Contras | Stack Impact | coding standards Score |
+| Perspectiva | Análisis | Pros | Contras | Stack Impact | Standards Score |
 |---|---|---|---|---|---|
 
 **Matriz de Soluciones**
-| Solución | Viabilidad | Complejidad | coding standards | Transgresión | Justificación |
+| Solución | Viabilidad | Complejidad | Standards | Transgresión | Justificación |
 |---|---|---|---|---|---|
 
 **Matriz Think Harder**
@@ -126,7 +126,7 @@ Análisis profundo y resolución de problemas complejos con metodología mejorad
 - **Core Challenge**: [Desafío fundamental]
 - **Stack Context**: [Tecnologías relevantes]
 - **Key Constraints**: [Limitaciones identificadas]
-- **coding standards Considerations**: [Reglas aplicables flexiblemente]
+- **Standards Considerations**: [Reglas desde standards/{detected-stack}.yaml aplicables flexiblemente]
 
 ## 🔍 Think Harder Insights
 - **Multi-Order Effects**: [Consecuencias cascada]
@@ -138,7 +138,7 @@ Análisis profundo y resolución de problemas complejos con metodología mejorad
 
 ### Option 1: [Stack-Optimized Solution]
 - **Description**: [Solución específica del stack]
-- **coding standards Compliance**: [Flexible/Strict - con justificación]
+- **Standards Compliance**: [Flexible/Strict - con justificación]
 - **Implementation**: [Pasos específicos del stack]
 - **Risk Assessment**: [Riesgos con mitigación]
 - **Think Harder**: [Efectos de segundo/tercer orden]
@@ -148,7 +148,7 @@ Análisis profundo y resolución de problemas complejos con metodología mejorad
 
 ## 🎯 Final Recommendation
 - **Recommended Approach**: [Opción elegida]
-- **coding standards Rationale**: [Por qué es modular/simple O por qué transgrede justificadamente]
+- **Standards Rationale**: [Por qué es modular/simple O por qué transgrede justificadamente]
 - **Implementation Roadmap**: [Pasos concretos]
 - **Success Metrics**: [Métricas medibles]
 - **Risk Mitigation**: [Plan de contingencia]
@@ -159,7 +159,7 @@ Análisis profundo y resolución de problemas complejos con metodología mejorad
 - **Systemic Changes**: [Cambios emergentes]
 ```
 
-## coding standards Integration (Flexible)
+## Standards Integration (Flexible)
 
 ### **Aplicación Suave de Reglas**
 - **"Less is sometimes better"**: Evaluar si simplicidad es realmente mejor
@@ -171,17 +171,17 @@ Análisis profundo y resolución de problemas complejos con metodología mejorad
   - User experience
   - Maintainability a largo plazo
 
-### **Stack-Specific coding standards
-- **Cargar reglas específicas**: coding standards detectado automáticamente
+### **Stack-Specific Standards Loading**
+- **Cargar reglas específicas**: Load standards/{detected-stack}.yaml automáticamente
 - **Adaptar al contexto**: Reglas más estrictas para core, flexibles para features
 - **Experiencia over dogma**: Priorizar results over perfect compliance
 
 ## DoD (Definition of Done)
-- ✅ Stack detectado y reglas coding standards cargadas
-- ✅ Multi-perspectiva analysis completado (técnico, business, usuario, coding standards
+- ✅ Stack detectado y reglas standards/{detected-stack}.yaml cargadas
+- ✅ Multi-perspectiva analysis completado (técnico, business, usuario, standards)
 - ✅ Think Harder mode aplicado para problemas complejos
 - ✅ Matrices estructuradas generadas con datos cuantificados
-- ✅ Soluciones evaluadas con coding standards flexible (transgresiones justificadas)
+- ✅ Soluciones evaluadas con standards flexible (transgresiones justificadas)
 - ✅ Recommendation con implementation roadmap específico del stack
 - ✅ Multi-order effects analizados y documentados
 - ✅ Success metrics definidos y medibles
@@ -193,8 +193,8 @@ Análisis profundo y resolución de problemas complejos con metodología mejorad
 # Análisis arquitectural con think harder
 /B-ultra-think "¿Microservicios o monolito?" --depth think-harder
 
-# Decisión técnica con coding standards flexible
-/B-ultra-think "Implementar cache Redis vs in-memory" --jstyle flexible
+# Decisión técnica con standards flexible
+/B-ultra-think "Implementar cache Redis vs in-memory" --standards flexible
 
 # Problema complejo de performance
 /B-ultra-think "Optimizar sistema para 10x traffic" --stack auto --depth think-harder

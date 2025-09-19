@@ -19,7 +19,7 @@ Primero voy a descubrir el contexto del proyecto:
 - Tech stack detection
 - Available personal commands
 - Available M1 specialized agents
-- coding standards rules loading
+- Standards rules loading: standards/{detected-stack}.yaml
 
 **STEP 2: Análisis de Argumentos**
 
@@ -88,6 +88,56 @@ Basándome en el análisis de argumentos ($ARGUMENTS), voy a ejecutar el mode ap
 - **TASK STATUS UPDATE**: Reflejar en documento original si task se implementa/fixea
 - **COMPLETION VERIFICATION**: Validar que cada task crítico está marcado como completado
 - **PROGRESS PERSISTENCE**: Actualizar estado en documentos fuente
+
+## 🤖 AGENT COORDINATION INTELLIGENCE
+
+### **Agent Selection Matrix (Context-Driven)**
+
+| Task Keywords | Primary Agent | Secondary Agent | Reasoning |
+|---------------|---------------|-----------------|-----------|
+| backend, API, server, database | M1-senior-backend-architect | M1-technical-research-analyst | Backend expertise + research |
+| frontend, UI, component, React | M1-frontend-architect-protocol | M1-ux-strategy-protocol | Frontend + UX strategy |
+| auth, security, validation | M1-senior-backend-architect | M1-qa-gatekeeper | Security + validation |
+| test, quality, review, audit | M1-qa-gatekeeper | M1-general-purpose-agent | Quality first + support |
+| architecture, design, diagram | M1-technical-research-analyst | M1-senior-documentation-architect | Research + documentation |
+| complex, multi-perspective | M1-ultrathink-orchestrator | [Dynamic selection] | Supreme orchestration |
+| game, mechanics, balance | M1-game-design-architect | M1-unity-game-developer | Game design + implementation |
+| UX, strategy, psychology | M1-ux-strategy-protocol | M1-human-behavior-simulator | Strategy + testing |
+| docs, technical writing | M1-senior-documentation-architect | M1-technical-research-analyst | Documentation + research |
+
+### **Dependency Detection Algorithm**
+
+**Sequential Dependencies (MUST be ordered):**
+- Database schema → Backend models → API endpoints → Frontend integration
+- Authentication setup → Role management → Protected routes
+- Core services → Feature services → UI components
+- Research phase → Architecture design → Implementation → Quality gates
+
+**Parallel Safe (CAN run simultaneously):**
+- Independent UI components in different modules
+- Separate API endpoints with no shared database tables
+- Documentation tasks for different features
+- Testing for isolated modules
+- Asset optimization and code implementation
+
+### **Proven Coordination Patterns**
+
+**Pattern A - Sequential Build:** Research → Build → Validate
+`M1-technical-research-analyst → M1-senior-backend-architect → M1-qa-gatekeeper`
+
+**Pattern B - Parallel Development:** Frontend + Backend → Quality
+`M1-senior-backend-architect + M1-frontend-architect-protocol → M1-qa-gatekeeper`
+
+**Pattern C - Complex Analysis:** Multi-perspective → Specialized → Validation
+`M1-ultrathink-orchestrator → [Coordinated Multi-Agent] → M1-qa-gatekeeper`
+
+**Pattern D - Game Development:** Design → Implementation → Optimization
+`M1-game-design-architect → M1-unity-game-developer → M1-2d-game-asset-optimizer`
+
+**Pattern E - UX Strategy:** Strategy → Testing → Implementation
+`M1-ux-strategy-protocol → M1-human-behavior-simulator → M1-frontend-architect-protocol`
+
+---
 
 **EXECUTING DETECTED MODE**:
 

@@ -1,0 +1,117 @@
+version: "2025.09-Java-v2"
+stack:
+  framework: java
+  language: java
+  version: "21+"
+  philosophy: "modern_concurrency_type_safety_performance"
+
+metadata:
+  description: "Java Standards — Virtual threads, records, sealed classes y modern concurrency patterns"
+  based_on: "Modern Java best practices 2024-2025 con LTS 21+ features y performance focus"
+
+policy:
+  severity_actions:
+    critical: ["warn", "block", "show_metrics"]
+    high: ["warn", "require_review", "show_metrics"]
+    medium: ["warn", "show_metrics", "autofix"]
+    low: ["info", "show_metrics", "autofix"]
+  gates:
+    strict: true
+    complexity_limit: 10
+    method_size_limit: 50
+    class_size_limit: 300
+
+scan:
+  include: ["**/*.java", "src/**/*.java", "main/**/*.java", "test/**/*.java"]
+  exclude: ["**/target/**", "**/build/**", "**/generated/**", "**/*Test.java", "**/*Tests.java"]
+
+core_principles:
+  - virtual_threads_concurrency: true
+  - records_immutability: true
+  - sealed_classes_type_safety: true
+  - pattern_matching_modern: true
+  - performance_conscious: true
+
+anti_patterns:
+
+  - id: JAVA-CONCURRENCY-001
+    name: Platform threads overuse cuando virtual threads serían mejores
+    severity: high
+    detect:
+      patterns:
+        - "new Thread\\(.*\\)\\.start\\(\\)"
+        - "Executors\\.newFixedThreadPool\\(.*\\)"
+        - "CompletableFuture\\.runAsync\\(.*executor.*\\)"
+      heuristics: ["platform_thread_overuse", "thread_pool_for_io"]
+    remediation: "Usar virtual threads para I/O-bound tasks, Thread.startVirtualThread(), structured concurrency."
+
+  - id: JAVA-EXCEPTIONS-001
+    name: Generic exception handling y destructive wrapping
+    severity: medium
+    detect:
+      patterns:
+        - "catch \\(Exception.*\\)"
+        - "catch \\(Throwable.*\\)"
+        - "throw new Exception\\("
+        - "@SneakyThrows"
+      heuristics: ["generic_exception_catch", "destructive_wrapping"]
+    remediation: "Specific exceptions, proper exception chaining, avoid @SneakyThrows, meaningful error messages."
+
+  - id: JAVA-MEMORY-001
+    name: Memory leaks y resource management
+    severity: high
+    detect:
+      heuristics: ["resource_leak_patterns", "static_collection_accumulation"]
+      patterns:
+        - "static.*List.*Map.*Set.*add.*put"
+        - "new.*InputStream.*without.*try.*with.*resources"
+    remediation: "Try-with-resources mandatory, weak references para caches, proper collection cleanup."
+
+  - id: JAVA-LEGACY-001
+    name: Old Java patterns vs modern alternatives
+    severity: low
+    detect:
+      patterns:
+        - "new Date\\(\\)"
+        - "StringBuffer.*append"
+        - "Vector<.*>.*Hashtable<.*>"
+        - "synchronized.*method.*public"
+      heuristics: ["legacy_api_usage"]
+    remediation: "LocalDateTime, StringBuilder, concurrent collections, virtual threads, records vs POJOs."
+
+  - id: JAVA-GENERICS-001
+    name: Raw types y unchecked operations
+    severity: medium
+    detect:
+      patterns:
+        - "List .*=.*new.*ArrayList\\(\\)"
+        - "Map .*=.*new.*HashMap\\(\\)"
+        - "@SuppressWarnings\\(\"unchecked\"\\)"
+    remediation: "Proper generics usage, diamond operator, type safety enforcement."
+
+clean_patterns:
+
+  - id: CLEAN-JAVA-VIRTUAL-001
+    name: Virtual threads para high-throughput I/O
+    benefits: ["scalability", "resource_efficiency", "simplified_concurrency"]
+    implementation: "Thread.startVirtualThread(), structured concurrency, I/O-bound task focus."
+
+  - id: CLEAN-JAVA-RECORDS-001
+    name: Records para immutable data structures
+    benefits: ["immutability", "thread_safety", "reduced_boilerplate"]
+    implementation: "Records para DTOs, sealed interfaces, pattern matching integration."
+
+  - id: CLEAN-JAVA-SEALED-001
+    name: Sealed classes para controlled inheritance
+    benefits: ["type_safety", "controlled_hierarchy", "pattern_matching_exhaustiveness"]
+    implementation: "Sealed classes/interfaces, permits clause, switch expression completeness."
+
+  - id: CLEAN-JAVA-PERFORMANCE-001
+    name: Modern performance optimization patterns
+    benefits: ["memory_efficiency", "execution_speed", "jvm_optimization"]
+    implementation: "String templates, pattern matching, collection factories, stream optimizations."
+
+  - id: CLEAN-JAVA-EXCEPTIONS-001
+    name: Specific exception handling strategies
+    benefits: ["debugging_clarity", "error_recovery", "maintainability"]
+    implementation: "Specific exception types, exception chaining, try-with-resources, proper logging."

@@ -12,6 +12,7 @@ Análisis completo y explicación estructurada del código: $ARGUMENTS
 - Root: !`git rev-parse --show-toplevel 2>/dev/null || pwd`
 - Language detection: !`file "$ARGUMENTS" 2>/dev/null || echo "Auto-detect from content"`
 - Stack context: !`find . -name "package.json" -o -name "requirements.txt" -o -name "pom.xml" -o -name "Cargo.toml" | head -3`
+- Standards loading: Load standards/{detected-stack}.yaml || standards/general.yaml as fallback
 - Code metrics: Auto-calcular complejidad, líneas, métodos
 
 ## 🎯 Enhanced Code Intelligence Mode
@@ -20,6 +21,7 @@ Análisis completo y explicación estructurada del código: $ARGUMENTS
 
 **Target Code**: $ARGUMENTS
 **Auto-Language Detection**: Detectar lenguaje y aplicar patrones específicos
+**Standards Compliance**: Evaluate code against standards/{detected-stack}.yaml rules
 **Audience Level**: Auto-ajustar profundidad técnica según audiencia
 **Diagram Generation**: ASCII y Mermaid para visualización
 
@@ -148,35 +150,26 @@ def analyze_python_patterns():
 ### **5. Comprehensive Understanding Matrix (Structured)**
 
 #### **Code Understanding Matrix**
-| Component | Purpose | Input | Output | Side Effects | Complexity | Language Pattern |
-|-----------|---------|-------|--------|--------------|------------|------------------|
-| **Function A** | [Purpose] | [Input types] | [Output types] | [Side effects] | [Complexity score] | [Language-specific] |
-| **Class B** | [Responsibility] | [Dependencies] | [Interface] | [State changes] | [Complexity score] | [OOP patterns] |
-| **Module C** | [Module purpose] | [Imports] | [Exports] | [Global impact] | [Coupling score] | [Module patterns] |
+| Component | Purpose | I/O | Effects | Complexity |
+|-----------|---------|-----|---------|------------|
+| Functions/Classes/Modules | [Purpose] | [Input→Output] | [Side effects] | [Score] |
 
 #### **Data Flow Analysis Matrix**
-| Data Element | Source | Transformations | Destination | Validation | Error Handling | Performance |
-|--------------|--------|-----------------|-------------|------------|----------------|-------------|
-| **Input Data** | [Source] | [Transform steps] | [Destination] | [Validation rules] | [Error strategy] | [Performance impact] |
-| **State Data** | [Origin] | [State changes] | [Final state] | [State validation] | [State recovery] | [Memory impact] |
-| **Output Data** | [Generation] | [Formatting] | [Consumer] | [Output validation] | [Output errors] | [Response time] |
+| Data | Source→Destination | Transformations | Validation | Performance |
+|------|-------------------|-----------------|------------|-------------|
+| Input/State/Output | [Flow] | [Transform steps] | [Rules] | [Impact] |
 
 ### **6. Security & Performance Analysis Matrix**
 
 #### **Security Analysis Matrix**
-| Security Aspect | Status | Risk Level | Language-Specific Risk | Mitigation | Compliance |
-|------------------|--------|------------|------------------------|------------|------------|
-| **Input Validation** | [Implemented/Missing] | [High/Med/Low] | [Language vulnerabilities] | [Mitigation strategy] | [Standards met] |
-| **Authentication** | [Type] | [Risk level] | [Framework security] | [Security measures] | [Auth standards] |
-| **Data Sanitization** | [Coverage] | [Exposure risk] | [Language-specific risks] | [Sanitization methods] | [Data protection] |
-| **Error Exposure** | [Information leakage] | [Security risk] | [Stack trace exposure] | [Error handling] | [Security logging] |
+| Aspect | Status | Risk | Mitigation |
+|--------|--------|------|------------|
+| Input Validation/Auth/Sanitization/Error Handling | Implemented/Missing | High/Medium/Low | [Strategy] |
 
 #### **Performance Analysis Matrix**
-| Performance Factor | Current | Optimal | Language Benchmark | Bottleneck | Optimization |
-|--------------------|---------|---------|-------------------|------------|--------------|
-| **Time Complexity** | [O notation] | [Target] | [Language standard] | [Bottleneck] | [Optimization strategy] |
-| **Space Complexity** | [Memory usage] | [Target] | [Memory efficiency] | [Memory bottleneck] | [Memory optimization] |
-| **I/O Operations** | [Current load] | [Target] | [I/O patterns] | [I/O bottleneck] | [I/O optimization] |
+| Factor | Current | Target | Bottleneck | Optimization |
+|--------|---------|--------|------------|--------------|
+| Time/Space/I/O Complexity | [Current] | [Target] | [Bottleneck] | [Strategy] |
 
 ### **7. Structured Code Explanation Template (Multi-Level)**
 
@@ -184,47 +177,10 @@ def analyze_python_patterns():
 ## 🎯 CODE ANALYSIS REPORT
 
 ### 📋 Executive Summary
-- **Language**: [Auto-detected language + version]
-- **Framework**: [Framework + version + patterns]
-- **Purpose**: [High-level functionality]
-- **Complexity**: [Overall complexity assessment]
-- **Quality Score**: [Code quality metrics]
-
-### 🔍 Language Intelligence
-[Language detection matrix from section 1]
-
-### 📊 Architecture Overview
-[ASCII diagram from section 3]
-
-### 🏗️ Component Analysis
-[Understanding matrix from section 5]
-
-### 🔄 Data Flow Analysis
-[Data flow matrix from section 5]
-
-### ⚡ Performance Profile
-[Performance matrix from section 6]
-
-### 🛡️ Security Assessment
-[Security matrix from section 6]
-
-### 📈 Code Quality Metrics
-[Complexity matrix from section 2]
-
-### 💡 Language-Specific Insights
-[Auto-generated based on detected language]
-
-### ⚠️ Issues & Recommendations
-- **Critical Issues**: [High priority fixes]
-- **Performance Opportunities**: [Optimization suggestions]
-- **Security Concerns**: [Security improvements]
-- **Code Quality**: [Maintainability improvements]
-- **Best Practices**: [Language-specific recommendations]
-
-### 🎯 Next Steps
-- **Immediate**: [Quick wins]
-- **Short-term**: [Refactoring opportunities]
-- **Long-term**: [Architecture improvements]
+- **Language/Framework**: [Auto-detected] | **Purpose**: [Functionality] | **Quality**: [Score]
+- **Architecture**: [Diagram] | **Components**: [Analysis] | **Performance/Security**: [Profiles]
+- **Recommendations**: [Critical/Performance/Security/Quality improvements]
+- **Next Steps**: [Immediate/Short-term/Long-term actions]
 ```
 
 ### **8. Interactive Code Explanation (Structured)**
@@ -247,28 +203,23 @@ def analyze_python_patterns():
 ### **10. Testing Strategy Matrix (Auto-Generated)**
 
 #### **Test Coverage Analysis**
-| Component | Testability | Current Tests | Needed Tests | Test Strategy | Language Testing |
-|-----------|-------------|---------------|--------------|---------------|------------------|
-| **Pure Functions** | [High] | [Existing] | [Missing] | [Unit testing] | [Language test framework] |
-| **Stateful Classes** | [Medium] | [Coverage] | [Gaps] | [Integration testing] | [Mocking strategy] |
-| **External Deps** | [Complex] | [Current] | [Needed] | [Contract testing] | [Framework testing] |
+| Component | Testability | Tests | Strategy |
+|-----------|-------------|-------|----------|
+| Functions/Classes/Dependencies | High/Medium/Complex | Existing/Missing | Unit/Integration/Contract |
 
 ### **11. Refactoring Roadmap (Automated)**
 
 #### **Refactoring Priority Matrix**
-| Refactoring Type | Impact | Effort | Risk | Language Benefit | Timeline |
-|------------------|--------|--------|------|------------------|----------|
-| **Extract Method** | [High] | [Low] | [Low] | [Readability] | [Immediate] |
-| **Reduce Complexity** | [High] | [Medium] | [Medium] | [Maintainability] | [Short-term] |
-| **Pattern Application** | [Medium] | [High] | [Low] | [Language idioms] | [Long-term] |
+| Type | Impact | Effort | Risk | Timeline |
+|------|--------|--------|------|----------|
+| Extract Method/Reduce Complexity/Pattern Application | High/Medium | Low/Medium/High | Low/Medium | Immediate/Short/Long |
 
 ### **12. Language Evolution & Migration Path**
 
 #### **Language Modernization Matrix**
-| Feature | Current Usage | Modern Alternative | Migration Effort | Performance Gain | Compatibility |
-|---------|---------------|-------------------|------------------|------------------|---------------|
-| **Legacy Pattern** | [Usage] | [Modern approach] | [Effort level] | [Performance improvement] | [Breaking changes] |
-| **Deprecated API** | [Usage] | [New API] | [Migration effort] | [Benefits] | [Version support] |
+| Feature | Current | Modern | Effort | Gain |
+|---------|---------|--------|--------|------|
+| Legacy Patterns/Deprecated APIs | [Usage] | [Modern approach] | [Effort] | [Benefits] |
 
 ### **13. DoD (Definition of Done) - Code Explanation**
 - ✅ Language y framework auto-detectados correctamente
@@ -294,8 +245,6 @@ def analyze_python_patterns():
 /B-explain-code "complex_algorithm.py" --depth expert --diagrams ascii --audience senior
 ```
 
-**Enhanced Features**: Auto language detection, ASCII/Mermaid diagrams, structured matrices, audience-adaptive explanations, language-specific analysis, performance/security assessment.
-
-**Automation**: Auto-detect language and framework, auto-generate diagrams, auto-adapt explanation depth, auto-create testing strategies.
+**Enhanced Features**: Auto language detection, ASCII/Mermaid diagrams, structured matrices, audience-adaptive explanations, language-specific analysis, performance/security assessment, auto-detect framework, auto-generate diagrams, auto-adapt explanation depth, auto-create testing strategies.
 
 **Output**: Complete structured analysis with visual diagrams, matrices, and actionable recommendations tailored to detected language and audience level.

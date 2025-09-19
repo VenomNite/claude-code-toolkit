@@ -28,6 +28,11 @@ cp commands/your-command.md ~/.claude/commands/
 
 # Test agents
 cp agents/your-agent.md ~/.claude/agents/
+
+# Run comprehensive testing
+cd testing/
+./run-all-tests.sh                     # Complete test suite
+./test-user-installation.sh            # Test user scope installation
 ```
 
 ### 5. Submit a Pull Request

@@ -1,26 +1,26 @@
 ---
 model: sonnet
-description: Deep code audit applying /coding standards with dependency-impact mapping and actionable findings. Git-optional.
+description: Deep code audit applying standards/{detected-stack}.yaml with dependency-impact mapping and actionable findings. Git-optional.
 argument-hint: [target: file|dir|commit|branch] [--scope repo|module|file] [--full] [--fix|--nofix] [--stack auto|node|python|java|go|rust|php|dotnet|react|vue|angular]
 ---
 
-# Deep Audit (coding standards
+# Deep Audit with Standards
 
-Auditoría profunda y concisa usando /coding standards con grafo de dependencias y matrices para priorizar acciones.
+Auditoría profunda y concisa usando standards/{detected-stack}.yaml con grafo de dependencias y matrices para priorizar acciones.
 
 ## Contexto
 - Root: !`git rev-parse --show-toplevel 2>/dev/null || pwd`
 - Stack (auto o `--stack`):
   - Si `--stack` → se toma como hint (normaliza sin exigir coincidencia exacta).
-  - Detectar `coding standards del stack y cargar reglas; si no hay coincidencia → `coding standards
-- Reglas coding standards cargar 8–12 (`**/coding standards, filosofía *Less is sometimes better*; permitir transgresión justificada (anotar beneficio y mitigación).
+  - Detectar stack y cargar standards/{detected-stack}.yaml; si no hay coincidencia → standards/general.yaml
+- Reglas standards cargar desde standards/{detected-stack}.yaml, filosofía *Less is sometimes better*; permitir transgresión justificada (anotar beneficio y mitigación).
 
 ## Pasos
 - **Inventario & Hotspots**: mapear módulos top-level y tamaños.
 - **Grafo & Reverse-Deps (anti-roturas)**:
   - Imports por stack (grep heurístico).
   - Construir reverse-deps del `target`; marcar APIs públicas/contratos.
-- **Calidad**: *dead code* candidates, duplicidades (firmas/bloques), smells de estilo/errores (según coding standards del stack).
+- **Calidad**: *dead code* candidates, duplicidades (firmas/bloques), smells de estilo/errores (según standards/{detected-stack}.yaml).
 - **Performance (ligera, si procede)**: N+1, I/O síncrono, loops pesados, bundles grandes (web).  
   Si no aplica → "N/A".
 - **Recomendaciones & Parches**: cambios *scope-aware* (no eliminar símbolos usados; si público → deprecate + migrate).  
@@ -35,8 +35,8 @@ Auditoría profunda y concisa usando /coding standards con grafo de dependencias
 | Nivel | Archivo:Línea | Hallazgo | Acción propuesta | Esfuerzo |
 |---|---|---|---|---|
 
-**Matriz de Refactors (coding standards**
-| Regla coding standards | Caso | Transgresión (si aplica) | Beneficio | Mitigación |
+**Matriz de Refactors (Standards)**
+| Regla Standards | Caso | Transgresión (si aplica) | Beneficio | Mitigación |
 |---|---|---|---|---|
 
 ## Salida esperada
@@ -46,7 +46,7 @@ Auditoría profunda y concisa usando /coding standards con grafo de dependencias
   - `patches-$TARGET.diff` (si procede).
 
 ## DoD
-- Reglas `/coding standards cargadas (o `coding standards por fallback).
+- Reglas standards/{detected-stack}.yaml cargadas (o standards/general.yaml por fallback).
 - Reverse-deps generado y respetado.
 - 3 matrices completas con archivo:línea.
 - Recomendaciones priorizadas con esfuerzo.

@@ -1,0 +1,110 @@
+version: "2025.09-React-v2"
+stack:
+  framework: react
+  language: typescript
+  version: "18+"
+  philosophy: "functional_components_with_server_first"
+
+metadata:
+  description: "React Standards — Server Components, hooks patterns, performance-first y anti-over-engineering"
+  based_on: "Modern React best practices 2024-2025 con RSCs y React 18+ features"
+
+policy:
+  severity_actions:
+    critical: ["warn", "block", "show_metrics"]
+    high: ["warn", "require_review", "show_metrics"]
+    medium: ["warn", "show_metrics", "autofix"]
+    low: ["info", "show_metrics", "autofix"]
+  gates:
+    strict: true
+    complexity_limit: 5
+    component_size_limit: 80
+    function_size_limit: 35
+    module_size_limit: 200
+
+scan:
+  include: ["**/*.tsx", "**/*.jsx", "**/*.ts", "**/*.js", "src/**/*.tsx", "components/**/*.tsx", "pages/**/*.tsx", "app/**/*.tsx"]
+  exclude: ["**/node_modules/**", "**/dist/**", "**/build/**", "**/.next/**", "**/coverage/**", "**/*.test.*", "**/*.spec.*"]
+
+core_principles:
+  - server_components_first: true
+  - functional_components_only: true
+  - custom_hooks_for_logic: true
+  - performance_conscious_rendering: true
+  - minimal_state_management: true
+
+anti_patterns:
+
+  - id: REACT-HOOKS-001
+    name: useEffect dependency hell y missing cleanup
+    severity: high
+    detect:
+      patterns:
+        - "useEffect\\(.*\\[.*,.*,.*,.*,.*,.*\\]\\)"
+        - "useEffect.*useEffect.*useEffect.*useEffect.*useEffect"
+      heuristics: ["missing_effect_cleanup", "stale_dependencies"]
+    remediation: "Split complex useEffects, add cleanup functions, usar custom hooks para logic complejo."
+
+  - id: REACT-STATE-001
+    name: useState overuse para complex state structures
+    severity: medium
+    detect:
+      patterns:
+        - "useState\\(.*\\{.*\\{.*\\{.*\\}.*\\}.*\\}.*\\)"
+        - "useState.*useState.*useState.*useState.*useState"
+      heuristics: ["complex_state_objects", "multiple_related_state"]
+    remediation: "Usar useReducer para complex state, agrupar related state en objects."
+
+  - id: REACT-OPTIMIZATION-001
+    name: Premature useMemo/useCallback optimization
+    severity: low
+    detect:
+      patterns:
+        - "useMemo\\(.*\\[\\]\\)"
+        - "useCallback\\(.*\\[\\]\\)"
+        - "useMemo.*useMemo.*useMemo.*useMemo"
+    remediation: "Measure performance first. React.memo para components, optimization solo cuando necesario."
+
+  - id: REACT-COMPONENT-001
+    name: Component over-engineering (HOCs, complex patterns)
+    severity: high
+    detect:
+      patterns:
+        - "React\\.forwardRef.*React\\.memo.*React\\.forwardRef"
+        - "withRouter.*withAuth.*withTheme"
+        - "\\{\\(.*\\) => .*\\}.*\\{\\(.*\\) => .*\\}.*\\{\\(.*\\) => .*\\}"
+    remediation: "Usar custom hooks en lugar de HOCs, simple functional components, evitar render props complejos."
+
+  - id: REACT-SERVER-001
+    name: Client Components cuando Server Components serían mejores
+    severity: medium
+    detect:
+      heuristics: ["unnecessary_use_client", "static_content_as_client", "missing_server_component_opportunity"]
+    remediation: "Default a Server Components, 'use client' solo para interactivity, static content en server."
+
+clean_patterns:
+
+  - id: CLEAN-REACT-SERVER-001
+    name: Server Components para static/read-only UI
+    benefits: ["reduced_bundle_size", "server_side_data_access", "seo_optimized"]
+    implementation: "Default a Server Components, 'use client' solo para interactive UI, data fetching en server."
+
+  - id: CLEAN-REACT-HOOKS-001
+    name: Custom hooks para reusable stateful logic
+    benefits: ["code_reuse", "separation_of_concerns", "testability"]
+    implementation: "Extract complex logic a custom hooks, use prefix, evitar complex args."
+
+  - id: CLEAN-REACT-PERFORMANCE-001
+    name: Code splitting y lazy loading
+    benefits: ["faster_initial_load", "reduced_bundle_size", "better_core_web_vitals"]
+    implementation: "React.lazy() + Suspense, route-level splitting, dynamic imports para heavy components."
+
+  - id: CLEAN-REACT-STATE-001
+    name: Minimal state management patterns
+    benefits: ["simple_debugging", "predictable_updates", "performance"]
+    implementation: "useState para simple state, useReducer para complex, avoid unnecessary global state."
+
+  - id: CLEAN-REACT-MEMO-001
+    name: Strategic memoization patterns
+    benefits: ["prevent_unnecessary_renders", "optimized_performance", "controlled_complexity"]
+    implementation: "React.memo para expensive components, measure antes de optimize, dependency arrays correctos."

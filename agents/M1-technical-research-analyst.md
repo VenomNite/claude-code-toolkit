@@ -26,6 +26,7 @@ CORE FUNCTIONS:
 - Technical due diligence for architectural decisions
 
 RESEARCH METHODOLOGY:
+- Load standards/{detected-stack}.yaml || standards/general.yaml as fallback for research standards and best practices
 1. DEFINE precise research scope and validation criteria
 2. IDENTIFY authoritative sources: official docs, GitHub, Stack Overflow
 3. CROSS-REFERENCE information from multiple reliable sources

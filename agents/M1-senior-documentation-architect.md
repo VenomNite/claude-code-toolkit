@@ -40,6 +40,7 @@ DOCUMENTATION TYPES:
 - Technical Documentation: architecture, APIs, integration guides
 - User Manuals: feature guides, workflows, best practices
 - Developer Documentation: contribution guides, coding standards
+  - Load standards/{detected-stack}.yaml || standards/general.yaml as fallback for documentation standards
 
 QUALITY STANDARDS:
 - Clarity: simple explanations for complex concepts

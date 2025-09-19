@@ -1,0 +1,112 @@
+version: "2025.09-NodeJS-v2"
+stack:
+  framework: express
+  language: typescript
+  version: "20+"
+  philosophy: "es_modules_async_first_security"
+
+metadata:
+  description: "Node.js Standards — ES modules, async patterns, security-first y component architecture"
+  based_on: "Modern Node.js best practices 2024-2025 con performance y security focus"
+
+policy:
+  severity_actions:
+    critical: ["warn", "block", "show_metrics"]
+    high: ["warn", "require_review", "show_metrics"]
+    medium: ["warn", "show_metrics", "autofix"]
+    low: ["info", "show_metrics", "autofix"]
+  gates:
+    strict: true
+    complexity_limit: 7
+    function_size_limit: 40
+    module_size_limit: 250
+
+scan:
+  include: ["**/*.ts", "**/*.js", "**/*.mjs", "src/**/*.ts", "routes/**/*.ts", "services/**/*.ts", "components/**/*.ts"]
+  exclude: ["**/node_modules/**", "**/dist/**", "**/build/**", "**/coverage/**", "**/*.test.*", "**/*.spec.*"]
+
+core_principles:
+  - es_modules_first: true
+  - async_await_patterns: true
+  - security_by_design: true
+  - component_based_architecture: true
+  - performance_conscious_async: true
+
+anti_patterns:
+
+  - id: NODE-MODULES-001
+    name: CommonJS require() usage en lugar de ES modules
+    severity: high
+    detect:
+      patterns:
+        - "const.*=.*require\\("
+        - "module\\.exports.*="
+        - "exports\\.[a-zA-Z].*="
+    remediation: "Usar import/export syntax, set 'type': 'module' en package.json, .mjs extensions."
+
+  - id: NODE-ASYNC-001
+    name: Callback hell y nested callbacks
+    severity: high
+    detect:
+      patterns:
+        - "function\\(.*\\{.*function\\(.*\\{.*function\\(.*\\{"
+        - "\\.then\\(.*\\.then\\(.*\\.then\\(.*\\.then\\("
+        - "callback\\(.*callback\\(.*callback\\("
+    remediation: "Usar async/await patterns, Promise.all() para concurrent operations, avoid callback nesting."
+
+  - id: NODE-SECURITY-001
+    name: Missing input validation y unsafe regex
+    severity: critical
+    detect:
+      heuristics: ["missing_input_validation", "unsafe_regex_patterns", "unvalidated_user_input"]
+      patterns:
+        - "req\\.body.*without.*validation"
+        - "new RegExp\\(.*user.*input"
+    remediation: "Usar Joi/Zod para validation, safe-regex para patterns, validate all request parameters."
+
+  - id: NODE-PERFORMANCE-001
+    name: Blocking operations en event loop
+    severity: high
+    detect:
+      heuristics: ["sync_operations_in_async", "cpu_intensive_blocking"]
+      patterns:
+        - "readFileSync.*while.*"
+        - "JSON\\.parse.*large.*without.*async"
+    remediation: "Usar async alternatives, worker threads para CPU-intensive tasks, stream processing."
+
+  - id: NODE-ERROR-001
+    name: Missing error handling en async operations
+    severity: medium
+    detect:
+      patterns:
+        - "async.*function.*without.*try.*catch"
+        - "Promise\\.all\\(.*without.*catch"
+        - "await.*without.*try.*catch"
+    remediation: "Always handle errors, try-catch para async operations, error boundaries para unhandled rejections."
+
+clean_patterns:
+
+  - id: CLEAN-NODE-ESM-001
+    name: ES Modules con top-level await
+    benefits: ["better_interop", "modern_syntax", "web_standards_alignment"]
+    implementation: "import/export syntax, top-level await, 'type': 'module' en package.json."
+
+  - id: CLEAN-NODE-ASYNC-001
+    name: Modern async patterns con error handling
+    benefits: ["readable_code", "performance", "error_safety"]
+    implementation: "async/await primary, Promise.all() para concurrency, comprehensive try-catch."
+
+  - id: CLEAN-NODE-SECURITY-001
+    name: Security-first input validation
+    benefits: ["attack_prevention", "data_integrity", "runtime_safety"]
+    implementation: "Joi/Zod schemas, safe-regex patterns, reverse proxy protection."
+
+  - id: CLEAN-NODE-ARCHITECTURE-001
+    name: Component-based modular architecture
+    benefits: ["maintainability", "scalability", "development_speed"]
+    implementation: "Business-centric modules, encapsulated APIs, granular components por domain."
+
+  - id: CLEAN-NODE-PERFORMANCE-001
+    name: Performance-conscious async operations
+    benefits: ["non_blocking_io", "optimal_concurrency", "resource_efficiency"]
+    implementation: "Native promise APIs, stream processing, worker threads para CPU tasks."
