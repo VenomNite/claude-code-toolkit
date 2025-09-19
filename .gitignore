@@ -53,8 +53,18 @@ scripts/personal/
 
 # Internal development files
 *.analysis.*
-*.optimization.*
-*.strategy.*
+*optimization*
+*strategy*
+*OPTIMIZATION*
+*STRATEGY*
 DEVELOPMENT-NOTES.md
 INTERNAL-*.md
 *-INTERNAL.*
+CLAUDE.md
+*IMPLEMENTATION*
+*FLOW*
+*HERO*
+ABOUT-*
+README-*-*
+TOPICS-*
+SEO-*
