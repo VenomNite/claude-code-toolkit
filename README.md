@@ -1,118 +1,145 @@
-# Claude Code Toolkit - AI-Powered Developer Automation 🚀
+# Claude Code Toolkit 🚀
+### AI-Powered Developer Automation Platform
 
-**16 Commands + 10 AI Agents | Dual-Scope Installation | Professional Testing Framework**
+> **Transform development workflows with intelligent AI orchestration**
+>
+> Complete automation toolkit featuring **16 specialized commands** and **10 AI agents** for project planning, code orchestration, and quality assurance. Seamlessly integrates with Claude AI and Claude Code.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
-[![Python 3.7+](https://img.shields.io/badge/python-3.7+-blue.svg?style=flat-square)](https://www.python.org/downloads/)
-[![GitHub release](https://img.shields.io/github/v/release/Ghenwy/claude-code-toolkit?style=flat-square)](https://github.com/Ghenwy/claude-code-toolkit/releases)
-[![Claude AI Compatible](https://img.shields.io/badge/Claude%20AI-Compatible-orange?style=flat-square)](https://claude.ai)
-[![Active Development](https://img.shields.io/maintenance/yes/2025?style=flat-square)](https://github.com/Ghenwy/claude-code-toolkit/graphs/commit-activity)
+[![Stars](https://img.shields.io/github/stars/Ghenwy/claude-code-toolkit?style=for-the-badge&logo=github)](https://github.com/Ghenwy/claude-code-toolkit/stargazers)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+[![Python 3.7+](https://img.shields.io/badge/python-3.7+-blue.svg?style=for-the-badge&logo=python)](https://www.python.org/downloads/)
 
-[![Claude Code Extension](https://img.shields.io/badge/Claude%20Code-Extension-blue?style=flat-square)](https://claude.ai/code)
-[![AI Automation Tools](https://img.shields.io/badge/AI-Automation-green?style=flat-square)](https://github.com/Ghenwy/claude-code-toolkit)
-[![16 Commands](https://img.shields.io/badge/Commands-16-brightgreen?style=flat-square)](https://github.com/Ghenwy/claude-code-toolkit#-commands-matrix)
-[![10 AI Agents](https://img.shields.io/badge/AI%20Agents-10-orange?style=flat-square)](https://github.com/Ghenwy/claude-code-toolkit#-agents-matrix)
-[![Dual-Scope Install](https://img.shields.io/badge/Install-User%2FGlobal-purple?style=flat-square)](https://github.com/Ghenwy/claude-code-toolkit#-installation)
-[![Testing Framework](https://img.shields.io/badge/Testing-45%2B%20Tests-red?style=flat-square)](https://github.com/Ghenwy/claude-code-toolkit/tree/main/testing)
-[![Developer Productivity](https://img.shields.io/badge/Productivity-Enhanced-yellow?style=flat-square)](https://github.com/Ghenwy/claude-code-toolkit)
+[![Claude AI Compatible](https://img.shields.io/badge/Claude%20AI-Compatible-orange?style=for-the-badge&logo=anthropic)](https://claude.ai)
+[![16 Commands](https://img.shields.io/badge/Commands-16-brightgreen?style=for-the-badge)](https://github.com/Ghenwy/claude-code-toolkit#-commands-matrix)
+[![10 AI Agents](https://img.shields.io/badge/AI%20Agents-10-orange?style=for-the-badge)](https://github.com/Ghenwy/claude-code-toolkit#-agents-matrix)
 
-> **🎯 Supercharge your development workflow with AI automation**
-> Complete toolkit with **16 specialized commands** and **10 intelligent agents** for automated project planning, code orchestration, quality assurance, and developer productivity. Works seamlessly with Claude AI and Claude Code.
+[![Testing Framework](https://img.shields.io/badge/Testing-45%2B%20Tests-red?style=for-the-badge)](https://github.com/Ghenwy/claude-code-toolkit/tree/main/testing)
+[![Active Development](https://img.shields.io/maintenance/yes/2025?style=for-the-badge)](https://github.com/Ghenwy/claude-code-toolkit/graphs/commit-activity)
 
-```mermaid
-graph LR
-    A[💡 Idea] --> B[📋 /A-plan]
-    B --> C[🤖 /A-ai-code]
-    C --> D[✅ /M1-qa-gatekeeper]
-    D --> E[🚀 Production]
-    style A fill:#e1f5fe
-    style E fill:#e8f5e8
-```
+---
 
-> **🏆 Version 2.1.0 - Dual-Scope Architecture**
-> Supports both user (`~/.claude/`) and global (`/usr/local/share/claude/`) installations with automatic precedence management and comprehensive testing framework.
+## ⚡ Quick Start (30 seconds)
 
-## 📋 Table of Contents
-
-- [🚀 Installation](#-installation)
-- [⚡ Quick Start](#-quick-start)
-- [📋 Commands Matrix](#-commands-matrix)
-- [🤖 AI Agents Matrix](#-ai-agents-matrix)
-- [🎯 Key Features](#-key-features)
-- [💡 Usage Examples](#-usage-examples)
-- [📊 Status Line Integration](#-status-line-integration)
-- [🧪 Testing Framework](#-testing-framework)
-- [📚 Documentation](#-documentation)
-- [🤝 Contributing](#-contributing)
-
-## 🚀 Installation
-
-### For Claude Code Users
+**Step 1:** Install the toolkit
 ```bash
-# Automated installation - follow AUTO-INSTALL.md step by step
-# Complete dual-scope installation with comprehensive testing
-```
-See **[AUTO-INSTALL.md](AUTO-INSTALL.md)** for detailed Claude Code installation instructions.
-
-### Quick Install (One-Line)
-```bash
-# User installation (default, no admin required)
 curl -sSL https://raw.githubusercontent.com/Ghenwy/claude-code-toolkit/main/install.sh | bash
 ```
 
-### Advanced Installation Options
+**Step 2:** Create your first AI-orchestrated project
 ```bash
-# Clone and install with options
-git clone https://github.com/Ghenwy/claude-code-toolkit.git
-cd claude-code-toolkit
-
-# User scope (personal installation)
-./install.sh --user --verbose
-
-# Global scope (system-wide, requires sudo)
-sudo ./install.sh --global --verbose
-
-# Test installation without changes
-./install.sh --dry-run --verbose
+/A-plan "JWT authentication system with role-based access control"
 ```
 
-**Installation Features:**
-- ✅ **Dual-scope support**: User (`~/.claude/`) or Global (`/usr/local/share/claude/`)
-- ✅ **Automatic backup**: Existing installations preserved
-- ✅ **Zero conflicts**: User installations override global seamlessly
-- ✅ **Cross-platform**: Linux, macOS, Windows WSL
-- ✅ **Comprehensive testing**: 45+ validation tests included
+**Step 3:** Let AI agents handle the implementation
+```bash
+/A-ai-code --coordinar
+```
 
-## 🎯 What's Included
+**🎉 That's it!** Your AI-powered development workflow is active.
 
-| Component | Count | Description |
-|-----------|-------|-------------|
-| 📋 **AI Commands** | 18 | Automation tools for planning, orchestration, monitoring |
-| 🤖 **Agents** | 12 | Specialized AI agents for development tasks |
-| 📊 **Scripts** | 1 | Advanced status line monitoring |
+[📚 Full Documentation](#-documentation) • [🎯 See All Features](#-key-features) • [💬 Join Community](#-community)
 
-## 🎯 Quick Start
+---
+
+## 🏗️ Architecture Overview
+
+```mermaid
+graph LR
+    A[💡 Project Idea] --> B[📋 /A-plan]
+    B --> C[🤖 /A-ai-code --coordinar]
+    C --> D[⚙️ Agent Orchestration]
+    D --> E[✅ /M1-qa-gatekeeper]
+    E --> F[🚀 Production Ready]
+
+    style A fill:#e1f5fe
+    style C fill:#fff3e0
+    style E fill:#e8f5e8
+    style F fill:#e0f2f1
+```
+
+---
+
+## 🎯 Why Choose Claude Code Toolkit
+
+| Feature | Benefit | Impact |
+|---------|---------|---------|
+| **🤖 AI Orchestration** | Multiple agents work together | 10x faster development |
+| **📋 Intelligent Planning** | Automated specs generation | Eliminate planning overhead |
+| **🔧 Dual-Scope Install** | User & global installations | Flexible deployment |
+| **✅ Quality Assurance** | Built-in testing framework | Zero-defect releases |
+
+**⭐ Found this useful? Give us a star to help other developers discover the toolkit!**
+
+---
+
+## 📋 Table of Contents
+
+- [⚡ Quick Start](#-quick-start)
+- [🎯 Key Features](#-key-features)
+- [📋 Commands Matrix](#-commands-matrix)
+- [🤖 AI Agents Matrix](#-ai-agents-matrix)
+- [🚀 Installation](#-installation)
+- [💡 Usage Examples](#-usage-examples)
+- [📊 Status Line Integration](#-status-line-integration)
+- [💬 Community](#-community)
+- [📚 Documentation](#-documentation)
+
+## 🎯 Key Features
+
+### 🤖 **AI Agent Orchestration**
+- **Multi-agent coordination** for complex development tasks
+- **Parallel & sequential execution** with intelligent dependency management
+- **Real-time progress tracking** with consolidated reporting
+
+### 📋 **Intelligent Project Planning**
+- **Automated specifications generation** with gap analysis
+- **Adaptive questioning system** for comprehensive requirements gathering
+- **Three-document output**: SPECS.md, PLAN.md, and ROADMAP.md
+
+### 🔧 **Flexible Installation Architecture**
+- **Dual-scope support**: User (`~/.claude/`) or Global (`/usr/local/share/claude/`)
+- **Zero-conflict management** with automatic precedence handling
+- **Cross-platform compatibility**: Linux, macOS, Windows WSL
+
+### ✅ **Production-Ready Quality**
+- **Comprehensive testing framework** with 45+ validation tests
+- **Built-in quality gates** with M1-qa-gatekeeper integration
+- **Standards compliance** across 13 technology stacks
+
+---
+
+## 🚀 Installation
 
 ### 🤖 **For Claude Code Users** (Recommended)
-
-Simply tell your Claude Code:
-```
-"Read AUTO-INSTALL.md and perform the complete automatic installation"
-```
-
-### 👨‍💻 **For Human Users**
-
 ```bash
-# 1. Clone & Install
+# Let Claude Code handle everything automatically
+# Simply tell Claude Code: "Read AUTO-INSTALL.md and install the toolkit"
+```
+See **[AUTO-INSTALL.md](AUTO-INSTALL.md)** for step-by-step Claude Code installation.
+
+### ⚡ **Quick Install** (One-Line)
+```bash
+curl -sSL https://raw.githubusercontent.com/Ghenwy/claude-code-toolkit/main/install.sh | bash
+```
+
+### 🔧 **Advanced Options**
+```bash
 git clone https://github.com/Ghenwy/claude-code-toolkit.git
 cd claude-code-toolkit
-./install.sh
 
-# 2. Test Core Features
-/A-plan "Build a task manager app"
-/B-HealthCheck --fast
-/A-ai-code --coordinar "Add user authentication"
+# User scope (personal, no sudo required)
+./install.sh --user
+
+# Global scope (system-wide, requires sudo)
+sudo ./install.sh --global
+
+# Test without installing
+./install.sh --dry-run
 ```
+
+**What gets installed:** 16 commands + 10 agents + 1 monitoring script + comprehensive testing framework
+
+---
 
 
 ## 📋 Commands Matrix
@@ -129,12 +156,10 @@ cd claude-code-toolkit
 | **A-architecture** | 🏗️ Architecture | System design assistant | Architecture patterns, best practices |
 | **A-audit** | 🔍 Quality | Code audit automation | Quality metrics, compliance checks |
 | **A-changelog** | 📝 Documentation | Changelog generator | Release notes, version tracking |
-| **A-commit** | 📝 Git | Smart commit assistant | Conventional commits, message optimization |
 | **A-insights** | 📊 Analytics | Developer behavior + codebase curiosities | Git patterns, hotspots, team analytics, fun facts |
 | **A-onboarding** | 🎯 Setup | Auto-discovery onboarding generator | Project analysis, setup commands, no docs assumed |
 | **A-organize** | 📁 Organization | Physical file reorganization vs manual | Auto dependency updates, path preservation, backup |
 | **A-todo** | ✅ Tasks | Smart todo management | Task tracking, prioritization |
-| **A-workflow** | 🔄 Process | Workflow orchestrator | Agent coordination, task delegation |
 | **B-ultra-think** | 🧠 Analysis | Deep thinking assistant | Complex problem solving |
 
 > **⚡ Quick Reference**: See [CHEAT-SHEET.md](docs/CHEAT-SHEET.md) for ultra-fast command reference
@@ -354,6 +379,38 @@ cd testing/
 1. **Beginner**: Start with [CHEAT-SHEET.md](docs/CHEAT-SHEET.md) for quick command overview
 2. **Intermediate**: Follow [USER-GUIDE.md](docs/USER-GUIDE.md) for detailed workflows
 3. **Advanced**: Use individual commands directly or `/claude-toolkit` universal router
+
+---
+
+## 💬 Community
+
+### 🤝 **Get Help & Connect**
+
+- 💭 **[GitHub Discussions](https://github.com/Ghenwy/claude-code-toolkit/discussions)** - Ask questions, share ideas, showcase your automation workflows
+- 🐛 **[Issues](https://github.com/Ghenwy/claude-code-toolkit/issues)** - Report bugs, request features, and technical support
+- 📚 **[Documentation](docs/)** - Complete guides, API reference, and best practices
+- 🌟 **[Examples](examples/)** - Real-world use cases and automation patterns
+
+### 🚀 **Show Your Support**
+
+Found this toolkit helpful? Here's how you can support the project:
+
+- ⭐ **Star the repository** to help other developers discover it
+- 🔄 **Share with your team** and in developer communities
+- 🐛 **Report issues** to help us improve the toolkit
+- 💡 **Suggest features** that would enhance your workflow
+- 📝 **Contribute** documentation, examples, or code improvements
+
+### 📊 **Community Stats**
+
+- 🏷️ **Topics**: AI tools, automation, developer productivity, Claude AI
+- 🧪 **Quality**: 45+ comprehensive tests ensuring reliability
+- 📈 **Active Development**: Regular updates and feature additions
+- 🛡️ **Production Ready**: Used by developers for real-world automation
+
+**Love automating your workflow with AI? Join our growing community of developers!**
+
+---
 
 ## 🤝 Contributing
 
