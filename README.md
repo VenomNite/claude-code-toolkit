@@ -1,22 +1,23 @@
-# Claude Code Toolkit 🚀
+# Claude Code Toolkit - AI-Powered Developer Automation 🚀
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.7+](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/)
-[![GitHub release](https://img.shields.io/github/v/release/Ghenwy/claude-code-toolkit)](https://github.com/Ghenwy/claude-code-toolkit/releases)
-[![Claude AI](https://img.shields.io/badge/Claude%20AI-Compatible-orange)](https://claude.ai)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
-[![Maintenance](https://img.shields.io/maintenance/yes/2025)](https://github.com/Ghenwy/claude-code-toolkit/graphs/commit-activity)
+**18 Commands + 12 AI Agents | Dual-Scope Installation | Professional Testing Framework**
 
-[![Claude Code](https://img.shields.io/badge/Claude%20Code-Extension-blue)](https://claude.ai/code)
-[![AI Automation](https://img.shields.io/badge/AI-Automation-green)](https://github.com/Ghenwy/claude-code-toolkit)
-[![Commands](https://img.shields.io/badge/Commands-17-brightgreen)](https://github.com/Ghenwy/claude-code-toolkit#-commands-matrix)
-[![Agents](https://img.shields.io/badge/Agents-12-orange)](https://github.com/Ghenwy/claude-code-toolkit#-agents-matrix)
-[![Status Line](https://img.shields.io/badge/Status%20Line-Enhanced-purple)](https://github.com/Ghenwy/claude-code-toolkit#-status-line-integration)
-[![Workflow](https://img.shields.io/badge/Workflow-Orchestration-red)](https://github.com/Ghenwy/claude-code-toolkit)
-[![Context Monitor](https://img.shields.io/badge/Context-Monitor-yellow)](https://github.com/Ghenwy/claude-code-toolkit)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+[![Python 3.7+](https://img.shields.io/badge/python-3.7+-blue.svg?style=flat-square)](https://www.python.org/downloads/)
+[![GitHub release](https://img.shields.io/github/v/release/Ghenwy/claude-code-toolkit?style=flat-square)](https://github.com/Ghenwy/claude-code-toolkit/releases)
+[![Claude AI Compatible](https://img.shields.io/badge/Claude%20AI-Compatible-orange?style=flat-square)](https://claude.ai)
+[![Active Development](https://img.shields.io/maintenance/yes/2025?style=flat-square)](https://github.com/Ghenwy/claude-code-toolkit/graphs/commit-activity)
 
-> **🎯 Transform your development workflow with AI automation**
-> Professional toolkit featuring **17 specialized commands** and **12 intelligent agents** for automated workflow orchestration, Claude AI integration, and maximum developer productivity.
+[![Claude Code Extension](https://img.shields.io/badge/Claude%20Code-Extension-blue?style=flat-square)](https://claude.ai/code)
+[![AI Automation Tools](https://img.shields.io/badge/AI-Automation-green?style=flat-square)](https://github.com/Ghenwy/claude-code-toolkit)
+[![18 Commands](https://img.shields.io/badge/Commands-18-brightgreen?style=flat-square)](https://github.com/Ghenwy/claude-code-toolkit#-commands-matrix)
+[![12 AI Agents](https://img.shields.io/badge/AI%20Agents-12-orange?style=flat-square)](https://github.com/Ghenwy/claude-code-toolkit#-agents-matrix)
+[![Dual-Scope Install](https://img.shields.io/badge/Install-User%2FGlobal-purple?style=flat-square)](https://github.com/Ghenwy/claude-code-toolkit#-installation)
+[![Testing Framework](https://img.shields.io/badge/Testing-45%2B%20Tests-red?style=flat-square)](https://github.com/Ghenwy/claude-code-toolkit/tree/main/testing)
+[![Developer Productivity](https://img.shields.io/badge/Productivity-Enhanced-yellow?style=flat-square)](https://github.com/Ghenwy/claude-code-toolkit)
+
+> **🎯 Supercharge your development workflow with AI automation**
+> Complete toolkit with **18 specialized commands** and **12 intelligent agents** for automated project planning, code orchestration, quality assurance, and developer productivity. Works seamlessly with Claude AI and Claude Code.
 
 ```mermaid
 graph LR
@@ -33,21 +34,53 @@ graph LR
 
 ## 📋 Table of Contents
 
-- [Quick Start](#-quick-start)
-- [Commands Matrix](#-commands-matrix)
-- [Agents Matrix](#-agents-matrix)
-- [Status Line Integration](#-status-line-integration)
-- [Key Features](#-key-features)
-- [Usage Examples](#-usage-examples)
-- [Dependencies](#-dependencies)
-- [Documentation](#-documentation)
-- [Contributing](#-contributing)
+- [🚀 Installation](#-installation)
+- [⚡ Quick Start](#-quick-start)
+- [📋 Commands Matrix](#-commands-matrix)
+- [🤖 AI Agents Matrix](#-ai-agents-matrix)
+- [🎯 Key Features](#-key-features)
+- [💡 Usage Examples](#-usage-examples)
+- [📊 Status Line Integration](#-status-line-integration)
+- [🧪 Testing Framework](#-testing-framework)
+- [📚 Documentation](#-documentation)
+- [🤝 Contributing](#-contributing)
 
-## 🚀 What's Included
+## 🚀 Installation
+
+### Quick Install (One-Line)
+```bash
+# User installation (default, no admin required)
+curl -sSL https://raw.githubusercontent.com/Ghenwy/claude-code-toolkit/main/install.sh | bash
+```
+
+### Advanced Installation Options
+```bash
+# Clone and install with options
+git clone https://github.com/Ghenwy/claude-code-toolkit.git
+cd claude-code-toolkit
+
+# User scope (personal installation)
+./install.sh --user --verbose
+
+# Global scope (system-wide, requires sudo)
+sudo ./install.sh --global --verbose
+
+# Test installation without changes
+./install.sh --dry-run --verbose
+```
+
+**Installation Features:**
+- ✅ **Dual-scope support**: User (`~/.claude/`) or Global (`/usr/local/share/claude/`)
+- ✅ **Automatic backup**: Existing installations preserved
+- ✅ **Zero conflicts**: User installations override global seamlessly
+- ✅ **Cross-platform**: Linux, macOS, Windows WSL
+- ✅ **Comprehensive testing**: 45+ validation tests included
+
+## 🎯 What's Included
 
 | Component | Count | Description |
 |-----------|-------|-------------|
-| 📋 **Commands** | 17 | Automation tools for planning, orchestration, monitoring |
+| 📋 **AI Commands** | 18 | Automation tools for planning, orchestration, monitoring |
 | 🤖 **Agents** | 12 | Specialized AI agents for development tasks |
 | 📊 **Scripts** | 1 | Advanced status line monitoring |
 
@@ -171,7 +204,7 @@ Real-time monitoring with advanced metrics:
 }
 ```
 
-## 🚀 Key Features
+## 🎯 Key Features - AI-Powered Developer Automation
 
 ### 🧠 **Intelligent Planning**
 - **Gap Analysis**: Automatically identifies missing specifications
@@ -193,10 +226,11 @@ Real-time monitoring with advanced metrics:
 - **Security Compliance**: OWASP validation
 - **Performance SLAs**: Real load testing
 
-### 📋 **Standards System**
-- **11 YAML Standards**: Technology-specific coding standards and best practices
+### 📋 **Intelligent Standards System**
+- **13 YAML Standards**: Technology-specific coding standards and best practices
 - **Auto-Detection**: `standards/{detected-stack}.yaml || standards/general.yaml` fallback
 - **Universal Integration**: All commands leverage standards for consistent output
+- **Modern Tech Stack**: React, Vue, Angular, Node.js, Python, TypeScript, Java, Spring Boot
 
 ### 🎯 **Learning Curve Solutions**
 - **Progressive Disclosure**: CHEAT-SHEET.md (beginner) → USER-GUIDE.md (intermediate) → individual commands (advanced)
@@ -208,12 +242,14 @@ Real-time monitoring with advanced metrics:
 - **Developer Analytics**: Real git patterns, team working hours, codebase hotspots and curiosities
 - **Environment Setup**: Automatic extraction of setup commands from package.json, requirements.txt, etc.
 
-### ⚡ **Testing Infrastructure**
-- **QUICK-TESTS.md**: 30-second validation system for all 17 commands
-- **Minimal Context**: Efficient testing with automatic cleanup procedures
+### ⚡ **Professional Testing Framework**
+- **45+ Comprehensive Tests**: Complete validation for dual-scope installation
+- **3 Test Suites**: User scope, global scope, and precedence testing
+- **QUICK-TESTS.md**: 30-second validation system for all 18 commands
+- **CI/CD Ready**: GitHub Actions and Jenkins integration examples
 - **100% Coverage**: Every command validated and verified functional
 
-## 📈 Usage Examples
+## 💡 Usage Examples - Real Developer Workflows
 
 ### Project Planning
 ```bash
@@ -257,13 +293,39 @@ Real-time monitoring with advanced metrics:
 # → Intent recognition → auto-routes to /A-plan with confidence scoring
 ```
 
-## 🔧 Dependencies
+## 🧪 Testing Framework
 
+The toolkit includes a comprehensive testing system for quality assurance:
+
+### Test Suites Available
+```bash
+cd testing/
+
+# Complete validation (2-4 minutes)
+./run-all-tests.sh
+
+# Individual test suites
+./test-user-installation.sh      # User scope testing
+./test-global-installation.sh    # Global scope logic testing
+./test-dual-scope-precedence.sh  # Precedence validation
+```
+
+### Testing Features
+- ✅ **45+ Individual Tests**: Complete installation scenario coverage
+- ✅ **Non-destructive**: Automatic backup/restore of existing installations
+- ✅ **Cross-platform**: Linux, macOS, Windows WSL validation
+- ✅ **CI/CD Ready**: GitHub Actions and Jenkins integration examples
+- ✅ **Performance Metrics**: Timing and success rate analysis
+- ✅ **Failure Diagnostics**: Detailed troubleshooting guidance
+
+## 🔧 System Requirements
+
+### Required Dependencies
 - **Python 3.7+** (for status monitoring)
-- **Git** (for context integration)
+- **Git** (for context integration, recommended)
 - **Claude Code** (latest version)
 
-Optional AI Tools:
+### Optional AI Tools
 - **codex, qwen, opencode, gemini** (for enhanced orchestration via M1-ultrathink-orchestrator)
 - **MCP Servers** (for specialized agent capabilities)
 
@@ -274,12 +336,14 @@ Optional AI Tools:
 - **[USER-GUIDE.md](docs/USER-GUIDE.md)**: Step-by-step workflows and examples (intermediate level)
 
 ### 🔧 **Installation Guides**
+- **[INSTALLATION.md](INSTALLATION.md)**: Complete dual-scope installation guide with troubleshooting
 - **[AUTO-INSTALL.md](AUTO-INSTALL.md)**: Automated installation for Claude Code users
-- **[install.sh](install.sh)**: Quick installation script for human users
+- **[install.sh](install.sh)**: Professional installer with dual-scope support
 
 ### ⚡ **Testing & Validation**
-- **[QUICK-TESTS.md](testing/QUICK-TESTS.md)**: 30-second validation system for all 17 commands
-- **[STANDARDS/](standards/)**: 11 YAML files with technology-specific coding standards
+- **[Testing Framework](testing/)**: Professional testing suite with 45+ comprehensive tests
+- **[QUICK-TESTS.md](testing/QUICK-TESTS.md)**: 30-second validation system for all 18 commands
+- **[STANDARDS/](standards/)**: 13 YAML files with technology-specific coding standards
 
 ### 🎯 **Progressive Learning Path**
 1. **Beginner**: Start with [CHEAT-SHEET.md](docs/CHEAT-SHEET.md) for quick command overview
@@ -299,8 +363,12 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 ---
 
-**⭐ Star this repo** if you find it useful!
-**🐛 Report issues** to help improve the toolkit
-**🚀 Share with the community** to help others automate their workflow
+**⭐ Star this repo** if you find it useful for AI automation!
+**🐛 Report issues** at [GitHub Issues](https://github.com/Ghenwy/claude-code-toolkit/issues)
+**🚀 Share with developers** who need workflow automation
+**📖 Read the docs** for complete feature overview
 
-*Built with ❤️ for the Claude Code community*
+### Keywords
+`claude-ai` `ai-automation` `developer-tools` `workflow-automation` `productivity` `claude-code` `ai-agents` `development-workflow` `code-orchestration` `project-planning` `testing-framework` `dual-scope-installation`
+
+*Built with ❤️ for the AI-powered development community*
