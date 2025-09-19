@@ -43,19 +43,21 @@ curl -sSL https://raw.githubusercontent.com/Ghenwy/claude-code-toolkit/main/inst
 
 ## 🏗️ Architecture Overview
 
-```mermaid
-graph LR
-    A[💡 Project Idea] --> B[📋 /A-plan]
-    B --> C[🤖 /A-ai-code --coordinar]
-    C --> D[⚙️ Agent Orchestration]
-    D --> E[✅ /M1-qa-gatekeeper]
-    E --> F[🚀 Production Ready]
-
-    style A fill:#e1f5fe
-    style C fill:#fff3e0
-    style E fill:#e8f5e8
-    style F fill:#e0f2f1
 ```
+💡 Project Idea
+      ↓
+📋 /A-plan                    ← AI generates comprehensive specs
+      ↓
+🤖 /A-ai-code --coordinar     ← Orchestrates multiple AI agents
+      ↓
+⚙️  Agent Orchestration       ← Parallel & sequential execution
+      ↓
+✅ /M1-qa-gatekeeper         ← Zero-tolerance quality validation
+      ↓
+🚀 Production Ready          ← Deployment-ready implementation
+```
+
+**🔄 Workflow:** `Idea → Planning → Orchestration → Development → Quality → Production`
 
 ---
 
