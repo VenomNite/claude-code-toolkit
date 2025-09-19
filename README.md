@@ -148,6 +148,7 @@ sudo ./install.sh --global
 
 | Command | Category | Purpose | Key Features |
 |---------|----------|---------|--------------|
+| **A-claude-auto** | 🚀 Universal Router | Intelligent intent recognition and auto-execution | Command auto-routing, intent analysis, confidence scoring |
 | **A-plan** | 📈 Planning | Project specifications generator | Gap analysis, adaptive questions, 3-doc output |
 | **A-ai-code** | 🤖 Orchestration | Multi-agent project coordinator | Agent delegation, progress tracking, parallel execution |
 | **B-create-feature** | 🏗️ Scaffolding | Intelligent feature scaffolding | Auto-detection, templates, instant creation |
@@ -183,7 +184,7 @@ sudo ./install.sh --global
 
 ## 🔄 Workflow
 
-**Entry Point:** Use `/claude-toolkit "your request"` for universal intent recognition and auto-routing
+**Entry Point:** Use `/A-claude-auto "your request"` for universal intent recognition and auto-routing
 
 **Development Flow:** Project Idea → `/A-plan` → Specifications → `/A-ai-code --coordinar` → Agent Orchestration → Development → `/M1-qa-gatekeeper` → Quality Validation → Production Ready
 
@@ -321,7 +322,7 @@ Real-time monitoring with advanced metrics:
 
 ### Universal Command Router
 ```bash
-/claude-toolkit "build todo app"
+/A-claude-auto "build todo app"
 # → Intent recognition → auto-routes to /A-plan with confidence scoring
 ```
 

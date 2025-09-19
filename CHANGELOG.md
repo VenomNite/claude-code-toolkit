@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.1.1] - 2025-09-19
+
+### 🔧 Command Structure and Documentation Updates
+
+### Added
+- **A-claude-auto.md** - Universal command router with intelligent intent recognition
+  - Auto-routing capabilities with confidence scoring
+  - Command auto-execution for high confidence requests
+  - User guidance for ambiguous requests
+- **Community Health Files**
+  - CONTRIBUTING.md with professional guidelines
+  - CODE_OF_CONDUCT.md following industry standards
+  - Issue template system (.github/ISSUE_TEMPLATE/)
+- **Enhanced Documentation Structure**
+  - Cross-reference linking between major documentation files
+  - Navigation headers in USER-GUIDE, CHEAT-SHEET, INSTALLATION
+  - Improved documentation organization
+
+### Changed
+- **claude-toolkit.md** → **A-claude-auto.md** for proper naming convention
+- **Commands Matrix** updated with A-claude-auto as universal entry point
+- **Documentation references** updated across README, CHEAT-SHEET, USER-GUIDE
+- **Testing framework** updated for current command structure
+  - QUICK-TESTS: 17 → 16 tests (removed non-existent A-workflow)
+  - MID-TESTS: Enhanced validation with A-claude-auto coverage
+  - Environment requirements added for Claude Code execution
+
+### Removed
+- **A-workflow command references** from documentation and tests (command not implemented)
+
 ## [2.1.0] - 2025-09-19
 
 ### 🏆 ULTRATHINK DUAL-SCOPE ARCHITECTURE - Professional Installation System

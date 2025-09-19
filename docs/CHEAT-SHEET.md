@@ -8,6 +8,7 @@
 
 | Command | What it does | When to use |
 |---------|--------------|-------------|
+| `A-claude-auto` | Universal router with intent recognition | Auto-route any request to best command |
 | `A-plan` | Generates 3 docs: specs + plan + roadmap | Start project from scratch |
 | `A-ai-code` | Orchestrates M1 agents for development | Multi-agent project coordination |
 | `A-workflow` | Coordinates specialized agents | Complex multi-agent tasks |

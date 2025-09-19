@@ -1,15 +1,18 @@
 # Quick Tests ⚡ (Ultra-Fast, Low Token)
 
-🚨 **CRÍTICO - CLEANUP OBLIGATORIO** 🚨
-**AL FINALIZAR TESTS:**
-1. **DAR RESULTADO POR CHAT:** "✅ 17/17 Pass" o "❌ X/17 Failed: [list]"
-2. **EXPLICAR FALLOS:** Qué falló y cómo solucionarlo
-3. **LIMPIAR TODO:** Eliminar archivos creados CRITICO, revertir cambios hechos por el test.
-4. **RESETEAR CHECKBOXES:** Dejar documento en estado original vacío
+🔧 **ENVIRONMENT REQUIREMENT:**
+Execute commands within Claude Code environment, not bash/terminal.
 
-**Time: 30 seconds TOTAL for all 17 tests | Context: Minimal**
+🚨 **CRITICAL - MANDATORY CLEANUP** 🚨
+**AFTER COMPLETING TESTS:**
+1. **REPORT RESULTS:** "✅ 17/17 Pass" or "❌ X/17 Failed: [list]"
+2. **EXPLAIN FAILURES:** What failed and how to fix it
+3. **CLEAN EVERYTHING:** Delete created files CRITICAL, revert changes made by test.
+4. **RESET CHECKBOXES:** Leave document in original empty state
 
-## A-Commands (11 tests)
+**Time: 5 minutes TOTAL for all 16 tests | Context: Minimal**
+
+## A-Commands (10 tests)
 
 ### A-ai-code
 **Run:** `/A-ai-code --assist "add button"`
@@ -66,10 +69,6 @@
 **Check:** Documentation updated
 **Pass:** ☐
 
-### A-workflow
-**Run:** `/A-workflow "simple task"`
-**Check:** Agent orchestration starts
-**Pass:** ☐
 
 ## B-Commands (5 tests)
 
@@ -101,7 +100,7 @@
 ---
 
 ## Overall Result
-**Passed:** ___/17
+**Passed:** ___/16
 **Status:** ☐ All Good ☐ Issues Found
 
-**🎯 17/17 Pass = Toolkit Perfect | <15/17 = Check Failed Tests**
+**🎯 16/16 Pass = Toolkit Perfect | <14/16 = Check Failed Tests**
