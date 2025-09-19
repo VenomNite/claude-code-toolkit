@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Claude Code Toolkit - User Scope Installation Test
-# ULTRATHINK Testing Framework
+# Testing Framework
 # Tests complete user installation workflow with comprehensive validation
 
 set -euo pipefail

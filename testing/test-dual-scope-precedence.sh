@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Claude Code Toolkit - Dual-Scope Precedence Test
-# ULTRATHINK Testing Framework
+# Testing Framework
 # Tests dual-scope precedence, switching, and conflict resolution
 
 set -euo pipefail

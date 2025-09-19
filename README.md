@@ -1,6 +1,6 @@
 # Claude Code Toolkit - AI-Powered Developer Automation 🚀
 
-**18 Commands + 12 AI Agents | Dual-Scope Installation | Professional Testing Framework**
+**16 Commands + 10 AI Agents | Dual-Scope Installation | Professional Testing Framework**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 [![Python 3.7+](https://img.shields.io/badge/python-3.7+-blue.svg?style=flat-square)](https://www.python.org/downloads/)
@@ -10,14 +10,14 @@
 
 [![Claude Code Extension](https://img.shields.io/badge/Claude%20Code-Extension-blue?style=flat-square)](https://claude.ai/code)
 [![AI Automation Tools](https://img.shields.io/badge/AI-Automation-green?style=flat-square)](https://github.com/Ghenwy/claude-code-toolkit)
-[![18 Commands](https://img.shields.io/badge/Commands-18-brightgreen?style=flat-square)](https://github.com/Ghenwy/claude-code-toolkit#-commands-matrix)
-[![12 AI Agents](https://img.shields.io/badge/AI%20Agents-12-orange?style=flat-square)](https://github.com/Ghenwy/claude-code-toolkit#-agents-matrix)
+[![16 Commands](https://img.shields.io/badge/Commands-16-brightgreen?style=flat-square)](https://github.com/Ghenwy/claude-code-toolkit#-commands-matrix)
+[![10 AI Agents](https://img.shields.io/badge/AI%20Agents-10-orange?style=flat-square)](https://github.com/Ghenwy/claude-code-toolkit#-agents-matrix)
 [![Dual-Scope Install](https://img.shields.io/badge/Install-User%2FGlobal-purple?style=flat-square)](https://github.com/Ghenwy/claude-code-toolkit#-installation)
 [![Testing Framework](https://img.shields.io/badge/Testing-45%2B%20Tests-red?style=flat-square)](https://github.com/Ghenwy/claude-code-toolkit/tree/main/testing)
 [![Developer Productivity](https://img.shields.io/badge/Productivity-Enhanced-yellow?style=flat-square)](https://github.com/Ghenwy/claude-code-toolkit)
 
 > **🎯 Supercharge your development workflow with AI automation**
-> Complete toolkit with **18 specialized commands** and **12 intelligent agents** for automated project planning, code orchestration, quality assurance, and developer productivity. Works seamlessly with Claude AI and Claude Code.
+> Complete toolkit with **16 specialized commands** and **10 intelligent agents** for automated project planning, code orchestration, quality assurance, and developer productivity. Works seamlessly with Claude AI and Claude Code.
 
 ```mermaid
 graph LR
@@ -152,9 +152,7 @@ cd claude-code-toolkit
 | **M1-technical-research-analyst** | 🔬 Research | Technology validation | Authoritative sources |
 | **M1-human-behavior-simulator** | 👥 UX Testing | User behavior simulation | Authentic patterns |
 | **M1-ux-strategy-protocol** | 🎨 UX Strategy | Design psychology | Strategic approach |
-| **M1-game-design-architect** | 🎮 Game Development | Mechanics, monetization | Mathematical models |
-| **M1-unity-game-developer** | 🎮 Unity Development | C# scripting, optimization | Cross-platform expert |
-| **M1-2d-game-asset-optimizer** | 🎨 Game Assets | Sprites, animations, VFX | Performance optimization |
+| **M1-game-development-architect** | 🎮 Game Development | Complete game dev pipeline | Design + Unity + Assets |
 
 ## 🔄 Workflow
 
@@ -206,7 +204,7 @@ Real-time monitoring with advanced metrics:
 {
   "statusLine": {
     "type": "command",
-    "command": "python3 ~/.claude/scripts/context-monitor.py"
+    "command": "python3 ~/.claude/scripts/context-monitor-generic.py"
   }
 }
 ```

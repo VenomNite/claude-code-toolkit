@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Claude Code Toolkit - Global Scope Installation Test
-# ULTRATHINK Testing Framework
+# Testing Framework
 # Tests global installation logic, permissions, and precedence
 
 set -euo pipefail

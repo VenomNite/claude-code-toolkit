@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Claude Code Toolkit - Dual-Scope Installation Script
-# Version: 2.1.0 - ULTRATHINK ARCHITECTURE
+# Version: 2.1.0 - Dual-Scope Architecture
 # Supports both user (~/.claude/) and global (/usr/local/share/claude/) installation
 
 set -euo pipefail  # Exit on error, undefined vars, pipe failures
@@ -46,7 +46,7 @@ print_header() {
     echo -e "${BLUE}${BOLD}"
     echo "╔══════════════════════════════════════════════════════════════╗"
     echo "║              Claude Code Toolkit Installer v${VERSION}               ║"
-    echo "║                    ULTRATHINK ARCHITECTURE                   ║"
+    echo "║                    Dual-Scope Architecture                   ║"
     echo "╚══════════════════════════════════════════════════════════════╝"
     echo -e "${NC}"
 }
@@ -116,7 +116,7 @@ EOF
 
 print_version() {
     echo "${TOOLKIT_NAME} Installer v${VERSION}"
-    echo "ULTRATHINK Architecture - Dual-scope installation system"
+    echo "Dual-scope installation system"
 }
 
 # ============================================================================
