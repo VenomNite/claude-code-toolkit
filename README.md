@@ -13,7 +13,7 @@
 [![16 Commands](https://img.shields.io/badge/Commands-16-brightgreen?style=for-the-badge)](https://github.com/Ghenwy/claude-code-toolkit#-commands-matrix)
 [![10 AI Agents](https://img.shields.io/badge/AI%20Agents-10-orange?style=for-the-badge)](https://github.com/Ghenwy/claude-code-toolkit#-agents-matrix)
 
-[![Testing Framework](https://img.shields.io/badge/Testing-45%2B%20Tests-red?style=for-the-badge)](https://github.com/Ghenwy/claude-code-toolkit/tree/main/testing)
+[![Testing Framework](https://img.shields.io/badge/Testing-45%2B%20Tests-red?style=for-the-badge)](https://github.com/Ghenwy/claude-code-toolkit/tree/main/test)
 [![Active Development](https://img.shields.io/maintenance/yes/2025?style=for-the-badge)](https://github.com/Ghenwy/claude-code-toolkit/graphs/commit-activity)
 
 ---
@@ -374,14 +374,15 @@ cd testing/
 - **[install.sh](install.sh)**: Professional installer with dual-scope support
 
 ### ⚡ **Testing & Validation**
-- **[Testing Framework](testing/)**: Professional testing suite with 45+ comprehensive tests
-- **[QUICK-TESTS.md](testing/QUICK-TESTS.md)**: 30-second validation system for all 18 commands
+- **[Testing Framework](test/)**: Professional testing suite with 45+ comprehensive tests
+- **[QUICK-TESTS.md](test/QUICK-TESTS.md)**: 30-second validation system for all 16 commands
+- **[MID-TESTS.md](test/MID-TESTS.md)**: Comprehensive validation with detailed criteria
 - **[STANDARDS/](standards/)**: 13 YAML files with technology-specific coding standards
 
 ### 🎯 **Progressive Learning Path**
 1. **Beginner**: Start with [CHEAT-SHEET.md](docs/CHEAT-SHEET.md) for quick command overview
 2. **Intermediate**: Follow [USER-GUIDE.md](docs/USER-GUIDE.md) for detailed workflows
-3. **Advanced**: Use individual commands directly or `/claude-toolkit` universal router
+3. **Advanced**: Use individual commands directly or `/A-claude-auto` universal router
 
 ---
 
