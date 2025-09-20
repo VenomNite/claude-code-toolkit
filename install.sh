@@ -11,7 +11,7 @@ set -euo pipefail  # Exit on error, undefined vars, pipe failures
 # ============================================================================
 
 # Version and metadata
-readonly VERSION="2.1.0"
+readonly VERSION="2.2.0"
 readonly SCRIPT_NAME="$(basename "$0")"
 readonly TOOLKIT_NAME="Claude Code Toolkit"
 
@@ -396,8 +396,8 @@ install_agents() {
 install_scripts() {
     print_info "Installing monitoring scripts..."
 
-    if [[ ! -d "scripts" ]]; then
-        print_warning "Scripts directory not found, skipping"
+    if [[ ! -d "statusbar" ]]; then
+        print_warning "Statusbar directory not found, skipping"
         return 0
     fi
 
@@ -407,10 +407,10 @@ install_scripts() {
     fi
 
     if [[ "$INSTALL_SCOPE" == "global" && "$REQUIRES_SUDO" == true ]]; then
-        sudo cp scripts/*.py "$CLAUDE_DIR/scripts/" 2>/dev/null || true
+        sudo cp statusbar/*.py "$CLAUDE_DIR/scripts/" 2>/dev/null || true
         sudo chmod 755 "$CLAUDE_DIR/scripts"/*.py
     else
-        cp scripts/*.py "$CLAUDE_DIR/scripts/" 2>/dev/null || true
+        cp statusbar/*.py "$CLAUDE_DIR/scripts/" 2>/dev/null || true
         chmod +x "$CLAUDE_DIR/scripts"/*.py 2>/dev/null || true
     fi
 
