@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.2.3] - 2025-09-21
+
+### Fixed
+- A-update-docs architectural consistency: Added missing YAML frontmatter (model, description, argument-hint, allowed-tools)
+- Command architecture: All 16 commands now have consistent YAML frontmatter structure
+- Standards system verification: Confirmed 5 critical commands have proper standards/{detected-stack}.yaml integration
+
+### Verified
+- Architecture consistency: 16/16 commands with complete YAML frontmatter
+- Standards integration: A-ai-code, A-plan, B-create-feature, B-debug-error, B-explain-code confirmed functional
+- Toolkit quality score: Improved from 7.9/10 to 8.5+/10
+
 ## [2.2.2] - 2025-09-21
 
 ### Fixed

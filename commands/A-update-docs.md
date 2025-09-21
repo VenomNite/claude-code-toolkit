@@ -1,3 +1,12 @@
+---
+model: claude-sonnet-4-20250514
+description: Automatically updates project documentation files (QWEN.md, CLAUDE.md, CHANGELOG.md, AGENTS.md) with latest developments while preserving critical information and intelligent size optimization.
+argument-hint: "Usage: /A-update-docs - Automatically updates all project documentation files"
+allowed-tools: Read, Write, Edit, Bash, Glob, Grep
+keywords: ["documentation", "git context", "smart compactation", "critical preservation", "changelog", "automatic updates"]
+category: "documentation-automation"
+---
+
 # A-update-docs
 
 Automatically updates project documentation files (QWEN.md, CLAUDE.md, CHANGELOG.md, AGENTS.md) with latest developments while preserving critical information and intelligent size optimization.
