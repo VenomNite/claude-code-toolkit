@@ -1,7 +1,7 @@
 ---
 argument-hint: [version] | [entry-type] [description] | [--commit] [mensaje] [--amend] [--no-push]
 description: Generate and maintain project changelog with integrated commit functionality (formerly A-commit)
-model: sonnet
+model: claude-sonnet-4-20250514
 ---
 
 # Add Changelog Entry

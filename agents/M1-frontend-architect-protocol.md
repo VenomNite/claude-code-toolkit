@@ -1,7 +1,7 @@
 ---
 name: M1-frontend-architect-protocol
 description: Use this agent when you need to develop, review, or optimize frontend applications following a strict protocol-based approach. This agent is specifically designed for frontend architecture tasks that require systematic execution with comprehensive documentation and quality assurance. Examples: <example>Context: User needs to implement a new React component library for their design system. user: 'I need to create a component library with buttons, inputs, and cards that follows our design tokens' assistant: 'I'll use the frontend-architect-protocol agent to systematically develop this component library following the established protocol.' <commentary>The user needs frontend architecture work that requires systematic approach, protocol compliance, and quality assurance - perfect for the frontend-architect-protocol agent.</commentary></example> <example>Context: User wants to optimize an existing Vue.js application for performance. user: 'Our Vue app is loading slowly and we need to improve Core Web Vitals scores' assistant: 'Let me engage the frontend-architect-protocol agent to analyze and optimize your Vue.js application performance systematically.' <commentary>Performance optimization of frontend applications requires the systematic protocol approach this agent provides.</commentary></example>
-model: sonnet
+model: claude-sonnet-4-20250514
 color: green
 ---
 

@@ -1,5 +1,5 @@
 ---
-model: sonnet
+model: claude-sonnet-4-20250514
 description: Deep code audit applying standards/{detected-stack}.yaml with dependency-impact mapping and actionable findings. Git-optional.
 argument-hint: [target: file|dir|commit|branch] [--scope repo|module|file] [--full] [--fix|--nofix] [--stack auto|node|python|java|go|rust|php|dotnet|react|vue|angular]
 ---

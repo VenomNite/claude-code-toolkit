@@ -185,7 +185,7 @@ The ULTRATHINK dual-scope installation system is PRODUCTION READY.
 ls install.sh commands/ agents/  # Should all exist
 
 # Verify test script permissions
-chmod +x testing/*.sh
+chmod +x test/*.sh
 
 # Check system dependencies
 python3 --version  # Should be 3.7+
@@ -196,7 +196,7 @@ python3 --version  # Should be 3.7+
 # Tests run in user space and don't require sudo
 # If you see permission errors, check:
 whoami  # Should not be root
-ls -la testing/  # Scripts should be executable
+ls -la test/  # Scripts should be executable
 ```
 
 #### Python Dependency Errors
@@ -228,8 +228,8 @@ ps aux | grep test  # Check for stuck test processes
 ## 🎯 Test Coverage
 
 ### Installation Components
-- ✅ **Commands**: 18 files validation (`A-*.md`, `B-*.md`, `claude-toolkit.md`)
-- ✅ **Agents**: 12 files validation (`M1-*.md`)
+- ✅ **Commands**: 16 files validation (`A-*.md`, `B-*.md`)
+- ✅ **Agents**: 10 files validation (`M1-*.md`)
 - ✅ **Scripts**: 1 monitoring script (`context_monitor_generic.py`)
 - ✅ **Settings**: JSON configuration validation
 
@@ -272,7 +272,7 @@ jobs:
       - name: Install dependencies
         run: pip3 install psutil
       - name: Run test suite
-        run: ./testing/run-all-tests.sh
+        run: ./test/run-all-tests.sh
       - name: Upload test reports
         uses: actions/upload-artifact@v3
         if: always()
@@ -288,7 +288,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                sh './testing/run-all-tests.sh'
+                sh './test/run-all-tests.sh'
             }
             post {
                 always {
@@ -343,7 +343,7 @@ pipeline {
 ## 🤝 Contributing
 
 ### Adding New Tests
-1. Create test script in `testing/` directory
+1. Create test script in `test/` directory
 2. Follow naming convention: `test-feature-name.sh`
 3. Include comprehensive assertions and cleanup
 4. Add to master test runner

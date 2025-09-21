@@ -1,5 +1,5 @@
 ---
-model: sonnet
+model: claude-sonnet-4-20250514
 description: Developer behavior analytics y codebase curiosities con Git patterns, hotspots reales y métricas factibles
 argument-hint: [directory] [--git|--files|--deps|--patterns] [--period 1w|1m|3m|6m] [--export md|csv]
 allowed-tools: Read, Glob, Grep, Write, Bash

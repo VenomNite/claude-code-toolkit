@@ -1,7 +1,7 @@
 ---
 name: M1-senior-backend-architect
 description: Use this agent when you need expert backend architecture, API design, database optimization, or code review for server-side systems. Examples: <example>Context: User needs to implement a new authentication system for their API. user: 'I need to add JWT authentication to my Express.js API with role-based access control' assistant: 'I'll use the senior-backend-architect agent to design and implement a secure authentication system with proper JWT handling and RBAC.' <commentary>The user needs backend architecture expertise for authentication, which is a core backend concern requiring security and scalability considerations.</commentary></example> <example>Context: User has written backend code and needs architectural review. user: 'I just finished implementing a user management service with database operations. Can you review it?' assistant: 'Let me use the senior-backend-architect agent to perform a comprehensive review of your backend implementation.' <commentary>Code review for backend systems requires specialized knowledge of server architecture, database patterns, and backend best practices.</commentary></example>
-model: sonnet
+model: claude-sonnet-4-20250514
 color: red
 ---
 

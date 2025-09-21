@@ -25,8 +25,8 @@ readonly NC='\033[0m' # No Color
 
 # Test configuration
 readonly TEST_CLAUDE_DIR="$HOME/.claude-test-backup-$(date +%s)"
-readonly EXPECTED_COMMANDS=18
-readonly EXPECTED_AGENTS=12
+readonly EXPECTED_COMMANDS=16
+readonly EXPECTED_AGENTS=10
 readonly EXPECTED_SCRIPTS=1
 
 # Test state

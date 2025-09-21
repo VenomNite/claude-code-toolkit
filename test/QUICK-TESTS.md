@@ -5,7 +5,7 @@ Execute commands within Claude Code environment, not bash/terminal.
 
 🚨 **CRITICAL - MANDATORY CLEANUP** 🚨
 **AFTER COMPLETING TESTS:**
-1. **REPORT RESULTS:** "✅ 17/17 Pass" or "❌ X/17 Failed: [list]"
+1. **REPORT RESULTS:** "✅ 16/16 Pass" or "❌ X/16 Failed: [list]"
 2. **EXPLAIN FAILURES:** What failed and how to fix it
 3. **CLEAN EVERYTHING:** Delete created files CRITICAL, revert changes made by test.
 4. **RESET CHECKBOXES:** Leave document in original empty state

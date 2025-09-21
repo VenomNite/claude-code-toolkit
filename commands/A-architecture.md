@@ -1,5 +1,5 @@
 ---
-model: sonnet
+model: claude-sonnet-4-20250514
 description: Genera documentación de arquitectura (diagramas, ADRs, vistas) en formato minimalista
 argument-hint: [--c4|--arc42|--adr|--plantuml|--mermaid] [descripción] [--full]
 ---

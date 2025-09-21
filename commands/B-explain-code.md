@@ -1,5 +1,5 @@
 ---
-model: sonnet
+model: claude-sonnet-4-20250514
 description: Análisis completo de código con auto-detección de lenguaje, diagramas ASCII, output estructurado y matrices de comprensión
 argument-hint: [archivo/código] [--depth surface|deep|expert] [--diagrams ascii|mermaid|both] [--audience dev|senior|junior]
 ---

@@ -1,7 +1,7 @@
 ---
 name: M1-technical-research-analyst
 description: Use this agent when you need comprehensive technical research, validation of information from multiple authoritative sources, investigation of emerging technologies, comparative analysis of technical alternatives, or due diligence for architectural decisions. Examples: <example>Context: User needs to research the best database solution for a high-traffic application. user: 'I need to choose between PostgreSQL, MongoDB, and Redis for my application that handles 100k concurrent users' assistant: 'I'll use the technical-research-analyst agent to conduct comprehensive research on these database options, comparing their performance characteristics, scalability patterns, and suitability for high-concurrency scenarios.'</example> <example>Context: User wants to validate information about a new framework before adoption. user: 'I heard that SvelteKit 2.0 has better performance than Next.js 14, is this accurate?' assistant: 'Let me use the technical-research-analyst agent to investigate and validate these performance claims through authoritative sources and benchmarks.'</example>
-model: sonnet
+model: claude-sonnet-4-20250514
 color: yellow
 ---
 

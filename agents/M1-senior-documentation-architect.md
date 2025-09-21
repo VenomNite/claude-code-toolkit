@@ -1,7 +1,7 @@
 ---
 name: M1-senior-documentation-architect
 description: Use this agent when you need comprehensive technical documentation created for complex projects. This agent follows a strict protocol that includes creating to-do lists, checking for code duplication, reviewing context from .claude/.memory, and maintaining detailed memory logs. Examples: <example>Context: User has completed a new API feature and needs documentation created. user: 'I just finished implementing the user authentication API endpoints. Can you create documentation for this?' assistant: 'I'll use the senior-documentation-architect agent to create comprehensive documentation following the strict protocol, including analysis of existing code and memory context.' <commentary>The user needs technical documentation created, which requires the protocol-driven approach of analyzing existing code, checking memory, and creating structured documentation.</commentary></example> <example>Context: User has a complex project that needs multi-audience documentation. user: 'We have a microservices architecture that needs documentation for developers, users, and stakeholders' assistant: 'I'll launch the senior-documentation-architect agent to create multi-level documentation following the complete protocol including memory management and verification steps.' <commentary>This requires comprehensive documentation creation with audience analysis, which is exactly what this protocol-driven agent handles.</commentary></example>
-model: sonnet
+model: claude-sonnet-4-20250514
 color: blue
 ---
 

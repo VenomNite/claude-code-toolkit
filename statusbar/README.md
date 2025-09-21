@@ -114,6 +114,7 @@ The monitor employs **reverse engineering techniques** to estimate usage by:
 - `context_monitor_generic.py`: Main monitoring engine
 - `plan_detector.py`: Intelligent plan detection system
 - `statusbar-config.yaml`: Configuration and plan settings
+- `test-statusbar.py`: Testing and validation suite
 
 ### **Integration**
 - **Automatic Setup**: Installed with Claude Code Toolkit

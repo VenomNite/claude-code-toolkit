@@ -12,6 +12,7 @@
 [![Claude AI Compatible](https://img.shields.io/badge/Claude%20AI-Compatible-orange?style=for-the-badge&logo=anthropic)](https://claude.ai)
 [![16 Commands](https://img.shields.io/badge/Commands-16-brightgreen?style=for-the-badge)](https://github.com/Ghenwy/claude-code-toolkit#-commands-matrix)
 [![10 AI Agents](https://img.shields.io/badge/AI%20Agents-10-orange?style=for-the-badge)](https://github.com/Ghenwy/claude-code-toolkit#-agents-matrix)
+[![All Functional](https://img.shields.io/badge/Status-All%20Functional-brightgreen?style=for-the-badge)](https://github.com/Ghenwy/claude-code-toolkit)
 
 [![Testing Framework](https://img.shields.io/badge/Testing-45%2B%20Tests-red?style=for-the-badge)](https://github.com/Ghenwy/claude-code-toolkit/tree/main/test)
 [![Active Development](https://img.shields.io/maintenance/yes/2025?style=for-the-badge)](https://github.com/Ghenwy/claude-code-toolkit/graphs/commit-activity)
@@ -139,6 +140,15 @@ sudo ./install.sh --global
 ./install.sh --dry-run
 ```
 
+### 🔧 Manual Installation
+```bash
+git clone https://github.com/Ghenwy/claude-code-toolkit.git
+cd claude-code-toolkit
+cp commands/* ~/.claude/commands/
+cp agents/* ~/.claude/agents/
+cp statusbar/* ~/.claude/scripts/
+```
+
 **What gets installed:** 16 commands + 10 agents + 1 monitoring script + comprehensive testing framework
 
 ---
@@ -172,7 +182,7 @@ sudo ./install.sh --global
 | Agent | Specialty | Use Cases | Expertise Level |
 |-------|-----------|-----------|-----------------|
 | **M1-qa-gatekeeper** | 🛡️ Quality Assurance | Pre-production validation | Zero-tolerance standards |
-| **m1-ultrathink-orchestrator** | 🧠 AI Orchestration | Multi-AI coordination | Supreme director |
+| **M1-ultrathink-orchestrator** | 🧠 AI Orchestration | Multi-AI coordination | Supreme director |
 | **M1-general-purpose-agent** | 🎯 General Development | Multi-step tasks | Versatile problem solver |
 | **M1-senior-backend-architect** | ⚙️ Backend Systems | API design, architecture | 10+ years experience |
 | **M1-frontend-architect-protocol** | 🎨 Frontend Systems | UI architecture, performance | Protocol-driven |
@@ -191,33 +201,6 @@ sudo ./install.sh --global
 **Analytics & Discovery:** `/A-insights` reveals team patterns and codebase curiosities, `/A-onboarding` generates setup guides from project analysis
 
 **Supporting Tools:** `/B-HealthCheck` monitors AI tools, `/A-update-docs` maintains documentation throughout the process.
-
-## ⚙️ Installation
-
-### 🤖 **Claude Code Auto-Install** (Recommended)
-
-> **Let Claude Code handle everything for you**
-
-Simply tell your Claude Code:
-```
-"Read AUTO-INSTALL.md and perform the complete automatic installation"
-```
-
-Claude Code will automatically execute all 10 installation steps, including dependency management, backups, and configuration.
-
-### ⚡ Quick Install (Human Users)
-```bash
-curl -sSL https://raw.githubusercontent.com/Ghenwy/claude-code-toolkit/main/install.sh | bash
-```
-
-### 🔧 Manual Installation
-```bash
-git clone https://github.com/Ghenwy/claude-code-toolkit.git
-cd claude-code-toolkit
-cp commands/* ~/.claude/commands/
-cp agents/* ~/.claude/agents/
-cp scripts/* ~/.claude/scripts/
-```
 
 ## 📊 Status Line Integration
 
@@ -255,9 +238,9 @@ Real-time monitoring with advanced metrics:
 - **Performance Metrics**: Response time and reliability tracking
 
 ### 🛡️ **Quality Assurance**
-- **Zero-Tolerance Standards**: 90% test coverage minimum
-- **Security Compliance**: OWASP validation
-- **Performance SLAs**: Real load testing
+- **Zero-Tolerance Standards**: 90% test coverage minimum (when tests exist in project)
+- **Security Compliance**: OWASP validation (requires existing security config/tests)
+- **Performance SLAs**: Real load testing (when performance tests configured)
 
 ### 📋 **Intelligent Standards System**
 - **13 YAML Standards**: Technology-specific coding standards and best practices
@@ -267,7 +250,7 @@ Real-time monitoring with advanced metrics:
 
 ### 🎯 **Learning Curve Solutions**
 - **Progressive Disclosure**: CHEAT-SHEET.md (beginner) → USER-GUIDE.md (intermediate) → individual commands (advanced)
-- **Universal Router**: `claude-toolkit.md` with intent recognition and confidence scoring
+- **Universal Router**: `A-claude-auto.md` with intent recognition and confidence scoring
 - **Smart Defaults**: Context-aware depth control and audience-appropriate explanations
 
 ### 🔍 **Auto-Discovery Capabilities**
@@ -280,7 +263,7 @@ Real-time monitoring with advanced metrics:
 - **3 Test Suites**: User scope, global scope, and precedence testing
 - **QUICK-TESTS.md**: 30-second validation system for all 16 commands
 - **CI/CD Ready**: GitHub Actions and Jenkins integration examples
-- **100% Coverage**: Every command validated and verified functional
+- **100% Command Validation**: Every command tested and verified functional
 
 ## 💡 Usage Examples - Real Developer Workflows
 
@@ -332,7 +315,7 @@ The toolkit includes a comprehensive testing system for quality assurance:
 
 ### Test Suites Available
 ```bash
-cd testing/
+cd test/
 
 # Complete validation (2-4 minutes)
 ./run-all-tests.sh
@@ -393,7 +376,7 @@ cd testing/
 - 💭 **[GitHub Discussions](https://github.com/Ghenwy/claude-code-toolkit/discussions)** - Ask questions, share ideas, showcase your automation workflows
 - 🐛 **[Issues](https://github.com/Ghenwy/claude-code-toolkit/issues)** - Report bugs, request features, and technical support
 - 📚 **[Documentation](docs/)** - Complete guides, API reference, and best practices
-- 🌟 **[Examples](examples/)** - Real-world use cases and automation patterns
+- 🌟 **[Test Cases](test/)** - Testing framework and validation examples
 
 ### 🚀 **Show Your Support**
 

@@ -506,7 +506,7 @@ verify_installation() {
         "commands/A-plan.md"
         "commands/A-ai-code.md"
         "agents/M1-qa-gatekeeper.md"
-        "agents/m1-ultrathink-orchestrator.md"
+        "agents/M1-ultrathink-orchestrator.md"
         "scripts/context_monitor_generic.py"
     )
 

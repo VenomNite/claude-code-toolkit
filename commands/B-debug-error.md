@@ -1,5 +1,5 @@
 ---
-model: sonnet
+model: claude-sonnet-4-20250514
 description: Debug sistemático con logs estructurados, matrices de análisis y forensic mode para resolución avanzada de errores
 argument-hint: [error/problema] [--forensic deep|surface] [--logs structured|timeline] [--stack auto|detect]
 ---

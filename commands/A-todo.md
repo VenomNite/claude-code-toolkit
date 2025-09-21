@@ -1,5 +1,5 @@
 ---
-model: sonnet
+model: claude-sonnet-4-20250514
 description: Advanced Productivity Augmenter - Comprehensive productivity system with smart prioritization, workflows, and insights
 argument-hint: [add|complete|list|prioritize|energy|timeblock|workflow|insights|habits|focus|review|import|due|remove|undo] [texto] [--scope] [--priority] [--energy] [--due] [--n]
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]

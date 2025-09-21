@@ -1,5 +1,5 @@
 ---
-model: sonnet
+model: claude-sonnet-4-20250514
 description: Scaffolding avanzado de features con auto-detección de arquitectura, templates inteligentes y matrices de planificación estructurada
 argument-hint: [feature-name] [--type api|ui|fullstack|service] [--arch auto|detect] [--scaffold basic|advanced|enterprise]
 allowed-tools: Read, Write, Edit, Bash, Glob

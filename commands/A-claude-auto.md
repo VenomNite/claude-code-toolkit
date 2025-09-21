@@ -1,5 +1,5 @@
 ---
-model: sonnet
+model: claude-sonnet-4-20250514
 description: Universal command router with intelligent intent recognition. Analyzes user requests and automatically executes the most appropriate toolkit command.
 argument-hint: "Tell me what you want to do: 'build todo app', 'fix this error', 'explain code', etc."
 allowed-tools: Task, Read, Write, Edit, Bash, Glob, Grep

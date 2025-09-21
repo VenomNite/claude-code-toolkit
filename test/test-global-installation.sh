@@ -26,7 +26,7 @@ readonly NC='\033[0m' # No Color
 # Test configuration - using temp directory to simulate global
 readonly MOCK_GLOBAL_DIR="/tmp/test-global-claude-$(date +%s)"
 readonly TEST_USER_DIR="$HOME/.claude-test-$(date +%s)"
-readonly EXPECTED_COMMANDS=18
+readonly EXPECTED_COMMANDS=16
 readonly EXPECTED_AGENTS=12
 readonly EXPECTED_SCRIPTS=1
 
@@ -405,7 +405,7 @@ COMMANDS_COUNT=$(ls "$MOCK_GLOBAL_DIR/commands"/*.md 2>/dev/null | wc -l)
 AGENTS_COUNT=$(ls "$MOCK_GLOBAL_DIR/agents"/*.md 2>/dev/null | wc -l)
 SCRIPTS_COUNT=$(ls "$MOCK_GLOBAL_DIR/scripts"/*.py 2>/dev/null | wc -l)
 
-echo "Global Commands: $COMMANDS_COUNT/18"
+echo "Global Commands: $COMMANDS_COUNT/16"
 echo "Global Agents: $AGENTS_COUNT/12"
 echo "Global Scripts: $SCRIPTS_COUNT"
 

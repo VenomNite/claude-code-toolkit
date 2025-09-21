@@ -1,5 +1,5 @@
 ---
-model: sonnet
+model: claude-sonnet-4-20250514
 description: Auto-organización inteligente con preservación total de dependencias/imports/exports/rutas. Predict-issues y full-restructure.
 argument-hint: [--scan|--apply|--predict-issues|--full-restructure] [--scope project|module|dir] [--stack auto|react|node|python|java] [--horizon 1d|1w|2w|1m|3m|6m|1y]
 ---
@@ -15,15 +15,32 @@ Reorganización inteligente con preservación total de dependencias aplicando st
 - Git activity: !`git log --oneline --since="3 months" --name-only | sort | uniq -c | sort -nr | head -10`
 - Standards loading: Load standards/{detected-stack}.yaml || standards/general.yaml as fallback
 
-## Modes & Workflow
+## Modes & Workflow (SAFETY FIRST)
+
+### **Default Safe Mode (Recommended)**
+1. **Default behavior**: `--dry-run` automático (no cambios sin confirmar)
+2. **Scan + Diff Preview** → Análisis completo + preview de cambios
+3. **Manual Confirmation** → Usuario debe confirmar explícitamente
+4. **Apply with Backup** → Ejecuta con backup automático
 
 ### **Standard Workflow**
-1. `--scan` → Análisis y matrices, sin cambios
-2. Review manual del plan generado
-3. `--apply` → Ejecuta reorganización con dependency preservation
+```bash
+/A-organize                    # DEFAULT: dry-run + diff preview
+# → Shows matrices + diff preview + requires confirmation
+# → "Continue with reorganization? [y/N]"
 
-### **Direct Modes**
-- `--apply`: Scan interno + apply en una pasada (si confías)
+/A-organize --apply            # Skip dry-run, direct application
+# → "WARNING: Direct apply mode. Create backup? [Y/n]"
+# → "Show diff preview? [Y/n]"
+# → Ejecuta con confirmación
+```
+
+### **Safety Override Modes**
+- `--apply`: Skip dry-run, pero aún requiere confirmación + diff preview
+- `--force`: Skip ALL safety (backup + confirmación + diff) - DANGEROUS
+- `--quiet`: Minimal output, pero conserva safety prompts
+
+### **Analysis Modes**
 - `--predict-issues --horizon [1d|1w|2w|1m|3m|6m|1y]`: Solo predicción (default: 1m)
 - `--full-restructure`: Reestructuración completa siguiendo best practices
 
@@ -36,12 +53,16 @@ Reorganización inteligente con preservación total de dependencias aplicando st
    - Asset references (images, styles, configs)  
    - Dynamic imports/requires detection
 
-2. **Safe Reorganization**:
-   - Move files to new structure
+2. **Safe Reorganization with Safety Gates**:
+   - **Pre-Move Backup**: Automatic backup to `Claude/backup/organize-${timestamp}/`
+   - **Diff Preview**: Show exactly what will change (paths, imports, references)
+   - **User Confirmation**: "Continue with these changes? [y/N]"
+   - **Move files to new structure** (only after confirmation)
    - **Auto-update ALL import paths** (preserve relative/absolute)
    - **Preserve export/import naming exactly**
-   - Update asset references, config paths
-   - Validate no broken imports post-move
+   - **Update asset references, config paths**
+   - **Post-move validation**: Syntax check + broken import detection
+   - **Rollback capability**: "Revert changes? Backup available at [path]"
 
 ### **Predict Issues** (por horizon)
 - **1d-1w**: Growth pattern analysis → immediate bottlenecks
@@ -60,8 +81,12 @@ Reorganización inteligente con preservación total de dependencias aplicando st
 | Archivo | Imports From | Exports To | Asset Refs | Path Type |
 |---|---|---|---|---|
 
-**Matriz de Reorganización**
-| Archivo | Ubicación Actual | Nueva Ubicación | Imports Updated | Status |
+**Matriz de Reorganización (Diff Preview)**
+| Archivo | Ubicación Actual | Nueva Ubicación | Imports Updated | Risk Level | Backup Status |
+|---|---|---|---|---|---|
+
+**Matriz de Safety Validation**
+| Check | Status | Details | Action Required | Rollback Available |
 |---|---|---|---|---|
 
 **Matriz de Predicción** (predict-issues)
@@ -93,14 +118,25 @@ Reorganización inteligente con preservación total de dependencias aplicando st
 
 ## Examples
 
-### **Standard Workflow**
+### **Safe Workflow Examples**
 ```bash
-/A-organize --scan
-# → Análisis completo, matrices generadas
-# Review manual del plan
+# DEFAULT SAFE MODE (Recommended)
+/A-organize
+# → Shows dependency matrix
+# → Shows diff preview: "components/Header.js → features/ui/Header.js"
+# → Shows impact: "3 imports will be updated in App.js, Layout.js, index.js"
+# → Asks: "Continue with reorganization? [y/N]"
+# → Creates backup before proceeding
 
-/A-organize --apply  
-# → Ejecuta el plan, preserva dependencias
+# DIRECT APPLICATION (with safety prompts)
+/A-organize --apply
+# → "WARNING: Direct apply mode. Create backup? [Y/n]"
+# → "Show diff preview? [Y/n]"
+# → "Continue with 14 file moves and 23 import updates? [y/N]"
+
+# DANGEROUS MODE (not recommended)
+/A-organize --force
+# → "DANGER: No safety checks. Backup recommended. Continue? [y/N]"
 ```
 
 ### **Predict Issues**
@@ -118,11 +154,14 @@ Reorganización inteligente con preservación total de dependencias aplicando st
 # → "147 archivos reorganizados, estructura enterprise-ready"
 ```
 
-## DoD
+## DoD (Safety-First Definition of Done)
+- **Safety gates passed**: Backup created, diff previewed, user confirmed
 - Stack detectado y standards/{detected-stack}.yaml rules cargadas
-- Dependency map completo pre-move
+- Dependency map completo pre-move con risk assessment
+- **Diff preview shown**: Usuario ve exactamente qué cambiará antes de aplicar
+- **User confirmation**: Explicit "yes" required para cambios destructivos
 - ALL imports/exports/paths actualizados correctamente
-- Post-reorganization validation passed (no broken imports)  
-- Backup created antes de cambios
-- Matrices generadas con validation status
-- Plan ejecutable o ejecutado según mode
+- Post-reorganization validation passed (no broken imports)
+- **Rollback capability**: Backup disponible con instrucciones de restore
+- Matrices generadas con safety validation status
+- Error handling: Failed moves revert automatically

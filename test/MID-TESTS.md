@@ -6,7 +6,7 @@ Copy-paste each command into Claude Code, do not run from bash/terminal.
 
 🚨 **CRITICAL - ADVANCED CLEANUP** 🚨
 **AFTER COMPLETING TESTS:**
-1. **REPORT RESULTS:** "✅ X/17 Pass" or "❌ Failed: [detailed list]"
+1. **REPORT RESULTS:** "✅ X/16 Pass" or "❌ Failed: [detailed list]"
 2. **EXPLAIN FAILURES:** What failed specifically and why
 3. **CLEAN EVERYTHING:** Delete created files CRITICAL, revert changes made by test.
 4. **VALIDATE CLEANUP:** Verify that test artifacts were removed
@@ -305,11 +305,11 @@ Copy-paste each command into Claude Code, do not run from bash/terminal.
 ---
 
 ## Overall Result
-**Passed:** ___/18
-**Status:** ☐ Excellent (18/18) ☐ Good (16-17/18) ☐ Issues Found (<16/18)
+**Passed:** ___/16
+**Status:** ☐ Excellent (16/16) ☐ Good (14-15/16) ☐ Issues Found (<14/16)
 
 **🎯 Scoring:**
-- **18/18 = Toolkit Production Ready**
+- **16/16 = Toolkit Production Ready**
 - **16-17/18 = Minor issues, investigate failed tests**
 - **<16/18 = Significant problems, review implementation**
 

@@ -104,8 +104,10 @@ echo "✅ Available scripts: $(ls scripts/*.py | wc -l)"
 # Show installation details
 echo "📂 USER INSTALLATION SUMMARY:"
 echo "==============================="
-echo "Commands: $(ls ~/.claude/commands/*.md 2>/dev/null | wc -l)/16"
-echo "Agents: $(ls ~/.claude/agents/*.md 2>/dev/null | wc -l)/10"
+EXPECTED_COMMANDS=$(ls commands/*.md 2>/dev/null | wc -l)
+echo "Commands: $(ls ~/.claude/commands/*.md 2>/dev/null | wc -l)/$EXPECTED_COMMANDS"
+EXPECTED_AGENTS=$(ls agents/*.md 2>/dev/null | wc -l)
+echo "Agents: $(ls ~/.claude/agents/*.md 2>/dev/null | wc -l)/$EXPECTED_AGENTS"
 echo "Scripts: $(ls ~/.claude/scripts/*.py 2>/dev/null | wc -l)"
 echo "Settings: $(test -f ~/.claude/settings.json && echo "✅ Configured" || echo "❌ Missing")"
 
@@ -115,7 +117,7 @@ echo "🔍 KEY FILES VERIFICATION:"
 [ -f ~/.claude/commands/A-plan.md ] && echo "  ✅ A-plan.md" || echo "  ❌ A-plan.md"
 [ -f ~/.claude/commands/A-ai-code.md ] && echo "  ✅ A-ai-code.md" || echo "  ❌ A-ai-code.md"
 [ -f ~/.claude/agents/M1-qa-gatekeeper.md ] && echo "  ✅ M1-qa-gatekeeper.md" || echo "  ❌ M1-qa-gatekeeper.md"
-[ -f ~/.claude/agents/m1-ultrathink-orchestrator.md ] && echo "  ✅ m1-ultrathink-orchestrator.md" || echo "  ❌ m1-ultrathink-orchestrator.md"
+[ -f ~/.claude/agents/M1-ultrathink-orchestrator.md ] && echo "  ✅ M1-ultrathink-orchestrator.md" || echo "  ❌ M1-ultrathink-orchestrator.md"
 [ -f ~/.claude/scripts/context_monitor_generic.py ] && echo "  ✅ context_monitor_generic.py" || echo "  ❌ context_monitor_generic.py"
 ```
 
@@ -142,8 +144,10 @@ sudo ./install.sh --global --verify --verbose
 # Show installation details
 echo "🌐 GLOBAL INSTALLATION SUMMARY:"
 echo "================================"
-echo "Commands: $(ls /usr/local/share/claude/commands/*.md 2>/dev/null | wc -l)/16"
-echo "Agents: $(ls /usr/local/share/claude/agents/*.md 2>/dev/null | wc -l)/10"
+EXPECTED_COMMANDS=$(ls commands/*.md 2>/dev/null | wc -l)
+echo "Commands: $(ls /usr/local/share/claude/commands/*.md 2>/dev/null | wc -l)/$EXPECTED_COMMANDS"
+EXPECTED_AGENTS=$(ls agents/*.md 2>/dev/null | wc -l)
+echo "Agents: $(ls /usr/local/share/claude/agents/*.md 2>/dev/null | wc -l)/$EXPECTED_AGENTS"
 echo "Scripts: $(ls /usr/local/share/claude/scripts/*.py 2>/dev/null | wc -l)"
 echo "Settings: $(test -f /usr/local/share/claude/config/global-settings.json && echo "✅ Configured" || echo "❌ Missing")"
 
@@ -153,7 +157,7 @@ echo "🔍 GLOBAL KEY FILES VERIFICATION:"
 [ -f /usr/local/share/claude/commands/A-plan.md ] && echo "  ✅ A-plan.md" || echo "  ❌ A-plan.md"
 [ -f /usr/local/share/claude/commands/A-ai-code.md ] && echo "  ✅ A-ai-code.md" || echo "  ❌ A-ai-code.md"
 [ -f /usr/local/share/claude/agents/M1-qa-gatekeeper.md ] && echo "  ✅ M1-qa-gatekeeper.md" || echo "  ❌ M1-qa-gatekeeper.md"
-[ -f /usr/local/share/claude/agents/m1-ultrathink-orchestrator.md ] && echo "  ✅ m1-ultrathink-orchestrator.md" || echo "  ❌ m1-ultrathink-orchestrator.md"
+[ -f /usr/local/share/claude/agents/M1-ultrathink-orchestrator.md ] && echo "  ✅ M1-ultrathink-orchestrator.md" || echo "  ❌ M1-ultrathink-orchestrator.md"
 [ -f /usr/local/share/claude/scripts/context_monitor_generic.py ] && echo "  ✅ context_monitor_generic.py" || echo "  ❌ context_monitor_generic.py"
 ```
 
@@ -184,12 +188,14 @@ GLOBAL_COMMANDS=$(ls /usr/local/share/claude/commands/*.md 2>/dev/null | wc -l)
 GLOBAL_AGENTS=$(ls /usr/local/share/claude/agents/*.md 2>/dev/null | wc -l)
 
 echo "📂 USER SCOPE:"
-echo "  Commands: $USER_COMMANDS/16"
-echo "  Agents: $USER_AGENTS/10"
+EXPECTED_COMMANDS=$(ls commands/*.md 2>/dev/null | wc -l)
+echo "  Commands: $USER_COMMANDS/$EXPECTED_COMMANDS"
+EXPECTED_AGENTS=$(ls agents/*.md 2>/dev/null | wc -l)
+echo "  Agents: $USER_AGENTS/$EXPECTED_AGENTS"
 
 echo "🌐 GLOBAL SCOPE:"
-echo "  Commands: $GLOBAL_COMMANDS/16"
-echo "  Agents: $GLOBAL_AGENTS/10"
+echo "  Commands: $GLOBAL_COMMANDS/$EXPECTED_COMMANDS"
+echo "  Agents: $GLOBAL_AGENTS/$EXPECTED_AGENTS"
 
 # Show effective precedence
 echo ""
@@ -264,7 +270,7 @@ echo "✅ Temporary directory cleaned"
 
 ### 🤖 Specialized Agents (10 total):
 - **M1-qa-gatekeeper** - Zero-tolerance quality control
-- **m1-ultrathink-orchestrator** - Supreme AI tools director
+- **M1-ultrathink-orchestrator** - Supreme AI tools director
 - **M1-general-purpose-agent** - Versatile agent for complex tasks
 - **+ 9 more specialized agents**
 

@@ -1,5 +1,5 @@
 ---
-model: sonnet
+model: claude-sonnet-4-20250514
 description: Análisis profundo multi-perspectiva para resolución de problemas complejos con context detection
 argument-hint: [problema/pregunta] [--depth surface|deep|complete] [--focus analytical|creative|balanced]
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]

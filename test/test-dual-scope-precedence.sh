@@ -27,7 +27,7 @@ readonly NC='\033[0m' # No Color
 readonly MOCK_GLOBAL_DIR="/tmp/test-dual-global-$(date +%s)"
 readonly TEST_USER_DIR="$HOME/.claude"
 readonly BACKUP_DIR="/tmp/test-dual-backup-$(date +%s)"
-readonly EXPECTED_COMMANDS=18
+readonly EXPECTED_COMMANDS=16
 readonly EXPECTED_AGENTS=12
 
 # Test state

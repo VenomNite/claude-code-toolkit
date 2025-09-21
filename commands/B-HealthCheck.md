@@ -1,5 +1,5 @@
 ---
-model: sonnet
+model: claude-sonnet-4-20250514
 description: Monitor de estado para AI tools locales. Ejecuta health check paralelo con validación inteligente y troubleshooting automático.
 argument-hint: "Uso: /B-HealthCheck [--fast|--detailed] [--retry 1|2|3] - Verifica estado de codex, qwen, opencode, gemini"
 allowed-tools: Bash

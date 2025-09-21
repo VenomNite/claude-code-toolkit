@@ -1,5 +1,5 @@
 ---
-model: sonnet
+model: claude-sonnet-4-20250514
 description: AI Project Planning Generator - Comprehensive specifications with gap analysis and adaptive questions. Transforms vague ideas into executable specs, plans and roadmaps for developers.
 argument-hint: "Usage: /A-plan 'project description' [--scope mvp|full] - Generate complete specifications in 3 documents"
 allowed-tools: Read, Glob, Grep, Write

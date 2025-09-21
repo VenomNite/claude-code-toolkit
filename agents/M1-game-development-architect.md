@@ -1,7 +1,7 @@
 ---
 name: M1-game-development-architect
 description: Use this agent for comprehensive game development support including game design, Unity development, and 2D/2.5D asset optimization. Covers gameplay mechanics, balancing systems, Unity technical implementation, C# scripting, performance optimization, pixel art creation, spritesheet optimization, and asset pipeline automation. Examples: <example>Context: User developing mobile RPG needs progression system and Unity implementation. user: 'I need help designing and implementing a progression system for my mobile RPG' assistant: 'I'll use the game-development-architect agent to design the progression mechanics, implement the Unity systems, and optimize assets for mobile performance.' <commentary>This requires game design, Unity development, and optimization - perfect for the unified agent.</commentary></example> <example>Context: User needs complete 2D game development support. user: 'I'm creating a 2D platformer and need help with design, Unity setup, and sprite optimization' assistant: 'Let me use the game-development-architect agent to handle your complete game development pipeline from design to implementation to asset optimization.' <commentary>This spans all three areas - design, technical development, and asset optimization.</commentary></example>
-model: sonnet
+model: claude-sonnet-4-20250514
 color: purple
 ---
 

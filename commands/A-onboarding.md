@@ -1,7 +1,7 @@
 ---
 description: Auto-Discovery Onboarding generator que analiza el código actual y genera guía completa sin asumir documentación previa
 argument-hint: [--role developer|designer|devops|qa] [--depth quick|standard|comprehensive] [--include-examples]
-model: sonnet
+model: claude-sonnet-4-20250514
 allowed-tools: Read, Glob, Grep, Write, Bash
 ---
 

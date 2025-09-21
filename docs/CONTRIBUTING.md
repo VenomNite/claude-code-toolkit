@@ -34,7 +34,7 @@ cp commands/your-command.md ~/.claude/commands/
 cp agents/your-agent.md ~/.claude/agents/
 
 # Run comprehensive testing
-cd testing/
+cd test/
 ./run-all-tests.sh                     # Complete test suite
 ./test-user-installation.sh            # Test user scope installation
 ```
