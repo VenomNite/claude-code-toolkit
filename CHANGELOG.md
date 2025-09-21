@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.2.2] - 2025-09-21
+
+### Fixed
+- Critical case sensitivity issue: m1-ultrathink-orchestrator.md → M1-ultrathink-orchestrator.md (Linux compatibility)
+- Standards file naming: fastApi.yaml → fastapi.yaml, nodeJs.yaml → nodejs.yaml, etc. (cross-platform)
+- CHANGELOG obsolete references: claude-toolkit.md → A-claude-auto.md, testing/ → test/
+- Python version policy defined: 3.8+ support, 3.11+ recommended
+- M1-game-development-architect marked as optional addon
+- ProposedfixList completion: 19/19 items resolved (100%)
+
+### Changed
+- Python dependencies: Added PyYAML requirement with proper installation handling
+- Installer improvements: Better dependency management and scope handling
+- Documentation quality: Removed inconsistencies and broken references
+
 ## [2.2.1] - 2025-09-21
 
 ### 🔧 UX/Behavior Agents Enhancement & Documentation Quality

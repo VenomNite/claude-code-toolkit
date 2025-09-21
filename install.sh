@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Claude Code Toolkit - Dual-Scope Installation Script
-# Version: 2.2.0 - Agent Enhancement Initiative Complete
+# Version: 2.2.2 - ProposedfixList Complete
 # Supports both user (~/.claude/) and global (/usr/local/share/claude/) installation
 
 set -euo pipefail  # Exit on error, undefined vars, pipe failures
@@ -11,7 +11,7 @@ set -euo pipefail  # Exit on error, undefined vars, pipe failures
 # ============================================================================
 
 # Version and metadata
-readonly VERSION="2.2.0"
+readonly VERSION="2.2.2"
 readonly SCRIPT_NAME="$(basename "$0")"
 readonly TOOLKIT_NAME="Claude Code Toolkit"
 
