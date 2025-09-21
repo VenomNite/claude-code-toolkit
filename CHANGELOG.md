@@ -82,7 +82,7 @@ All notable changes to this project will be documented in this file.
   - Improved documentation organization
 
 ### Changed
-- **claude-toolkit.md** → **A-claude-auto.md** for proper naming convention
+- **A-claude-auto.md** introduced for proper naming convention
 - **Commands Matrix** updated with A-claude-auto as universal entry point
 - **Documentation references** updated across README, CHEAT-SHEET, USER-GUIDE
 - **Testing framework** updated for current command structure
@@ -131,7 +131,7 @@ All notable changes to this project will be documented in this file.
 - **📚 Enhanced Documentation**
   - `INSTALLATION.md`: Complete dual-scope installation guide with exhaustive troubleshooting
   - `AUTO-INSTALL.md`: Claude Code-specific dual-scope instructions
-  - `testing/README.md`: Professional testing framework documentation
+  - `test/README.md`: Professional testing framework documentation
   - **Platform-specific guides**: Linux, macOS, Windows WSL coverage
 
 ### Changed
@@ -169,7 +169,7 @@ All notable changes to this project will be documented in this file.
 - **Existing installations**: Automatically detected and preserved
 - **Upgrade path**: `./install.sh --force` for clean reinstallation
 - **Scope migration**: `./install.sh --global` for system-wide deployment
-- **Testing**: `./testing/run-all-tests.sh` for installation validation
+- **Testing**: `./test/run-all-tests.sh` for installation validation
 
 ## [2.0.0] - 2025-09-19
 
@@ -201,7 +201,7 @@ All notable changes to this project will be documented in this file.
 - **Learning Curve Solutions**
   - `CHEAT-SHEET.md`: Ultra-fast reference (beginner level)
   - `USER-GUIDE.md`: Step-by-step workflows (intermediate level)
-  - `claude-toolkit.md`: Universal command router with ULTRATHINK mode
+  - `A-claude-auto.md`: Universal command router with ULTRATHINK mode
   - Intent recognition with 90%+ accuracy and confidence scoring
 
 - **Command Differentiation Features**
