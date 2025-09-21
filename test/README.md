@@ -26,7 +26,7 @@ This testing suite validates the complete dual-scope installation system, ensuri
 - ✅ Installer syntax validation
 - ✅ Help and version flag functionality
 - ✅ Dry run mode (no file creation)
-- ✅ User scope installation (16 commands, 10 agents, 1 script)
+- ✅ User scope installation (16 commands, 10 agents, 2 scripts)
 - ✅ Settings configuration (`~/.claude/settings.json`)
 - ✅ Backup functionality
 - ✅ Installation verification
@@ -146,7 +146,7 @@ The ULTRATHINK dual-scope installation system is PRODUCTION READY.
 ## 🔧 Test Environment
 
 ### Prerequisites
-- **Python 3.7+** (required for dependency testing)
+- **Python 3.8+** (required for dependency testing)
 - **Bash 4.0+** (for advanced shell features)
 - **Git** (recommended for version checking)
 - **timeout command** (optional, for test timeout protection)
@@ -188,7 +188,7 @@ ls install.sh commands/ agents/  # Should all exist
 chmod +x test/*.sh
 
 # Check system dependencies
-python3 --version  # Should be 3.7+
+python3 --version  # Should be 3.8+
 ```
 
 #### Permission Errors
@@ -230,7 +230,7 @@ ps aux | grep test  # Check for stuck test processes
 ### Installation Components
 - ✅ **Commands**: 16 files validation (`A-*.md`, `B-*.md`)
 - ✅ **Agents**: 10 files validation (`M1-*.md`)
-- ✅ **Scripts**: 1 monitoring script (`context_monitor_generic.py`)
+- ✅ **Scripts**: 2 monitoring scripts (`context_monitor_generic.py`, `plan_detector.py`)
 - ✅ **Settings**: JSON configuration validation
 
 ### Installation Scenarios

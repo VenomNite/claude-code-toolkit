@@ -1,34 +1,34 @@
-# Status Bar Monitor 📊
+# Status Bar Monitor 
 ### Real-time Claude Code Usage Tracking
 
 > **Advanced status line integration with intelligent plan detection**
 >
 > Dynamic monitoring system that provides real-time context and cost usage tracking for Claude Code with automatic plan adaptation (Plus/Max x5/Max x20).
 
-[![Python 3.7+](https://img.shields.io/badge/python-3.7+-blue.svg?style=for-the-badge&logo=python)](https://www.python.org/downloads/)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg?style=for-the-badge&logo=python)](https://www.python.org/downloads/)
 [![Real-time](https://img.shields.io/badge/Monitoring-Real--Time-green?style=for-the-badge)](https://github.com/Ghenwy/claude-code-toolkit)
 [![Dynamic Detection](https://img.shields.io/badge/Plan%20Detection-Auto-orange?style=for-the-badge)](https://github.com/Ghenwy/claude-code-toolkit)
 
 ---
 
-## ⚡ Overview
+##  Overview
 
 The Status Bar Monitor provides **real-time visibility** using **reverse engineering techniques** into your Claude Code usage with **intelligent plan detection** that adapts to your subscription tier automatically (Estimated values).
 
 ### Status Line Format
 ```
-📁 project 🌿branch | 🟢 █▁▁▁ ✓43% (86k) | L.R. @ 04:00🕐 C.U. 🟢 ▁▁▁▁ 3% ⌚ 21:12 Sep 2023
+ project branch |   43% (86k) | L.R. @ 04:00 C.U.   3%  21:12 Sep 2023
 ```
 
 **Components:**
-- **📁 Project**: Current directory and Git branch status
-- **🟡 Context**: Usage percentage with confidence indicator
+- ** Project**: Current directory and Git branch status
+- ** Context**: Usage percentage with confidence indicator
 - **L.R. @ time**: Limit Reset time for your session
 - **C.U. percentage**: Cost Usage relative to your plan limits
 
 ---
 
-## 🎯 Key Features
+##  Key Features
 
 ### **Intelligent Plan Detection**
 - **Auto-detects** your Claude subscription (Plus/Max x5/Max x20)
@@ -49,7 +49,7 @@ The Status Bar Monitor provides **real-time visibility** using **reverse enginee
 
 ---
 
-## 🔧 Configuration
+##  Configuration
 
 ### **Automatic Mode (Default)**
 The system automatically detects your plan by analyzing usage patterns with high confidence scoring.
@@ -70,7 +70,7 @@ detection_mode: "manual"   # Switch from "auto" to "manual"
 
 ---
 
-## 📈 How It Works
+##  How It Works
 
 The monitor employs **reverse engineering techniques** to estimate usage by:
 
@@ -88,12 +88,12 @@ The monitor employs **reverse engineering techniques** to estimate usage by:
 
 ---
 
-## ⚠️ Important Disclaimers
+##  Important Disclaimers
 
 ### **Accuracy Notice**
 - **Estimates Only**: All percentages are intelligent estimates, not official Claude metrics
 - **High Accuracy**: Despite sophisticated algorithms, values can deviate from actual usage
-- **Confidence Indicators**: ✓ indicates high confidence, ~ indicates estimation
+- **Confidence Indicators**:  indicates high confidence, ~ indicates estimation
 - **Real-time Limitations**: Brief delays possible due to transcript processing
 
 ### **Not Official Metrics**
@@ -108,7 +108,7 @@ The monitor employs **reverse engineering techniques** to estimate usage by:
 
 ---
 
-## 🔧 Technical Implementation
+##  Technical Implementation
 
 ### **Core Components**
 - `context_monitor_generic.py`: Main monitoring engine
@@ -122,13 +122,13 @@ The monitor employs **reverse engineering techniques** to estimate usage by:
 - **Cross-platform**: Linux, macOS, Windows (WSL) compatible
 
 ### **Dependencies**
-- Python 3.7+ with `yaml` module
+- Python 3.8+ with PyYAML module
 - Access to `~/.claude/` transcript files
 - Git for repository status (optional)
 
 ---
 
-## 🚀 Installation
+##  Installation
 
 Automatically installed with [Claude Code Toolkit](https://github.com/Ghenwy/claude-code-toolkit):
 
@@ -144,7 +144,7 @@ cp statusbar/statusbar-config.yaml ~/.claude/scripts/
 
 ---
 
-## 📖 Troubleshooting
+##  Troubleshooting
 
 ### **Low Detection Confidence**
 If auto-detection confidence < 95%, manually set your plan in `statusbar-config.yaml`
@@ -157,7 +157,7 @@ Ensure Claude Code status line integration is enabled in your terminal
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 Part of the [Claude Code Toolkit](https://github.com/Ghenwy/claude-code-toolkit) project.
 
@@ -165,7 +165,7 @@ Part of the [Claude Code Toolkit](https://github.com/Ghenwy/claude-code-toolkit)
 
 ---
 
-## 📄 License
+##  License
 
 MIT License - See [LICENSE](../LICENSE) for details.
 

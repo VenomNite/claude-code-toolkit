@@ -41,38 +41,38 @@ TESTS_FAILED=0
 
 print_suite_header() {
     echo -e "${BLUE}${BOLD}"
-    echo "╔════════════════════════════════════════════════════════════════════╗"
-    echo "║                CLAUDE CODE TOOLKIT TESTING SUITE                  ║"
-    echo "║                        Testing Framework                       ║"
-    echo "║                         Version $TEST_SUITE_VERSION                          ║"
-    echo "╚════════════════════════════════════════════════════════════════════╝"
+    echo ""
+    echo "                CLAUDE CODE TOOLKIT TESTING SUITE                  "
+    echo "                        Testing Framework                       "
+    echo "                         Version $TEST_SUITE_VERSION                          "
+    echo ""
     echo -e "${NC}"
 }
 
 print_section() {
-    echo -e "\n${BLUE}${BOLD}🚀 $1${NC}"
+    echo -e "\n${BLUE}${BOLD} $1${NC}"
     echo -e "${BLUE}$(printf '=%.0s' {1..70})${NC}"
 }
 
 print_test_header() {
-    echo -e "\n${YELLOW}${BOLD}🧪 Running: $1${NC}"
+    echo -e "\n${YELLOW}${BOLD} Running: $1${NC}"
     echo -e "${YELLOW}$(printf '-%.0s' {1..50})${NC}"
 }
 
 print_success() {
-    echo -e "${GREEN}✅ $1${NC}"
+    echo -e "${GREEN} $1${NC}"
 }
 
 print_error() {
-    echo -e "${RED}❌ $1${NC}"
+    echo -e "${RED} $1${NC}"
 }
 
 print_warning() {
-    echo -e "${YELLOW}⚠️  $1${NC}"
+    echo -e "${YELLOW}  $1${NC}"
 }
 
 print_info() {
-    echo -e "${BLUE}ℹ️  $1${NC}"
+    echo -e "${BLUE}  $1${NC}"
 }
 
 format_time() {
@@ -289,9 +289,9 @@ generate_detailed_report() {
 ## Executive Summary
 
 $(if [[ $TESTS_FAILED -eq 0 ]]; then
-    echo "✅ **ALL TESTS PASSED** - The dual-scope installation system is production ready."
+    echo " **ALL TESTS PASSED** - The dual-scope installation system is production ready."
 else
-    echo "❌ **$TESTS_FAILED TEST(S) FAILED** - Review individual test reports for details."
+    echo " **$TESTS_FAILED TEST(S) FAILED** - Review individual test reports for details."
 fi)
 
 ## Test Results Summary
@@ -302,11 +302,11 @@ EOF
 
     # Add test results to table
     for i in {0..2}; do
-        local status_icon="❌"
+        local status_icon=""
         local status_text="FAILED"
 
         if [[ ${TEST_RESULTS[$i]} -eq 0 ]]; then
-            status_icon="✅"
+            status_icon=""
             status_text="PASSED"
         fi
 
@@ -331,16 +331,16 @@ See individual test log files in the report directory for detailed output from e
 
 The test suite validates the following dual-scope architecture features:
 
-- ✅ User scope installation (`~/.claude/`)
-- ✅ Global scope installation (`/usr/local/share/claude/`)
-- ✅ Precedence system (User → Global → Built-in)
-- ✅ Permission handling and sudo detection
-- ✅ Backup and restore functionality
-- ✅ Settings configuration (user and global)
-- ✅ File count validation (16 commands, 10 agents)
-- ✅ JSON syntax validation
-- ✅ Python dependency checking
-- ✅ Scope switching and conflict resolution
+-  User scope installation (`~/.claude/`)
+-  Global scope installation (`/usr/local/share/claude/`)
+-  Precedence system (User  Global  Built-in)
+-  Permission handling and sudo detection
+-  Backup and restore functionality
+-  Settings configuration (user and global)
+-  File count validation (16 commands, 10 agents)
+-  JSON syntax validation
+-  Python dependency checking
+-  Scope switching and conflict resolution
 
 ---
 
@@ -391,9 +391,9 @@ print_final_summary() {
     print_section "FINAL TEST SUITE SUMMARY"
 
     echo -e "${BOLD}Claude Code Toolkit Test Suite Results${NC}"
-    echo -e "${BOLD}════════════════════════════════════════${NC}"
+    echo -e "${BOLD}${NC}"
     echo
-    echo -e "📊 ${BOLD}Overall Statistics:${NC}"
+    echo -e " ${BOLD}Overall Statistics:${NC}"
     echo -e "   Total Tests: ${BOLD}3${NC}"
     echo -e "   Passed: ${GREEN}${BOLD}$TESTS_PASSED${NC}"
     echo -e "   Failed: ${RED}${BOLD}$TESTS_FAILED${NC}"
@@ -401,7 +401,7 @@ print_final_summary() {
     echo -e "   Total Duration: ${BOLD}$(format_time $TOTAL_SUITE_TIME)${NC}"
     echo
 
-    echo -e "🧪 ${BOLD}Individual Test Results:${NC}"
+    echo -e " ${BOLD}Individual Test Results:${NC}"
     for i in {0..2}; do
         local status_color=$RED
         local status_text="FAILED"
@@ -418,30 +418,30 @@ print_final_summary() {
         echo
     done
 
-    echo -e "📁 ${BOLD}Detailed Reports:${NC}"
+    echo -e " ${BOLD}Detailed Reports:${NC}"
     echo -e "   Report Directory: ${BLUE}$REPORT_DIR${NC}"
     echo -e "   Master Report: ${BLUE}$REPORT_DIR/master-test-report.md${NC}"
     echo -e "   Statistics: ${BLUE}$REPORT_DIR/test-statistics.json${NC}"
     echo
 
     if [[ $TESTS_FAILED -eq 0 ]]; then
-        echo -e "${GREEN}${BOLD}🎉 ALL TESTS PASSED!${NC}"
+        echo -e "${GREEN}${BOLD} ALL TESTS PASSED!${NC}"
         echo -e "${GREEN}The dual-scope installation system is ${BOLD}PRODUCTION READY${NC}${GREEN}.${NC}"
         echo
-        echo -e "✅ ${BOLD}Validated Features:${NC}"
-        echo -e "   • User scope installation (~/.claude/)"
-        echo -e "   • Global scope installation (/usr/local/share/claude/)"
-        echo -e "   • Precedence system (User → Global → Built-in)"
-        echo -e "   • Permission handling and sudo detection"
-        echo -e "   • Backup and restore functionality"
-        echo -e "   • Configuration management (user and global)"
-        echo -e "   • File integrity (16 commands, 10 agents, 1 script)"
-        echo -e "   • Scope switching and conflict resolution"
+        echo -e " ${BOLD}Validated Features:${NC}"
+        echo -e "    User scope installation (~/.claude/)"
+        echo -e "    Global scope installation (/usr/local/share/claude/)"
+        echo -e "    Precedence system (User  Global  Built-in)"
+        echo -e "    Permission handling and sudo detection"
+        echo -e "    Backup and restore functionality"
+        echo -e "    Configuration management (user and global)"
+        echo -e "    File integrity (16 commands, 10 agents, 2 scripts)"
+        echo -e "    Scope switching and conflict resolution"
     else
-        echo -e "${RED}${BOLD}❌ $TESTS_FAILED TEST(S) FAILED${NC}"
+        echo -e "${RED}${BOLD} $TESTS_FAILED TEST(S) FAILED${NC}"
         echo -e "${RED}Please review the detailed reports and fix the issues before deployment.${NC}"
         echo
-        echo -e "🔍 ${BOLD}Troubleshooting Steps:${NC}"
+        echo -e " ${BOLD}Troubleshooting Steps:${NC}"
         echo -e "   1. Check individual test logs in $REPORT_DIR"
         echo -e "   2. Review the master report for detailed analysis"
         echo -e "   3. Verify system dependencies and permissions"
@@ -451,13 +451,13 @@ print_final_summary() {
     echo
     echo -e "${BLUE}${BOLD}Next Steps:${NC}"
     if [[ $TESTS_FAILED -eq 0 ]]; then
-        echo -e "   • The installer is ready for production use"
-        echo -e "   • Consider running tests on different platforms"
-        echo -e "   • Document any platform-specific installation notes"
+        echo -e "    The installer is ready for production use"
+        echo -e "    Consider running tests on different platforms"
+        echo -e "    Document any platform-specific installation notes"
     else
-        echo -e "   • Fix failing tests before proceeding"
-        echo -e "   • Re-run test suite after fixes"
-        echo -e "   • Consider adding more specific test cases for edge cases"
+        echo -e "    Fix failing tests before proceeding"
+        echo -e "    Re-run test suite after fixes"
+        echo -e "    Consider adding more specific test cases for edge cases"
     fi
     echo
 }

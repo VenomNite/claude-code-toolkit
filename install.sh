@@ -44,32 +44,36 @@ REQUIRES_SUDO=false
 
 print_header() {
     echo -e "${BLUE}${BOLD}"
-    echo "╔══════════════════════════════════════════════════════════════╗"
-    echo "║              Claude Code Toolkit Installer v${VERSION}               ║"
-    echo "║                    Dual-Scope Architecture                   ║"
-    echo "╚══════════════════════════════════════════════════════════════╝"
+    echo ""
+    echo "              Claude Code Toolkit Installer v${VERSION}               "
+    echo "                    Dual-Scope Architecture                   "
+    echo ""
     echo -e "${NC}"
 }
 
 print_success() {
-    echo -e "${GREEN}✅ $1${NC}"
+    echo -e "${GREEN}[SUCCESS] $1${NC}"
 }
+
 
 print_warning() {
-    echo -e "${YELLOW}⚠️  $1${NC}"
+    echo -e "${YELLOW}[WARN] $1${NC}"
 }
+
 
 print_error() {
-    echo -e "${RED}❌ $1${NC}"
+    echo -e "${RED}[ERROR] $1${NC}"
 }
 
+
 print_info() {
-    echo -e "${BLUE}ℹ️  $1${NC}"
+    echo -e "${BLUE}[INFO] $1${NC}"
 }
+
 
 print_verbose() {
     if [[ "$VERBOSE" == true ]]; then
-        echo -e "${BLUE}🔍 [VERBOSE] $1${NC}"
+        echo -e "${BLUE} [VERBOSE] $1${NC}"
     fi
 }
 
@@ -99,17 +103,17 @@ ${BOLD}EXAMPLES:${NC}
 
 ${BOLD}SCOPES:${NC}
     User scope:   ~/.claude/
-                 • Personal installation
-                 • No admin privileges required
-                 • Overrides global installation
+                  Personal installation
+                  No admin privileges required
+                  Overrides global installation
 
     Global scope: /usr/local/share/claude/
-                 • System-wide installation
-                 • Requires admin privileges (sudo)
-                 • Fallback for all users
+                  System-wide installation
+                  Requires admin privileges (sudo)
+                  Fallback for all users
 
 ${BOLD}PRECEDENCE:${NC}
-    Claude Code searches: User → Global → Built-in defaults
+    Claude Code searches: User  Global  Built-in defaults
 
 EOF
 }
@@ -189,7 +193,7 @@ check_dependencies() {
     print_info "Checking system dependencies..."
     local missing_deps=()
 
-    # Check Python 3.7+
+    # Check Python 3.8\+
     if command -v python3 &> /dev/null; then
         local python_version
         python_version=$(python3 --version 2>&1 | cut -d' ' -f2)
@@ -199,8 +203,8 @@ check_dependencies() {
         if [[ $python_major -eq 3 && $python_minor -ge 7 ]] || [[ $python_major -gt 3 ]]; then
             print_success "Python $python_version found"
         else
-            print_error "Python 3.7+ required, found: $python_version"
-            missing_deps+=("python3>=3.7")
+            print_error "Python 3.8+ required, found: $python_version"
+            missing_deps+=("python3>=3.8")
         fi
     else
         print_error "Python 3 not found"
@@ -271,27 +275,41 @@ install_python_dependencies() {
     print_info "Installing Python dependencies..."
 
     if [[ "$DRY_RUN" == true ]]; then
-        print_info "[DRY RUN] Would install: psutil"
+        print_info "[DRY RUN] Would install: psutil, PyYAML"
         return 0
     fi
 
     local pip_cmd="pip3 install --user"
+
+    if [[ "$INSTALL_SCOPE" == "global" ]]; then
+        if [[ "$REQUIRES_SUDO" == true ]]; then
+            if command -v sudo &> /dev/null; then
+                pip_cmd="sudo -H pip3 install"
+            else
+                pip_cmd="pip3 install"
+            fi
+        else
+            pip_cmd="pip3 install"
+        fi
+    fi
 
     if [[ -f "requirements.txt" ]]; then
         print_verbose "Installing from requirements.txt"
         if $pip_cmd -r requirements.txt; then
             print_success "Python dependencies installed from requirements.txt"
         else
-            print_warning "Failed to install from requirements.txt, trying individual packages"
+            print_warning "Failed to install from requirements.txt, installing individually"
             $pip_cmd psutil
+            $pip_cmd PyYAML
         fi
     else
         print_verbose "Installing basic dependencies manually"
         $pip_cmd psutil
+        $pip_cmd PyYAML
     fi
 
     # Verify installation
-    if python3 -c "import psutil" 2>/dev/null; then
+    if python3 -c "import psutil, yaml" 2>/dev/null; then
         print_success "Python dependencies verified"
     else
         print_error "Python dependency verification failed"
@@ -403,15 +421,31 @@ install_scripts() {
 
     if [[ "$DRY_RUN" == true ]]; then
         print_info "[DRY RUN] Would install scripts to: $CLAUDE_DIR/scripts/"
+        print_info "[DRY RUN] Would copy statusbar-config.yaml to: $CLAUDE_DIR/scripts/"
         return 0
     fi
 
+    local destination="$CLAUDE_DIR/scripts"
+    local config_source="statusbar/statusbar-config.yaml"
+
     if [[ "$INSTALL_SCOPE" == "global" && "$REQUIRES_SUDO" == true ]]; then
-        sudo cp statusbar/*.py "$CLAUDE_DIR/scripts/" 2>/dev/null || true
-        sudo chmod 755 "$CLAUDE_DIR/scripts"/*.py
+        sudo cp statusbar/*.py "$destination/" 2>/dev/null || true
+        sudo chmod 755 "$destination"/*.py 2>/dev/null || true
+        if [[ -f "$config_source" ]]; then
+            sudo cp "$config_source" "$destination/"
+            sudo chmod 644 "$destination/statusbar-config.yaml" 2>/dev/null || true
+        else
+            print_warning "statusbar-config.yaml not found; using default plan detector settings"
+        fi
     else
-        cp statusbar/*.py "$CLAUDE_DIR/scripts/" 2>/dev/null || true
-        chmod +x "$CLAUDE_DIR/scripts"/*.py 2>/dev/null || true
+        cp statusbar/*.py "$destination/" 2>/dev/null || true
+        chmod +x "$destination"/*.py 2>/dev/null || true
+        if [[ -f "$config_source" ]]; then
+            cp "$config_source" "$destination/"
+            chmod 644 "$destination/statusbar-config.yaml" 2>/dev/null || true
+        else
+            print_warning "statusbar-config.yaml not found; using default plan detector settings"
+        fi
     fi
 
     print_success "Scripts installed"
@@ -521,21 +555,21 @@ verify_installation() {
         print_success "Installation verification passed!"
         echo
         print_info "Installation Summary:"
-        echo "  📂 Scope: $INSTALL_SCOPE"
-        echo "  📁 Location: $CLAUDE_DIR"
-        echo "  📋 Commands: $commands_count/16"
-        echo "  🤖 Agents: $agents_count/10"
-        echo "  📄 Scripts: $scripts_count"
+        echo "   Scope: $INSTALL_SCOPE"
+        echo "   Location: $CLAUDE_DIR"
+        echo "   Commands: $commands_count/16"
+        echo "   Agents: $agents_count/10"
+        echo "   Scripts: $scripts_count"
 
         if [[ -d "$BACKUP_DIR" ]]; then
-            echo "  💾 Backup: $BACKUP_DIR"
+            echo "   Backup: $BACKUP_DIR"
         fi
 
         return 0
     else
         print_error "Installation verification failed:"
         for error in "${errors[@]}"; do
-            echo "    • $error"
+            echo "     $error"
         done
         return 1
     fi
@@ -694,7 +728,7 @@ main() {
 
     # Success message
     echo
-    print_success "🎉 Claude Code Toolkit installation complete!"
+    print_success "Claude Code Toolkit installation complete!"
 
     if [[ "$DRY_RUN" == false ]]; then
         echo
@@ -714,7 +748,8 @@ main() {
 # ============================================================================
 
 # Set up error handling
-trap 'echo -e "\n${RED}❌ Installation failed at line $LINENO${NC}" >&2' ERR
+trap 'echo -e "\n${RED} Installation failed at line $LINENO${NC}" >&2' ERR
 
 # Run main function with all arguments
 main "$@"
+

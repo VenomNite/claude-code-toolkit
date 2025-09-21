@@ -1,13 +1,13 @@
-# 🚀 Claude Code Toolkit Installation Guide
+#  Claude Code Toolkit Installation Guide
 ## ULTRATHINK DUAL-SCOPE ARCHITECTURE
 
 **Complete installation guide supporting both user and global installations with precedence management.**
 
-**🔗 Navigation**: [← Main README](README.md) • [Quick Start](README.md#-quick-start-30-seconds) • [User Guide](docs/USER-GUIDE.md) • [Command Reference](docs/CHEAT-SHEET.md) • [Auto-Install Guide](AUTO-INSTALL.md)
+** Navigation**: [ Main README](README.md)  [Quick Start](README.md#-quick-start-30-seconds)  [User Guide](docs/USER-GUIDE.md)  [Command Reference](docs/CHEAT-SHEET.md)  [Auto-Install Guide](AUTO-INSTALL.md)
 
-## ⚡ Quick Installation (Recommended)
+##  Quick Installation (Recommended)
 
-### 🏠 User Installation (Default)
+###  User Installation (Default)
 ```bash
 # One-line install for current user only
 curl -sSL https://raw.githubusercontent.com/Ghenwy/claude-code-toolkit/main/install.sh | bash
@@ -18,7 +18,7 @@ cd claude-code-toolkit
 ./install.sh --verbose
 ```
 
-### 🌐 Global Installation (System-wide)
+###  Global Installation (System-wide)
 ```bash
 # Clone and install globally (requires sudo)
 git clone https://github.com/Ghenwy/claude-code-toolkit.git
@@ -26,47 +26,47 @@ cd claude-code-toolkit
 sudo ./install.sh --global --verbose
 ```
 
-## 📂 Installation Scopes
+##  Installation Scopes
 
-### 🏠 USER SCOPE (Default)
+###  USER SCOPE (Default)
 ```
 ~/.claude/
-├── commands/          # User commands (override global)
-├── agents/           # User agents (override global)
-├── scripts/          # User monitoring scripts
-├── settings.json     # User-specific settings
-└── backup_YYYYMMDD_HHMMSS/    # Automatic backups
+ commands/          # User commands (override global)
+ agents/           # User agents (override global)
+ scripts/          # User monitoring scripts
+ settings.json     # User-specific settings
+ backup_YYYYMMDD_HHMMSS/    # Automatic backups
 ```
 
 **Benefits:**
-- ✅ No admin privileges required
-- ✅ Personal customization
-- ✅ Overrides global installation
-- ✅ Automatic backup creation
+-  No admin privileges required
+-  Personal customization
+-  Overrides global installation
+-  Automatic backup creation
 
-### 🌐 GLOBAL SCOPE (System-wide)
+###  GLOBAL SCOPE (System-wide)
 ```
 /usr/local/share/claude/
-├── commands/          # Global commands (fallback)
-├── agents/           # Global agents (fallback)
-├── scripts/          # Global monitoring scripts
-└── config/
-    └── global-settings.json    # System-wide settings
+ commands/          # Global commands (fallback)
+ agents/           # Global agents (fallback)
+ scripts/          # Global monitoring scripts
+ config/
+     global-settings.json    # System-wide settings
 ```
 
 **Benefits:**
-- ✅ Available to all users
-- ✅ Centralized management
-- ✅ Professional deployment
-- ✅ Follows Unix conventions
+-  Available to all users
+-  Centralized management
+-  Professional deployment
+-  Follows Unix conventions
 
-### 🎯 Precedence System
+###  Precedence System
 Claude Code searches in this order:
 1. **`~/.claude/`** (User scope - highest priority)
 2. **`/usr/local/share/claude/`** (Global scope - fallback)
 3. **Built-in defaults** (Claude Code internal)
 
-## 🔧 Dual-Scope Installation
+##  Dual-Scope Installation
 
 ### Option 1: Quick Install with Scope Selection
 
@@ -94,7 +94,7 @@ sudo ./install.sh --global --dry-run --verbose
 ./install.sh --uninstall     # Remove installation
 ```
 
-## 📋 Prerequisites
+##  Prerequisites
 
 ### 1. System Requirements
 ```bash
@@ -118,15 +118,15 @@ echo "GLOBAL agents: $(ls /usr/local/share/claude/agents/*.md 2>/dev/null | wc -
 
 # Verify which scope is currently active
 if [ -d ~/.claude/commands ] && [ "$(ls ~/.claude/commands/*.md 2>/dev/null | wc -l)" -gt 0 ]; then
-    echo "🏠 USER scope is active (overriding global)"
+    echo " USER scope is active (overriding global)"
 elif [ -d /usr/local/share/claude/commands ] && [ "$(ls /usr/local/share/claude/commands/*.md 2>/dev/null | wc -l)" -gt 0 ]; then
-    echo "🌐 GLOBAL scope is active"
+    echo " GLOBAL scope is active"
 else
-    echo "❌ No installation found"
+    echo " No installation found"
 fi
 ```
 
-## 🛠️ Manual Installation
+##  Manual Installation
 
 ### For User Scope (~/.claude/)
 
@@ -135,13 +135,14 @@ fi
 mkdir -p ~/.claude/{commands,agents,scripts}
 
 # 2. Install Python dependencies
-pip3 install --user psutil python-dateutil
+pip3 install --user psutil PyYAML
 
 # 3. Copy toolkit files
 cp commands/*.md ~/.claude/commands/
 cp agents/*.md ~/.claude/agents/
-cp scripts/*.py ~/.claude/scripts/
-chmod +x ~/.claude/scripts/*.py
+cp statusbar/context_monitor_generic.py statusbar/plan_detector.py ~/.claude/scripts/
+cp statusbar/statusbar-config.yaml ~/.claude/scripts/
+chmod +x ~/.claude/scripts/context_monitor_generic.py ~/.claude/scripts/plan_detector.py
 
 # 4. Configure status line
 cat > ~/.claude/settings.json << 'EOF'
@@ -165,15 +166,17 @@ echo "Agents: $(ls ~/.claude/agents/*.md | wc -l)/10"
 sudo mkdir -p /usr/local/share/claude/{commands,agents,scripts,config}
 
 # 2. Install Python dependencies (user scope)
-pip3 install --user psutil python-dateutil
+pip3 install --user psutil PyYAML
 
 # 3. Copy toolkit files with correct permissions
 sudo cp commands/*.md /usr/local/share/claude/commands/
 sudo cp agents/*.md /usr/local/share/claude/agents/
-sudo cp scripts/*.py /usr/local/share/claude/scripts/
+sudo cp statusbar/context_monitor_generic.py statusbar/plan_detector.py /usr/local/share/claude/scripts/
+sudo cp statusbar/statusbar-config.yaml /usr/local/share/claude/scripts/
 sudo chmod 644 /usr/local/share/claude/commands/*.md
 sudo chmod 644 /usr/local/share/claude/agents/*.md
-sudo chmod 755 /usr/local/share/claude/scripts/*.py
+sudo chmod 755 /usr/local/share/claude/scripts/context_monitor_generic.py /usr/local/share/claude/scripts/plan_detector.py
+sudo chmod 644 /usr/local/share/claude/scripts/statusbar-config.yaml
 
 # 4. Configure global settings
 sudo tee /usr/local/share/claude/config/global-settings.json > /dev/null << 'EOF'
@@ -198,13 +201,13 @@ echo "Commands: $(ls /usr/local/share/claude/commands/*.md | wc -l)/16"
 echo "Agents: $(ls /usr/local/share/claude/agents/*.md | wc -l)/10"
 ```
 
-## 🔍 Installation Verification
+##  Installation Verification
 
 ### Comprehensive Verification Script
 
 ```bash
 #!/bin/bash
-echo "🔍 CLAUDE CODE TOOLKIT VERIFICATION"
+echo " CLAUDE CODE TOOLKIT VERIFICATION"
 echo "==================================="
 
 # Check both scopes
@@ -213,48 +216,48 @@ USER_AGENTS=$(ls ~/.claude/agents/*.md 2>/dev/null | wc -l)
 GLOBAL_COMMANDS=$(ls /usr/local/share/claude/commands/*.md 2>/dev/null | wc -l)
 GLOBAL_AGENTS=$(ls /usr/local/share/claude/agents/*.md 2>/dev/null | wc -l)
 
-echo "📂 USER SCOPE:"
+echo " USER SCOPE:"
 echo "  Location: ~/.claude/"
 echo "  Commands: $USER_COMMANDS/16"
 echo "  Agents: $USER_AGENTS/10"
-echo "  Settings: $(test -f ~/.claude/settings.json && echo "✅" || echo "❌")"
+echo "  Settings: $(test -f ~/.claude/settings.json && echo "" || echo "")"
 
 echo ""
-echo "🌐 GLOBAL SCOPE:"
+echo " GLOBAL SCOPE:"
 echo "  Location: /usr/local/share/claude/"
 echo "  Commands: $GLOBAL_COMMANDS/16"
 echo "  Agents: $GLOBAL_AGENTS/10"
-echo "  Settings: $(test -f /usr/local/share/claude/config/global-settings.json && echo "✅" || echo "❌")"
+echo "  Settings: $(test -f /usr/local/share/claude/config/global-settings.json && echo "" || echo "")"
 
 echo ""
-echo "🎯 EFFECTIVE SCOPE (Claude Code will use):"
+echo " EFFECTIVE SCOPE (Claude Code will use):"
 if [ $USER_COMMANDS -gt 0 ] || [ $USER_AGENTS -gt 0 ]; then
-    echo "  ✅ USER scope active (overrides global)"
-    echo "  📁 Commands from: ~/.claude/"
+    echo "   USER scope active (overrides global)"
+    echo "   Commands from: ~/.claude/"
 else
-    echo "  ✅ GLOBAL scope active"
-    echo "  📁 Commands from: /usr/local/share/claude/"
+    echo "   GLOBAL scope active"
+    echo "   Commands from: /usr/local/share/claude/"
 fi
 
 # Test key commands availability
 echo ""
-echo "🧪 KEY COMMANDS TEST:"
+echo " KEY COMMANDS TEST:"
 KEY_COMMANDS=("A-plan.md" "A-ai-code.md" "B-HealthCheck.md")
 for cmd in "${KEY_COMMANDS[@]}"; do
     if [ -f ~/.claude/commands/$cmd ]; then
-        echo "  ✅ $cmd (user)"
+        echo "   $cmd (user)"
     elif [ -f /usr/local/share/claude/commands/$cmd ]; then
-        echo "  ✅ $cmd (global)"
+        echo "   $cmd (global)"
     else
-        echo "  ❌ $cmd (missing)"
+        echo "   $cmd (missing)"
     fi
 done
 
 # Test Python dependencies
 echo ""
-echo "🐍 PYTHON DEPENDENCIES:"
-python3 -c "import psutil; print('  ✅ psutil')" 2>/dev/null || echo "  ❌ psutil"
-python3 -c "import dateutil; print('  ✅ python-dateutil')" 2>/dev/null || echo "  ❌ python-dateutil"
+echo " PYTHON DEPENDENCIES:"
+python3 -c "import psutil; print('   psutil')" 2>/dev/null || echo "   psutil"
+python3 -c "import dateutil; print('   PyYAML')" 2>/dev/null || echo "   PyYAML"
 ```
 
 ### Quick Test Commands
@@ -268,7 +271,7 @@ python3 -c "import dateutil; print('  ✅ python-dateutil')" 2>/dev/null || echo
 sudo ./install.sh --global --verify
 
 # Test Python dependencies
-python3 -c "import psutil, dateutil; print('✅ Dependencies OK')"
+python3 -c "import psutil, dateutil; print(' Dependencies OK')"
 
 # Test monitoring script
 if [ -f ~/.claude/scripts/context_monitor_generic.py ]; then
@@ -276,7 +279,7 @@ if [ -f ~/.claude/scripts/context_monitor_generic.py ]; then
 fi
 ```
 
-## 🔄 Managing Multiple Installations
+##  Managing Multiple Installations
 
 ### Switch Between Scopes
 
@@ -311,15 +314,16 @@ cp -r ~/.claude/* ~/claude-toolkit-backup/$(date +%Y%m%d)/user/
 sudo cp -r /usr/local/share/claude/* ~/claude-toolkit-backup/$(date +%Y%m%d)/global/
 
 # Restore from backup
-cp -r ~/claude-toolkit-backup/20231218/user/* ~/.claude/
-sudo cp -r ~/claude-toolkit-backup/20231218/global/* /usr/local/share/claude/
+# Replace YYYYMMDD with the backup folder date you want to restore
+cp -r ~/claude-toolkit-backup/YYYYMMDD/user/. ~/.claude/
+sudo cp -r ~/claude-toolkit-backup/YYYYMMDD/global/. /usr/local/share/claude/
 ```
 
-## ❗ Troubleshooting
+##  Troubleshooting
 
 ### Common Issues by Scope
 
-#### 🏠 User Scope Issues
+####  User Scope Issues
 
 **Commands don't appear:**
 ```bash
@@ -334,13 +338,13 @@ chmod +x ~/.claude/commands/*.md ~/.claude/agents/*.md
 **Python dependency errors:**
 ```bash
 # Reinstall dependencies
-pip3 install --user --upgrade psutil python-dateutil
+pip3 install --user --upgrade psutil PyYAML
 
 # Check Python path
 python3 -c "import sys; print(sys.path)"
 
 # Verify installation
-python3 -c "import psutil, dateutil; print('OK')"
+python3 -c "import psutil, yaml; print('OK')"
 ```
 
 **Status line not working:**
@@ -355,7 +359,7 @@ python3 ~/.claude/scripts/context_monitor_generic.py
 ./install.sh --force
 ```
 
-#### 🌐 Global Scope Issues
+####  Global Scope Issues
 
 **Permission denied errors:**
 ```bash
@@ -364,7 +368,8 @@ sudo chown -R root:root /usr/local/share/claude
 sudo chmod -R 755 /usr/local/share/claude
 sudo chmod 644 /usr/local/share/claude/commands/*.md
 sudo chmod 644 /usr/local/share/claude/agents/*.md
-sudo chmod 755 /usr/local/share/claude/scripts/*.py
+sudo chmod 755 /usr/local/share/claude/scripts/context_monitor_generic.py /usr/local/share/claude/scripts/plan_detector.py
+sudo chmod 644 /usr/local/share/claude/scripts/statusbar-config.yaml
 ```
 
 **Global installation fails:**
@@ -392,7 +397,7 @@ rm -rf ~/.claude/commands ~/.claude/agents
 
 ### Platform-Specific Issues
 
-#### 🐧 Linux
+####  Linux
 ```bash
 # Missing dependencies
 sudo apt update
@@ -407,7 +412,7 @@ echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
 source ~/.bashrc
 ```
 
-#### 🍎 macOS
+####  macOS
 ```bash
 # Install Homebrew (if needed)
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -420,7 +425,7 @@ sudo chown -R $(whoami) ~/.claude/
 sudo chown -R root:wheel /usr/local/share/claude/
 ```
 
-#### 🪟 Windows (WSL)
+####  Windows (WSL)
 ```bash
 # Use WSL2 for best compatibility
 wsl --version
@@ -475,19 +480,19 @@ find /usr/local/share/claude -type f | wc -l
 ./install.sh --force --verbose  # Recreate with optimizations
 ```
 
-## 🔐 Security Considerations
+##  Security Considerations
 
 ### User Scope Security
-- ✅ No root privileges required
-- ✅ Isolated to user's home directory
-- ✅ No system-wide impact
-- ✅ User-controlled permissions
+-  No root privileges required
+-  Isolated to user's home directory
+-  No system-wide impact
+-  User-controlled permissions
 
 ### Global Scope Security
-- ⚠️ Requires sudo for installation
-- ✅ Read-only files for non-root users
-- ✅ Follows Unix security conventions
-- ✅ Centralized audit trail
+-  Requires sudo for installation
+-  Read-only files for non-root users
+-  Follows Unix security conventions
+-  Centralized audit trail
 
 ### Best Practices
 ```bash
@@ -503,7 +508,7 @@ git pull origin main      # Update to latest version
 grep -r "sudo\|rm -rf\|chmod" ~/.claude/commands/
 ```
 
-## 🔄 Updates and Maintenance
+##  Updates and Maintenance
 
 ### Update Toolkit
 ```bash
@@ -532,8 +537,10 @@ cp agents/*.md ~/.claude/agents/
 sudo cp agents/*.md /usr/local/share/claude/agents/
 
 # Update only scripts
-cp scripts/*.py ~/.claude/scripts/
-sudo cp scripts/*.py /usr/local/share/claude/scripts/
+cp statusbar/context_monitor_generic.py statusbar/plan_detector.py ~/.claude/scripts/
+cp statusbar/statusbar-config.yaml ~/.claude/scripts/
+sudo cp statusbar/context_monitor_generic.py statusbar/plan_detector.py /usr/local/share/claude/scripts/
+sudo cp statusbar/statusbar-config.yaml /usr/local/share/claude/scripts/
 ```
 
 ### Maintenance Commands
@@ -549,7 +556,7 @@ sudo find /usr/local/share/claude/backup_* -type d -mtime +30 -exec rm -rf {} +
 time ./install.sh --dry-run  # Should complete in <5 seconds
 ```
 
-## 🆘 Get Help
+##  Get Help
 
 ### Self-Diagnostic Tools
 ```bash
@@ -565,10 +572,10 @@ time ./install.sh --dry-run  # Should complete in <5 seconds
 ```
 
 ### Support Resources
-- 📖 [README.md](claude-code-toolkit/README.md) - Complete documentation
-- 🤝 [CONTRIBUTING.md](claude-code-toolkit/CONTRIBUTING.md) - Development guidelines
-- 🐛 [GitHub Issues](https://github.com/Ghenwy/claude-code-toolkit/issues) - Report problems
-- 💬 [GitHub Discussions](https://github.com/Ghenwy/claude-code-toolkit/discussions) - Community support
+-  [README.md](claude-code-toolkit/README.md) - Complete documentation
+-  [CONTRIBUTING.md](claude-code-toolkit/CONTRIBUTING.md) - Development guidelines
+-  [GitHub Issues](https://github.com/Ghenwy/claude-code-toolkit/issues) - Report problems
+-  [GitHub Discussions](https://github.com/Ghenwy/claude-code-toolkit/discussions) - Community support
 
 ### Diagnostic Information for Bug Reports
 When reporting issues, please include:
@@ -594,21 +601,23 @@ env | grep -i claude
 
 ---
 
-## 🏆 ULTRATHINK ARCHITECTURE SUMMARY
+##  ULTRATHINK ARCHITECTURE SUMMARY
 
 **Professional-grade dual-scope installation system with:**
 
-- ✅ **Flexible deployment** - User or global scope selection
-- ✅ **Intelligent precedence** - User overrides global seamlessly
-- ✅ **Robust error handling** - Comprehensive troubleshooting
-- ✅ **Security-first design** - Following Unix best practices
-- ✅ **Complete tooling** - Verify, uninstall, dry-run modes
-- ✅ **Professional documentation** - Exhaustive troubleshooting guide
-- ✅ **Cross-platform support** - Linux, macOS, Windows (WSL)
-- ✅ **Zero-conflict installation** - Automatic backup system
+-  **Flexible deployment** - User or global scope selection
+-  **Intelligent precedence** - User overrides global seamlessly
+-  **Robust error handling** - Comprehensive troubleshooting
+-  **Security-first design** - Following Unix best practices
+-  **Complete tooling** - Verify, uninstall, dry-run modes
+-  **Professional documentation** - Exhaustive troubleshooting guide
+-  **Cross-platform support** - Linux, macOS, Windows (WSL)
+-  **Zero-conflict installation** - Automatic backup system
 
 **Ready for enterprise deployment and personal use.**
 
 ---
 
 **Need more help?** Check the [comprehensive troubleshooting guide](https://github.com/Ghenwy/claude-code-toolkit/wiki/Troubleshooting) or open an issue!
+
+

@@ -4,39 +4,39 @@
 
 This document allows you to automatically install the complete Claude Code Toolkit with **dual-scope architecture** supporting both user and global installations.
 
-## 🎯 OBJECTIVE
+##  OBJECTIVE
 
 Automatically install with **dual-scope support**:
-- ✅ 16 specialized commands
-- ✅ 10 specialized M1 agents
-- ✅ Advanced monitoring script
-- ✅ Dual-scope configuration (user/global)
-- ✅ Required Python dependencies
+-  16 specialized commands
+-  10 specialized M1 agents
+-  Advanced monitoring script
+-  Dual-scope configuration (user/global)
+-  Required Python dependencies
 
-## 📋 INSTALLATION SCOPES
+##  INSTALLATION SCOPES
 
-### 🏠 USER SCOPE (Default)
+###  USER SCOPE (Default)
 ```
 ~/.claude/
-├── commands/          # User commands (override global)
-├── agents/           # User agents (override global)
-├── scripts/          # User scripts
-└── settings.json     # User settings
+ commands/          # User commands (override global)
+ agents/           # User agents (override global)
+ scripts/          # User scripts
+ settings.json     # User settings
 ```
 
-### 🌐 GLOBAL SCOPE (System-wide)
+###  GLOBAL SCOPE (System-wide)
 ```
 /usr/local/share/claude/
-├── commands/          # Global commands (fallback)
-├── agents/           # Global agents (fallback)
-├── scripts/          # Global scripts
-└── config/
-    └── global-settings.json
+ commands/          # Global commands (fallback)
+ agents/           # Global agents (fallback)
+ scripts/          # Global scripts
+ config/
+     global-settings.json
 ```
 
-**PRECEDENCE:** Claude Code searches `User → Global → Built-in defaults`
+**PRECEDENCE:** Claude Code searches `User  Global  Built-in defaults`
 
-## 📋 INSTALLATION PROCESS
+##  INSTALLATION PROCESS
 
 ### STEP 1: Choose Installation Method
 
@@ -61,7 +61,7 @@ sudo ./install.sh --global --dry-run       # Test global installation
 **Execute these commands to verify the system:**
 
 ```bash
-# Verify Python 3.7+
+# Verify Python 3.8+
 python3 --version
 
 # Verify Git (optional but recommended)
@@ -85,9 +85,8 @@ git clone https://github.com/Ghenwy/claude-code-toolkit.git
 cd claude-code-toolkit
 
 # Verify downloaded content
-echo "✅ Available commands: $(ls commands/*.md | wc -l)"
-echo "✅ Available agents: $(ls agents/*.md | wc -l)"
-echo "✅ Available scripts: $(ls scripts/*.py | wc -l)"
+echo " Available commands: $(ls commands/*.md | wc -l)"
+echo " Available agents: $(ls agents/*.md | wc -l)"
 ```
 
 ### STEP 4A: USER SCOPE INSTALLATION
@@ -102,23 +101,25 @@ echo "✅ Available scripts: $(ls scripts/*.py | wc -l)"
 ./install.sh --verify --verbose
 
 # Show installation details
-echo "📂 USER INSTALLATION SUMMARY:"
+echo "USER INSTALLATION SUMMARY:"
 echo "==============================="
 EXPECTED_COMMANDS=$(ls commands/*.md 2>/dev/null | wc -l)
 echo "Commands: $(ls ~/.claude/commands/*.md 2>/dev/null | wc -l)/$EXPECTED_COMMANDS"
 EXPECTED_AGENTS=$(ls agents/*.md 2>/dev/null | wc -l)
 echo "Agents: $(ls ~/.claude/agents/*.md 2>/dev/null | wc -l)/$EXPECTED_AGENTS"
 echo "Scripts: $(ls ~/.claude/scripts/*.py 2>/dev/null | wc -l)"
-echo "Settings: $(test -f ~/.claude/settings.json && echo "✅ Configured" || echo "❌ Missing")"
+echo "Config file: $(test -f ~/.claude/scripts/statusbar-config.yaml && echo 'present' || echo 'missing')"
+echo "Settings: $(test -f ~/.claude/settings.json && echo 'Configured' || echo 'Missing')"
 
 # Key files verification
 echo ""
-echo "🔍 KEY FILES VERIFICATION:"
-[ -f ~/.claude/commands/A-plan.md ] && echo "  ✅ A-plan.md" || echo "  ❌ A-plan.md"
-[ -f ~/.claude/commands/A-ai-code.md ] && echo "  ✅ A-ai-code.md" || echo "  ❌ A-ai-code.md"
-[ -f ~/.claude/agents/M1-qa-gatekeeper.md ] && echo "  ✅ M1-qa-gatekeeper.md" || echo "  ❌ M1-qa-gatekeeper.md"
-[ -f ~/.claude/agents/M1-ultrathink-orchestrator.md ] && echo "  ✅ M1-ultrathink-orchestrator.md" || echo "  ❌ M1-ultrathink-orchestrator.md"
-[ -f ~/.claude/scripts/context_monitor_generic.py ] && echo "  ✅ context_monitor_generic.py" || echo "  ❌ context_monitor_generic.py"
+echo "KEY FILES VERIFICATION:"
+[ -f ~/.claude/commands/A-plan.md ] && echo "  A-plan.md" || echo "  MISSING: A-plan.md"
+[ -f ~/.claude/commands/A-ai-code.md ] && echo "  A-ai-code.md" || echo "  MISSING: A-ai-code.md"
+[ -f ~/.claude/agents/M1-qa-gatekeeper.md ] && echo "  M1-qa-gatekeeper.md" || echo "  MISSING: M1-qa-gatekeeper.md"
+[ -f ~/.claude/agents/M1-ultrathink-orchestrator.md ] && echo "  M1-ultrathink-orchestrator.md" || echo "  MISSING: M1-ultrathink-orchestrator.md"
+[ -f ~/.claude/scripts/context_monitor_generic.py ] && echo "  context_monitor_generic.py" || echo "  MISSING: context_monitor_generic.py"
+[ -f ~/.claude/scripts/statusbar-config.yaml ] && echo "  statusbar-config.yaml" || echo "  MISSING: statusbar-config.yaml"
 ```
 
 ### STEP 4B: GLOBAL SCOPE INSTALLATION
@@ -128,9 +129,9 @@ echo "🔍 KEY FILES VERIFICATION:"
 ```bash
 # Check if sudo is available
 if command -v sudo &> /dev/null; then
-    echo "✅ sudo available for global installation"
+    echo " sudo available for global installation"
 else
-    echo "❌ sudo not available - falling back to user installation"
+    echo " sudo not available - falling back to user installation"
     ./install.sh --user
     exit 0
 fi
@@ -142,23 +143,25 @@ sudo ./install.sh --global --verbose
 sudo ./install.sh --global --verify --verbose
 
 # Show installation details
-echo "🌐 GLOBAL INSTALLATION SUMMARY:"
-echo "================================"
+echo "GLOBAL INSTALLATION SUMMARY:"
+echo "==============================="
 EXPECTED_COMMANDS=$(ls commands/*.md 2>/dev/null | wc -l)
 echo "Commands: $(ls /usr/local/share/claude/commands/*.md 2>/dev/null | wc -l)/$EXPECTED_COMMANDS"
 EXPECTED_AGENTS=$(ls agents/*.md 2>/dev/null | wc -l)
 echo "Agents: $(ls /usr/local/share/claude/agents/*.md 2>/dev/null | wc -l)/$EXPECTED_AGENTS"
 echo "Scripts: $(ls /usr/local/share/claude/scripts/*.py 2>/dev/null | wc -l)"
-echo "Settings: $(test -f /usr/local/share/claude/config/global-settings.json && echo "✅ Configured" || echo "❌ Missing")"
+echo "Config file: $(test -f /usr/local/share/claude/scripts/statusbar-config.yaml && echo 'present' || echo 'missing')"
+echo "Settings: $(test -f /usr/local/share/claude/config/global-settings.json && echo 'Configured' || echo 'Missing')"
 
 # Key files verification
 echo ""
-echo "🔍 GLOBAL KEY FILES VERIFICATION:"
-[ -f /usr/local/share/claude/commands/A-plan.md ] && echo "  ✅ A-plan.md" || echo "  ❌ A-plan.md"
-[ -f /usr/local/share/claude/commands/A-ai-code.md ] && echo "  ✅ A-ai-code.md" || echo "  ❌ A-ai-code.md"
-[ -f /usr/local/share/claude/agents/M1-qa-gatekeeper.md ] && echo "  ✅ M1-qa-gatekeeper.md" || echo "  ❌ M1-qa-gatekeeper.md"
-[ -f /usr/local/share/claude/agents/M1-ultrathink-orchestrator.md ] && echo "  ✅ M1-ultrathink-orchestrator.md" || echo "  ❌ M1-ultrathink-orchestrator.md"
-[ -f /usr/local/share/claude/scripts/context_monitor_generic.py ] && echo "  ✅ context_monitor_generic.py" || echo "  ❌ context_monitor_generic.py"
+echo "KEY FILES VERIFICATION:"
+[ -f /usr/local/share/claude/commands/A-plan.md ] && echo "  A-plan.md" || echo "  MISSING: A-plan.md"
+[ -f /usr/local/share/claude/commands/A-ai-code.md ] && echo "  A-ai-code.md" || echo "  MISSING: A-ai-code.md"
+[ -f /usr/local/share/claude/agents/M1-qa-gatekeeper.md ] && echo "  M1-qa-gatekeeper.md" || echo "  MISSING: M1-qa-gatekeeper.md"
+[ -f /usr/local/share/claude/agents/M1-ultrathink-orchestrator.md ] && echo "  M1-ultrathink-orchestrator.md" || echo "  MISSING: M1-ultrathink-orchestrator.md"
+[ -f /usr/local/share/claude/scripts/context_monitor_generic.py ] && echo "  context_monitor_generic.py" || echo "  MISSING: context_monitor_generic.py"
+[ -f /usr/local/share/claude/scripts/statusbar-config.yaml ] && echo "  statusbar-config.yaml" || echo "  MISSING: statusbar-config.yaml"
 ```
 
 ### STEP 5: Install Python Dependencies
@@ -170,7 +173,7 @@ echo "🔍 GLOBAL KEY FILES VERIFICATION:"
 pip3 install --user -r requirements.txt
 
 # Verify installation
-python3 -c "import psutil; print('✅ psutil installed correctly')"
+python3 -c "import psutil; print(' psutil installed correctly')"
 ```
 
 ### STEP 6: Final Verification & Testing
@@ -178,7 +181,7 @@ python3 -c "import psutil; print('✅ psutil installed correctly')"
 **Comprehensive verification of installation:**
 
 ```bash
-echo "🔍 COMPREHENSIVE VERIFICATION:"
+echo " COMPREHENSIVE VERIFICATION:"
 echo "==============================="
 
 # Check both scopes
@@ -187,61 +190,61 @@ USER_AGENTS=$(ls ~/.claude/agents/*.md 2>/dev/null | wc -l)
 GLOBAL_COMMANDS=$(ls /usr/local/share/claude/commands/*.md 2>/dev/null | wc -l)
 GLOBAL_AGENTS=$(ls /usr/local/share/claude/agents/*.md 2>/dev/null | wc -l)
 
-echo "📂 USER SCOPE:"
+echo " USER SCOPE:"
 EXPECTED_COMMANDS=$(ls commands/*.md 2>/dev/null | wc -l)
 echo "  Commands: $USER_COMMANDS/$EXPECTED_COMMANDS"
 EXPECTED_AGENTS=$(ls agents/*.md 2>/dev/null | wc -l)
 echo "  Agents: $USER_AGENTS/$EXPECTED_AGENTS"
 
-echo "🌐 GLOBAL SCOPE:"
+echo " GLOBAL SCOPE:"
 echo "  Commands: $GLOBAL_COMMANDS/$EXPECTED_COMMANDS"
 echo "  Agents: $GLOBAL_AGENTS/$EXPECTED_AGENTS"
 
 # Show effective precedence
 echo ""
-echo "🎯 EFFECTIVE PRECEDENCE (Claude Code will use):"
+echo " EFFECTIVE PRECEDENCE (Claude Code will use):"
 if [ $USER_COMMANDS -gt 0 ] || [ $USER_AGENTS -gt 0 ]; then
-    echo "  ✅ USER scope takes precedence (commands found in ~/.claude/)"
-    echo "  📁 Active location: ~/.claude/"
+    echo "   USER scope takes precedence (commands found in ~/.claude/)"
+    echo "   Active location: ~/.claude/"
 else
-    echo "  ✅ GLOBAL scope active (no user override)"
-    echo "  📁 Active location: /usr/local/share/claude/"
+    echo "   GLOBAL scope active (no user override)"
+    echo "   Active location: /usr/local/share/claude/"
 fi
 
 # Test basic functionality
 echo ""
-echo "🧪 BASIC FUNCTIONALITY TESTS:"
+echo " BASIC FUNCTIONALITY TESTS:"
 echo "=============================="
 
 # Test monitoring script
 if [ -f ~/.claude/scripts/context_monitor_generic.py ]; then
     echo "Test 1: User monitoring script..."
-    python3 ~/.claude/scripts/context_monitor_generic.py --help 2>/dev/null && echo "  ✅ User script functional" || echo "  ℹ️ Script requires JSON input (normal)"
+    python3 ~/.claude/scripts/context_monitor_generic.py --help 2>/dev/null && echo "   User script functional" || echo "   Script requires JSON input (normal)"
 elif [ -f /usr/local/share/claude/scripts/context_monitor_generic.py ]; then
     echo "Test 1: Global monitoring script..."
-    python3 /usr/local/share/claude/scripts/context_monitor_generic.py --help 2>/dev/null && echo "  ✅ Global script functional" || echo "  ℹ️ Script requires JSON input (normal)"
+    python3 /usr/local/share/claude/scripts/context_monitor_generic.py --help 2>/dev/null && echo "   Global script functional" || echo "   Script requires JSON input (normal)"
 else
-    echo "  ❌ No monitoring script found"
+    echo "   No monitoring script found"
 fi
 
 # Test command availability
 echo "Test 2: Command files verification..."
 if [ $USER_COMMANDS -gt 0 ]; then
-    echo "  ✅ User commands available for Claude Code"
+    echo "   User commands available for Claude Code"
 elif [ $GLOBAL_COMMANDS -gt 0 ]; then
-    echo "  ✅ Global commands available for Claude Code"
+    echo "   Global commands available for Claude Code"
 else
-    echo "  ❌ No commands found in any scope"
+    echo "   No commands found in any scope"
 fi
 
 # Test agent availability
 echo "Test 3: Agent files verification..."
 if [ $USER_AGENTS -gt 0 ]; then
-    echo "  ✅ User agents available for Claude Code"
+    echo "   User agents available for Claude Code"
 elif [ $GLOBAL_AGENTS -gt 0 ]; then
-    echo "  ✅ Global agents available for Claude Code"
+    echo "   Global agents available for Claude Code"
 else
-    echo "  ❌ No agents found in any scope"
+    echo "   No agents found in any scope"
 fi
 ```
 
@@ -250,36 +253,36 @@ fi
 **Clean temporary files:**
 
 ```bash
-echo "🧹 CLEANUP:"
+echo " CLEANUP:"
 echo "==========="
 # Clean temporary directory
 cd /tmp
 rm -rf claude-code-toolkit
-echo "✅ Temporary directory cleaned"
+echo " Temporary directory cleaned"
 ```
 
-## 🎉 INSTALLATION COMPLETED
+##  INSTALLATION COMPLETED
 
 **After executing all steps, you will have available:**
 
-### 📋 Main Commands (16 total):
+###  Main Commands (16 total):
 - **`/A-plan`** - Specification generator with gap analysis
 - **`/A-ai-code --coordinar`** - Master agent orchestrator
 - **`/B-HealthCheck`** - Parallel AI tools monitor
 - **`/A-update-docs`** - Intelligent updater with Git context
 
-### 🤖 Specialized Agents (10 total):
+###  Specialized Agents (10 total):
 - **M1-qa-gatekeeper** - Zero-tolerance quality control
 - **M1-ultrathink-orchestrator** - Supreme AI tools director
 - **M1-general-purpose-agent** - Versatile agent for complex tasks
 - **+ 9 more specialized agents**
 
-### 📊 Advanced Status Line:
+###  Advanced Status Line:
 ```
-📁 project 🌿main || 🟡 █████▁▁▁ ~65% || L.R. @ 19:00⚡ C.U. 🟢 █▁▁▁▁▁▁▁ 22%⚡ ⌚ 16:09 Sep 18
+ project main ||   ~65% || L.R. @ 19:00 C.U.   22%  16:09 Sep 18
 ```
 
-## 🔄 MANAGING INSTALLATIONS
+##  MANAGING INSTALLATIONS
 
 ### Switch Between Scopes
 
@@ -305,17 +308,17 @@ sudo ./install.sh --uninstall --global
 
 # Manual verification
 if [ -d ~/.claude/commands ] && [ "$(ls ~/.claude/commands/*.md 2>/dev/null | wc -l)" -gt 0 ]; then
-    echo "🏠 USER scope is active (overriding global)"
+    echo " USER scope is active (overriding global)"
     echo "   Location: ~/.claude/"
 elif [ -d /usr/local/share/claude/commands ] && [ "$(ls /usr/local/share/claude/commands/*.md 2>/dev/null | wc -l)" -gt 0 ]; then
-    echo "🌐 GLOBAL scope is active"
+    echo " GLOBAL scope is active"
     echo "   Location: /usr/local/share/claude/"
 else
-    echo "❌ No installation found in any scope"
+    echo " No installation found in any scope"
 fi
 ```
 
-## 🔄 NEXT STEPS
+##  NEXT STEPS
 
 1. **Restart Claude Code** to activate new commands
 2. **Test the installation:**
@@ -326,7 +329,7 @@ fi
 3. **Explore commands:** Review documentation in the repository
 4. **Configure as needed:** Customize agents or commands per scope
 
-## ❗ TROUBLESHOOTING
+##  TROUBLESHOOTING
 
 ### Common Issues:
 
@@ -361,14 +364,15 @@ sudo ./install.sh --global --dry-run --verbose
 sudo ./install.sh --global --force
 ```
 
-**Enjoy the Claude Code Toolkit with dual-scope architecture!** 🚀
+**Enjoy the Claude Code Toolkit with dual-scope architecture!** 
 
 ---
 
-### 🏆 ULTRATHINK ARCHITECTURE BENEFITS
+###  ULTRATHINK ARCHITECTURE BENEFITS
 
 - **Flexible deployment:** Choose user or global based on needs
 - **Precedence system:** User installations override global seamlessly
 - **Zero conflicts:** Backup system protects existing installations
 - **Professional grade:** Following Unix conventions and best practices
 - **Complete tooling:** Verification, uninstall, dry-run modes included
+

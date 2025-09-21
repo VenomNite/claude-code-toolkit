@@ -27,8 +27,8 @@ readonly NC='\033[0m' # No Color
 readonly MOCK_GLOBAL_DIR="/tmp/test-global-claude-$(date +%s)"
 readonly TEST_USER_DIR="$HOME/.claude-test-$(date +%s)"
 readonly EXPECTED_COMMANDS=16
-readonly EXPECTED_AGENTS=12
-readonly EXPECTED_SCRIPTS=1
+readonly EXPECTED_AGENTS=10
+readonly EXPECTED_SCRIPTS=2
 
 # Test state
 ORIGINAL_CLAUDE_EXISTS=false
@@ -43,33 +43,33 @@ TOTAL_TESTS=0
 
 print_header() {
     echo -e "${BLUE}${BOLD}"
-    echo "╔══════════════════════════════════════════════════════════════╗"
-    echo "║              CLAUDE CODE TOOLKIT TESTING SUITE              ║"
-    echo "║                 $TEST_NAME                ║"
-    echo "║                      Version $TEST_VERSION                      ║"
-    echo "╚══════════════════════════════════════════════════════════════╝"
+    echo ""
+    echo "              CLAUDE CODE TOOLKIT TESTING SUITE              "
+    echo "                 $TEST_NAME                "
+    echo "                      Version $TEST_VERSION                      "
+    echo ""
     echo -e "${NC}"
 }
 
 print_test_section() {
-    echo -e "\n${BLUE}${BOLD}🧪 $1${NC}"
+    echo -e "\n${BLUE}${BOLD} $1${NC}"
     echo -e "${BLUE}$(printf '=%.0s' {1..60})${NC}"
 }
 
 print_success() {
-    echo -e "${GREEN}✅ $1${NC}"
+    echo -e "${GREEN} $1${NC}"
 }
 
 print_error() {
-    echo -e "${RED}❌ $1${NC}"
+    echo -e "${RED} $1${NC}"
 }
 
 print_warning() {
-    echo -e "${YELLOW}⚠️  $1${NC}"
+    echo -e "${YELLOW}  $1${NC}"
 }
 
 print_info() {
-    echo -e "${BLUE}ℹ️  $1${NC}"
+    echo -e "${BLUE}  $1${NC}"
 }
 
 # Test assertion functions
@@ -326,6 +326,10 @@ test_global_directory_structure() {
     local scripts_count
     scripts_count=$(ls "$MOCK_GLOBAL_DIR/scripts"/*.py 2>/dev/null | wc -l)
     assert_equals "$EXPECTED_SCRIPTS" "$scripts_count" "Correct number of scripts in global scope"
+
+    assert_file_exists "$MOCK_GLOBAL_DIR/scripts/context_monitor_generic.py" "Global context monitor script exists"
+    assert_file_exists "$MOCK_GLOBAL_DIR/scripts/plan_detector.py" "Global plan detector script exists"
+    assert_file_exists "$MOCK_GLOBAL_DIR/scripts/statusbar-config.yaml" "Global statusbar-config.yaml exists"
 }
 
 test_global_settings_configuration() {
@@ -406,7 +410,7 @@ AGENTS_COUNT=$(ls "$MOCK_GLOBAL_DIR/agents"/*.md 2>/dev/null | wc -l)
 SCRIPTS_COUNT=$(ls "$MOCK_GLOBAL_DIR/scripts"/*.py 2>/dev/null | wc -l)
 
 echo "Global Commands: $COMMANDS_COUNT/16"
-echo "Global Agents: $AGENTS_COUNT/12"
+echo "Global Agents: $AGENTS_COUNT/10"
 echo "Global Scripts: $SCRIPTS_COUNT"
 
 # Check key files
@@ -414,9 +418,9 @@ KEY_FILES=("commands/A-plan.md" "agents/M1-qa-gatekeeper.md" "scripts/context_mo
 
 for file in "${KEY_FILES[@]}"; do
     if [[ -f "$MOCK_GLOBAL_DIR/$file" ]]; then
-        echo "✅ $file"
+        echo " $file"
     else
-        echo "❌ $file"
+        echo " $file"
         exit 1
     fi
 done
@@ -521,11 +525,11 @@ main() {
     echo -e "${BLUE}Success Rate: ${success_rate}%${NC}"
 
     if [[ $TESTS_FAILED -eq 0 ]]; then
-        print_success "🎉 ALL TESTS PASSED! Global scope installation logic is working correctly."
+        print_success "All tests passed. Global scope installation logic is working correctly."
         print_info "Note: Real global installation requires sudo ./install.sh --global"
         exit 0
     else
-        print_error "❌ Some tests failed. Please review the output above."
+        print_error " Some tests failed. Please review the output above."
         exit 1
     fi
 }

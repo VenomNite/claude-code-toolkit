@@ -28,7 +28,7 @@ readonly MOCK_GLOBAL_DIR="/tmp/test-dual-global-$(date +%s)"
 readonly TEST_USER_DIR="$HOME/.claude"
 readonly BACKUP_DIR="/tmp/test-dual-backup-$(date +%s)"
 readonly EXPECTED_COMMANDS=16
-readonly EXPECTED_AGENTS=12
+readonly EXPECTED_AGENTS=10
 
 # Test state
 ORIGINAL_CLAUDE_EXISTS=false
@@ -43,33 +43,33 @@ TOTAL_TESTS=0
 
 print_header() {
     echo -e "${BLUE}${BOLD}"
-    echo "╔══════════════════════════════════════════════════════════════╗"
-    echo "║              CLAUDE CODE TOOLKIT TESTING SUITE              ║"
-    echo "║               $TEST_NAME               ║"
-    echo "║                      Version $TEST_VERSION                      ║"
-    echo "╚══════════════════════════════════════════════════════════════╝"
+    echo ""
+    echo "              CLAUDE CODE TOOLKIT TESTING SUITE              "
+    echo "               $TEST_NAME               "
+    echo "                      Version $TEST_VERSION                      "
+    echo ""
     echo -e "${NC}"
 }
 
 print_test_section() {
-    echo -e "\n${BLUE}${BOLD}🧪 $1${NC}"
+    echo -e "\n${BLUE}${BOLD} $1${NC}"
     echo -e "${BLUE}$(printf '=%.0s' {1..60})${NC}"
 }
 
 print_success() {
-    echo -e "${GREEN}✅ $1${NC}"
+    echo -e "${GREEN} $1${NC}"
 }
 
 print_error() {
-    echo -e "${RED}❌ $1${NC}"
+    echo -e "${RED} $1${NC}"
 }
 
 print_warning() {
-    echo -e "${YELLOW}⚠️  $1${NC}"
+    echo -e "${YELLOW}  $1${NC}"
 }
 
 print_info() {
-    echo -e "${BLUE}ℹ️  $1${NC}"
+    echo -e "${BLUE}  $1${NC}"
 }
 
 # Enhanced test assertion functions
@@ -520,15 +520,24 @@ test_installation_verification() {
 
     assert_equals "$EXPECTED_COMMANDS" "$user_commands" "User installation has correct command count"
     assert_equals "$EXPECTED_AGENTS" "$user_agents" "User installation has correct agent count"
+    assert_equals "$EXPECTED_SCRIPTS" "$user_scripts" "User installation has correct script count"
+    assert_file_exists "$TEST_USER_DIR/scripts/context_monitor_generic.py" "User context monitor script exists"
+    assert_file_exists "$TEST_USER_DIR/scripts/plan_detector.py" "User plan detector script exists"
+    assert_file_exists "$TEST_USER_DIR/scripts/statusbar-config.yaml" "User statusbar-config.yaml exists"
 
     # Test global verification (if exists)
     if [[ -d "$MOCK_GLOBAL_DIR" ]]; then
-        local global_commands global_agents
+        local global_commands global_agents global_scripts
         global_commands=$(ls "$MOCK_GLOBAL_DIR/commands"/*.md 2>/dev/null | wc -l)
         global_agents=$(ls "$MOCK_GLOBAL_DIR/agents"/*.md 2>/dev/null | wc -l)
+        global_scripts=$(ls "$MOCK_GLOBAL_DIR/scripts"/*.py 2>/dev/null | wc -l)
 
         assert_equals "$EXPECTED_COMMANDS" "$global_commands" "Global installation has correct command count"
         assert_equals "$EXPECTED_AGENTS" "$global_agents" "Global installation has correct agent count"
+        assert_equals "$EXPECTED_SCRIPTS" "$global_scripts" "Global installation has correct script count"
+        assert_file_exists "$MOCK_GLOBAL_DIR/scripts/context_monitor_generic.py" "Global context monitor script exists"
+        assert_file_exists "$MOCK_GLOBAL_DIR/scripts/plan_detector.py" "Global plan detector script exists"
+        assert_file_exists "$MOCK_GLOBAL_DIR/scripts/statusbar-config.yaml" "Global statusbar-config.yaml exists"
     fi
 
     # Test settings verification
@@ -623,19 +632,19 @@ main() {
 
     # Additional summary information
     print_info "Dual-Scope Architecture Summary:"
-    echo "  • User scope overrides global scope ✓"
-    echo "  • Global scope provides fallback when user absent ✓"
-    echo "  • Partial user installations take precedence ✓"
-    echo "  • Scope switching works correctly ✓"
-    echo "  • Backup and restore functionality verified ✓"
-    echo "  • Conflict resolution follows precedence rules ✓"
+    echo "   User scope overrides global scope "
+    echo "   Global scope provides fallback when user absent "
+    echo "   Partial user installations take precedence "
+    echo "   Scope switching works correctly "
+    echo "   Backup and restore functionality verified "
+    echo "   Conflict resolution follows precedence rules "
 
     if [[ $TESTS_FAILED -eq 0 ]]; then
-        print_success "🎉 ALL DUAL-SCOPE TESTS PASSED! Precedence system is working perfectly."
+        print_success " ALL DUAL-SCOPE TESTS PASSED! Precedence system is working perfectly."
         print_info "The ULTRATHINK dual-scope architecture is production ready."
         exit 0
     else
-        print_error "❌ Some dual-scope tests failed. Please review the output above."
+        print_error " Some dual-scope tests failed. Please review the output above."
         exit 1
     fi
 }

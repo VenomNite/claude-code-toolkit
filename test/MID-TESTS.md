@@ -310,8 +310,8 @@ Copy-paste each command into Claude Code, do not run from bash/terminal.
 
 **🎯 Scoring:**
 - **16/16 = Toolkit Production Ready**
-- **16-17/18 = Minor issues, investigate failed tests**
-- **<16/18 = Significant problems, review implementation**
+- **14-15/16 = Minor issues, investigate failed tests**
+- **<14/16 = Significant problems, review implementation**
 
 ### Failed Test Analysis
 **If any tests failed, document:**

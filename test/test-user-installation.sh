@@ -15,6 +15,16 @@ readonly TEST_VERSION="1.0.0"
 readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 readonly PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 
+readonly ORIGINAL_HOME="$HOME"
+readonly TEST_HOME="$(mktemp -d 2>/dev/null || mktemp -d -t claude-test-home)"
+
+if [[ -z "$TEST_HOME" ]]; then
+    echo "[ERROR] Failed to create temporary HOME directory" >&2
+    exit 1
+fi
+
+export HOME="$TEST_HOME"
+
 # Colors for output
 readonly RED='\033[0;31m'
 readonly GREEN='\033[0;32m'
@@ -24,14 +34,11 @@ readonly BOLD='\033[1m'
 readonly NC='\033[0m' # No Color
 
 # Test configuration
-readonly TEST_CLAUDE_DIR="$HOME/.claude-test-backup-$(date +%s)"
 readonly EXPECTED_COMMANDS=16
 readonly EXPECTED_AGENTS=10
-readonly EXPECTED_SCRIPTS=1
+readonly EXPECTED_SCRIPTS=2
 
 # Test state
-ORIGINAL_CLAUDE_EXISTS=false
-ORIGINAL_CLAUDE_BACKUP=""
 TESTS_PASSED=0
 TESTS_FAILED=0
 TOTAL_TESTS=0
@@ -42,34 +49,41 @@ TOTAL_TESTS=0
 
 print_header() {
     echo -e "${BLUE}${BOLD}"
-    echo "╔══════════════════════════════════════════════════════════════╗"
-    echo "║              CLAUDE CODE TOOLKIT TESTING SUITE              ║"
-    echo "║                   $TEST_NAME                  ║"
-    echo "║                      Version $TEST_VERSION                      ║"
-    echo "╚══════════════════════════════════════════════════════════════╝"
+    echo "=============================================="
+    echo " Claude Code Toolkit Testing Suite"
+    echo " ${TEST_NAME}"
+    echo " Version ${TEST_VERSION}"
+    echo "=============================================="
     echo -e "${NC}"
 }
 
+
 print_test_section() {
-    echo -e "\n${BLUE}${BOLD}🧪 $1${NC}"
-    echo -e "${BLUE}$(printf '=%.0s' {1..60})${NC}"
+    echo -e "
+${BLUE}${BOLD}[SECTION] $1${NC}"
+    echo -e "${BLUE}------------------------------------------------------------${NC}"
 }
+
 
 print_success() {
-    echo -e "${GREEN}✅ $1${NC}"
+    echo -e "${GREEN}[PASS] $1${NC}"
 }
+
 
 print_error() {
-    echo -e "${RED}❌ $1${NC}"
+    echo -e "${RED}[FAIL] $1${NC}"
 }
+
 
 print_warning() {
-    echo -e "${YELLOW}⚠️  $1${NC}"
+    echo -e "${YELLOW}[WARN] $1${NC}"
 }
 
+
 print_info() {
-    echo -e "${BLUE}ℹ️  $1${NC}"
+    echo -e "${BLUE}[INFO] $1${NC}"
 }
+
 
 # Test assertion functions
 assert_equals() {
@@ -153,7 +167,6 @@ assert_command_succeeds() {
 setup_test_environment() {
     print_test_section "TEST ENVIRONMENT SETUP"
 
-    # Check if we're in the right directory
     if [[ ! -f "$PROJECT_DIR/install.sh" ]] || [[ ! -d "$PROJECT_DIR/commands" ]]; then
         print_error "Test must be run from claude-code-toolkit directory"
         print_error "Current PROJECT_DIR: $PROJECT_DIR"
@@ -161,47 +174,32 @@ setup_test_environment() {
     fi
 
     print_info "Project directory: $PROJECT_DIR"
-    print_info "Test backup location: $TEST_CLAUDE_DIR"
+    print_info "Temporary HOME: $TEST_HOME"
 
-    # Backup existing .claude directory if it exists
-    if [[ -d "$HOME/.claude" ]]; then
-        ORIGINAL_CLAUDE_EXISTS=true
-        ORIGINAL_CLAUDE_BACKUP="$TEST_CLAUDE_DIR"
-        print_warning "Existing ~/.claude found - creating backup"
-        cp -r "$HOME/.claude" "$ORIGINAL_CLAUDE_BACKUP"
-        print_info "Original .claude backed up to: $ORIGINAL_CLAUDE_BACKUP"
-    else
-        print_info "No existing ~/.claude directory found"
-    fi
-
-    # Remove any existing test installation
-    if [[ -d "$HOME/.claude" ]]; then
-        rm -rf "$HOME/.claude"
-        print_info "Cleaned existing ~/.claude for fresh test"
-    fi
+    rm -rf "$TEST_HOME/.claude"
+    mkdir -p "$TEST_HOME"
 
     print_success "Test environment setup complete"
 }
 
+
 cleanup_test_environment() {
     print_test_section "TEST ENVIRONMENT CLEANUP"
 
-    # Remove test installation
-    if [[ -d "$HOME/.claude" ]]; then
-        rm -rf "$HOME/.claude"
-        print_info "Removed test installation from ~/.claude"
+    if [[ -d "$TEST_HOME/.claude" ]]; then
+        rm -rf "$TEST_HOME/.claude"
+        print_info "Removed test installation from $TEST_HOME/.claude"
     fi
 
-    # Restore original .claude if it existed
-    if [[ "$ORIGINAL_CLAUDE_EXISTS" == true ]] && [[ -d "$ORIGINAL_CLAUDE_BACKUP" ]]; then
-        cp -r "$ORIGINAL_CLAUDE_BACKUP" "$HOME/.claude"
-        print_info "Restored original ~/.claude from backup"
-        rm -rf "$ORIGINAL_CLAUDE_BACKUP"
-        print_info "Cleaned up backup directory"
+    if [[ -d "$TEST_HOME" ]]; then
+        rm -rf "$TEST_HOME"
+        print_info "Removed temporary HOME: $TEST_HOME"
     fi
 
+    export HOME="$ORIGINAL_HOME"
     print_success "Test environment cleanup complete"
 }
+
 
 # ============================================================================
 # TEST FUNCTIONS
@@ -314,6 +312,8 @@ test_user_installation() {
     assert_file_exists "$HOME/.claude/agents/M1-qa-gatekeeper.md" "M1-qa-gatekeeper.md agent exists"
     assert_file_exists "$HOME/.claude/agents/M1-ultrathink-orchestrator.md" "M1-ultrathink-orchestrator.md agent exists"
     assert_file_exists "$HOME/.claude/scripts/context_monitor_generic.py" "context_monitor_generic.py script exists"
+    assert_file_exists "$HOME/.claude/scripts/plan_detector.py" "plan_detector.py script exists"
+    assert_file_exists "$HOME/.claude/scripts/statusbar-config.yaml" "statusbar-config.yaml exists"
     assert_file_exists "$HOME/.claude/settings.json" "settings.json configuration exists"
 }
 
@@ -419,7 +419,13 @@ test_python_dependencies() {
         TESTS_FAILED=$((TESTS_FAILED + 1))
     fi
 
-    # Note: python-dateutil not required - only stdlib datetime is used
+    if python3 -c "import yaml" 2>/dev/null; then
+        print_success "TEST $((++TOTAL_TESTS)): PyYAML module available"
+        TESTS_PASSED=$((TESTS_PASSED + 1))
+    else
+        print_error "TEST $TOTAL_TESTS: PyYAML module not available"
+        TESTS_FAILED=$((TESTS_FAILED + 1))
+    fi
 }
 
 # ============================================================================
@@ -465,10 +471,10 @@ main() {
     echo -e "${BLUE}Success Rate: ${success_rate}%${NC}"
 
     if [[ $TESTS_FAILED -eq 0 ]]; then
-        print_success "🎉 ALL TESTS PASSED! User scope installation is working perfectly."
+        print_success "All tests passed. User scope installation is working."
         exit 0
     else
-        print_error "❌ Some tests failed. Please review the output above."
+        print_error "Some tests failed. Please review the output above."
         exit 1
     fi
 }
