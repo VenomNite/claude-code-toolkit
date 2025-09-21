@@ -28,7 +28,7 @@ readonly MOCK_GLOBAL_DIR="/tmp/test-global-claude-$(date +%s)"
 readonly TEST_USER_DIR="$HOME/.claude-test-$(date +%s)"
 readonly EXPECTED_COMMANDS=16
 readonly EXPECTED_AGENTS=10
-readonly EXPECTED_SCRIPTS=2
+readonly EXPECTED_SCRIPTS=3
 
 # Test state
 ORIGINAL_CLAUDE_EXISTS=false
@@ -154,7 +154,7 @@ assert_string_contains() {
 
     TOTAL_TESTS=$((TOTAL_TESTS + 1))
 
-    if echo "$haystack" | grep -q "$needle"; then
+    if echo "$haystack" | grep -q -- "$needle"; then
         print_success "TEST $TOTAL_TESTS: $message"
         TESTS_PASSED=$((TESTS_PASSED + 1))
         return 0
@@ -232,7 +232,8 @@ simulate_global_installation() {
     # Copy files to mock global directory
     cp "$PROJECT_DIR/commands"/*.md "$MOCK_GLOBAL_DIR/commands/"
     cp "$PROJECT_DIR/agents"/*.md "$MOCK_GLOBAL_DIR/agents/"
-    cp "$PROJECT_DIR/scripts"/*.py "$MOCK_GLOBAL_DIR/scripts/"
+    cp "$PROJECT_DIR/statusbar"/*.py "$MOCK_GLOBAL_DIR/scripts/"
+    cp "$PROJECT_DIR/statusbar"/*.yaml "$MOCK_GLOBAL_DIR/scripts/"
 
     # Create global settings
     cat > "$MOCK_GLOBAL_DIR/config/global-settings.json" << EOF

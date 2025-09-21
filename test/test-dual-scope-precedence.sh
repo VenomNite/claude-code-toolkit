@@ -29,6 +29,7 @@ readonly TEST_USER_DIR="$HOME/.claude"
 readonly BACKUP_DIR="/tmp/test-dual-backup-$(date +%s)"
 readonly EXPECTED_COMMANDS=16
 readonly EXPECTED_AGENTS=10
+readonly EXPECTED_SCRIPTS=3
 
 # Test state
 ORIGINAL_CLAUDE_EXISTS=false

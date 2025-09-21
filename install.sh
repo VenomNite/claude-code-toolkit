@@ -11,7 +11,7 @@ set -euo pipefail  # Exit on error, undefined vars, pipe failures
 # ============================================================================
 
 # Version and metadata
-readonly VERSION="2.2.2"
+readonly VERSION="2.2.3"
 readonly SCRIPT_NAME="$(basename "$0")"
 readonly TOOLKIT_NAME="Claude Code Toolkit"
 

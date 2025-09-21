@@ -36,7 +36,7 @@ readonly NC='\033[0m' # No Color
 # Test configuration
 readonly EXPECTED_COMMANDS=16
 readonly EXPECTED_AGENTS=10
-readonly EXPECTED_SCRIPTS=2
+readonly EXPECTED_SCRIPTS=3
 
 # Test state
 TESTS_PASSED=0
@@ -232,7 +232,7 @@ test_installer_help_and_version() {
     local version_output
     version_output=$(cd "$PROJECT_DIR" && ./install.sh --version 2>&1 || true)
 
-    if echo "$version_output" | grep -q "ULTRATHINK Architecture"; then
+    if echo "$version_output" | grep -q "Claude Code Toolkit Installer v2.2.3"; then
         print_success "TEST $((++TOTAL_TESTS)): --version flag shows correct output"
         TESTS_PASSED=$((TESTS_PASSED + 1))
     else
